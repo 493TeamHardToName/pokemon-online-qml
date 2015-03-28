@@ -30,6 +30,7 @@
 #include "mainwidget.h"
 #include "downloadmanager.h"
 
+#undef Q_OS_MACX
 #ifdef Q_OS_MACX
 #include "mac/FullScreenSupport.h"
 #endif

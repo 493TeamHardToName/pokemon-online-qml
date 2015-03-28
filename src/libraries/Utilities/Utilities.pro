@@ -96,7 +96,7 @@ contains(QT_VERSION, ^5\\.[0-9]\\..*) {
 include(../../Shared/Common.pri)
 
 windows: { LIBS += -L$$bin -lzip-2 }
-!windows: { LIBS += -lzip }
+!windows: { LIBS += $$CUSTOM_LIB_PATH -lzip }
 
 FORMS += \
     pluginmanagerdialog.ui

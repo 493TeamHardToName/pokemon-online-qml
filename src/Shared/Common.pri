@@ -59,3 +59,8 @@ contains(QT_VERSION, ^5\\.[0-9]\\..*) {
 unix:!mac {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN'"
 }
+
+exists ($$LIBZIP_PATH) {
+    CUSTOM_LIB_PATH += -L$$LIBZIP_PATH/lib/.libs
+    INCLUDEPATH += $$LIBZIP_PATH/lib
+}

@@ -147,28 +147,28 @@ RESOURCES +=
 
 include(../Shared/Common.pri)
 
-macx {
-   LIBS += -framework CoreFoundation
-   ICON = pokemononline.icns
-   QMAKE_INFO_PLIST = Info.plist
+#macx {
+#   LIBS += -framework CoreFoundation
+#   ICON = pokemononline.icns
+#   QMAKE_INFO_PLIST = Info.plist
    
-   HEADERS += mac/SparkleAutoUpdater.h \
-              mac/FullScreenSupport.h \
-              mac/CocoaInitializer.h
-   OBJECTIVE_SOURCES += mac/SparkleAutoUpdater.mm \
-                        mac/FullScreenSupport.mm \
-                        mac/CocoaInitializer.mm
-   LIBS += -framework Sparkle -framework AppKit
+#   HEADERS += mac/SparkleAutoUpdater.h \
+#              mac/FullScreenSupport.h \
+#              mac/CocoaInitializer.h
+#   OBJECTIVE_SOURCES += mac/SparkleAutoUpdater.mm \
+#                        mac/FullScreenSupport.mm \
+#                        mac/CocoaInitializer.mm
+#   LIBS += -framework Sparkle -framework AppKit
 
-   QMAKE_LFLAGS_SONAME  = -Wl,-install_name,@executable_path/../Frameworks/
-   LINKLIBS = libpo-utilities.1.0.0.dylib libpo-pokemoninfo.1.0.0.dylib libpo-battlemanager.1.0.0.dylib
-   QMAKE_POST_LINK = mkdir -p $${DESTDIR}/$${TARGET}.app/Contents/Frameworks;
-   for(L, LINKLIBS) {
-       QMAKE_POST_LINK += cp -f $${DESTDIR}/$${L} $${DESTDIR}/$${TARGET}.app/Contents/Frameworks/;
-       QMAKE_POST_LINK += ln -s $${L} $${DESTDIR}/$${TARGET}.app/Contents/Frameworks/$$replace(L, 1.0.0, 1);
-   }
-   QMAKE_POST_LINK += macdeployqt $${DESTDIR}/$${TARGET}.app
-}
+#   QMAKE_LFLAGS_SONAME  = -Wl,-install_name,@executable_path/../Frameworks/
+#   LINKLIBS = libpo-utilities.1.0.0.dylib libpo-pokemoninfo.1.0.0.dylib libpo-battlemanager.1.0.0.dylib
+#   QMAKE_POST_LINK = mkdir -p $${DESTDIR}/$${TARGET}.app/Contents/Frameworks;
+#   for(L, LINKLIBS) {
+#       QMAKE_POST_LINK += cp -f $${DESTDIR}/$${L} $${DESTDIR}/$${TARGET}.app/Contents/Frameworks/;
+#       QMAKE_POST_LINK += ln -s $${L} $${DESTDIR}/$${TARGET}.app/Contents/Frameworks/$$replace(L, 1.0.0, 1);
+#   }
+#   QMAKE_POST_LINK += macdeployqt $${DESTDIR}/$${TARGET}.app
+#}
 
 CONFIG(debian_package) {
     DEFINES += PO_DATA_REPO=\\\"/usr/share/games/pokemon-online/\\\"
@@ -180,7 +180,7 @@ CONFIG(popmsyoustartonly):DEFINES += PO_PMS_YOU_START_ONLY
 LIBS += $$teambuilder
 
 windows: { LIBS += -lzip-2 }
-!windows: { LIBS += -lzip }
+!windows: { LIBS += $$CUSTOM_LIB_PATH -lzip }
 
 OTHER_FILES += \
     ../../bin/Themes/Classic/default.css \

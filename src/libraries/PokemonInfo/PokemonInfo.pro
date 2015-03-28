@@ -27,6 +27,6 @@ include(../../Shared/Common.pri)
 LIBS += $$utilities
 
 windows: { LIBS += -lzip-2 }
-!windows: { LIBS += -lzip }
+!windows: { LIBS += $$CUSTOM_LIB_PATH -lzip }
 
 OTHER_FILES += 

@@ -21,6 +21,7 @@
 #include <Shellapi.h>
 #endif
 
+#undef Q_OS_MACX
 #ifdef Q_OS_MACX
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
