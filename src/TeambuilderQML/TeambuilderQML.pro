@@ -1,5 +1,5 @@
 TEMPLATE = app
-QT += gui quick
+QT += gui quick multimedia
 
 TARGET = Pokemon-Online
 CONFIG += c++11
@@ -8,7 +8,8 @@ SOURCES =   main.cpp \
             serverchoicemodel.cpp \
             ../Teambuilder/analyze.cpp \
             analyzeraccess.cpp \
-    playerinfolistmodel.cpp
+            playerinfolistmodel.cpp \
+            battleinfo.cpp
 
 HEADERS =   serverchoicemodel.h \
             ../Teambuilder/analyze.h \
@@ -19,7 +20,8 @@ HEADERS =   serverchoicemodel.h \
             ../libraries/PokemonInfo/battlestructs.h \
             ../libraries/PokemonInfo/networkstructs.h \
             analyzeraccess.h \
-    playerinfolistmodel.h
+            playerinfolistmodel.h \
+            battleinfo.h
 
 INCLUDEPATH += "../libraries"
 

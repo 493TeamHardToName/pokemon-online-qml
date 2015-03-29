@@ -8,5 +8,6 @@
         <file>qml/ui/MainMenuPage.qml</file>
         <file>qml/ui/FindGamePage.qml</file>
         <file>qml/components/ChallengeDialog.qml</file>
+        <file>qml/ui/BattlePage.qml</file>
     </qresource>
 </RCC>

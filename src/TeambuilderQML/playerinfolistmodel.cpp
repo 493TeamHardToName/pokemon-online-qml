@@ -21,6 +21,7 @@ PlayerInfo PlayerInfoListModel::findPlayerById(int id)
             return m_playerInfoList.at(i);
         }
     }
+    return PlayerInfo();
 }
 
 int PlayerInfoListModel::rowCount(const QModelIndex &parent) const

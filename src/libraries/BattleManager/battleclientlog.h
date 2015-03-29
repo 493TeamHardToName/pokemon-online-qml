@@ -90,7 +90,7 @@ public:
     QStringList getLog();
     void emitAll();
 signals:
-    void lineToBePrinted(const QString &);
+    void lineToBePrinted(const QString &line);
 protected:
     BattleData<DataContainer> *mData;
     BattleData<DataContainer> *data();

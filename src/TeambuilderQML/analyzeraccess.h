@@ -5,24 +5,34 @@
 #include "../Teambuilder/analyze.h"
 #include "playerinfolistmodel.h"
 #include <QObject>
+#include "libraries/BattleManager/battleinput.h"
+#include "libraries/BattleManager/battleclientlog.h"
+#include "battleinfo.h"
 
 class AnalyzerAccess : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged)
+    Q_PROPERTY(QObject * battleClientLog READ battleClientLog NOTIFY battleClientLogChanged)
 public:
     explicit AnalyzerAccess(QObject *parent = 0);
     Q_INVOKABLE void connectTo(QString host, int port);
     Q_INVOKABLE void sendChallenge(int playerId);
     Q_INVOKABLE void setPlayerName(QString name);
     Q_INVOKABLE void declineChallenge();
+    Q_INVOKABLE void acceptChallenge();
 
     QAbstractItemModel *playerInfoListModel();
+    QObject *battleClientLog();
 signals:
 
     void modelChanged();
     void challengeDeclined();
     void challengeRecieved(QString playerName);
+    void battleStarted();
+
+    void battleClientLogChanged();
+
 public slots:
     void errorFromNetwork(int, QString);
     void connected();
@@ -34,9 +44,9 @@ public slots:
     void playerLogin(PlayerInfo, QStringList);
     void playerLogout(int);
     void challengeStuff(ChallengeInfo);
-    void battleStarted(int, Battle, TeamBattle, BattleConfiguration);
+    void handleBattleStarted(int, Battle, TeamBattle, BattleConfiguration);
     void tiersReceived(QStringList);
-    void battleStarted(int, Battle);
+    void handleBattleStarted(int, Battle);
     void battleFinished(int, int,int,int);
     void battleCommand(int, QByteArray);
     void askForPass(QByteArray);
@@ -69,6 +79,11 @@ private:
     PlayerInfoListModel *m_playerInfoListModel;
     TeamHolder *m_team;
     ChallengeInfo m_cinfo; //store challengeInfo recieved
+    int _mid;
+    FullBattleConfiguration m_battleConf;
+    BattleInput *m_battleInput;
+    BattleClientLog *m_battleClientLog;
+    BattleInfo *m_battleInfo;
 };
 
 #endif // ANALYZERACCESS_H
