@@ -24,21 +24,42 @@ Rectangle {
     Column {
         width: parent.width
         // TODO scene window
-        // TODO logwindow
+
         TextArea {
             id: logTextArea
             width: parent.width
             height: U.dp(3)
         }
 
-        Repeater {
-            model: analyserAccess.attackListModel
-            delegate: Button {
-                text: name
-                enabled: attackEnabled
-                onClicked: {
-                    attackEnabled = false;
-                    analyserAccess.attackClicked(index)
+        Flow {
+            width: parent.width
+            Repeater {
+                model: analyserAccess.attackListModel
+                delegate: Button {
+                    text: name
+                    enabled: attackEnabled
+                    onClicked: {
+                        attackEnabled = false;
+                        analyserAccess.attackClicked(index)
+                    }
+                }
+            }
+        }
+
+        Label {
+            text: "Switch"
+        }
+        Flow {
+            width: parent.width
+            Repeater {
+                model: analyserAccess.pokemonListModel
+                delegate: Button {
+                    text: name
+                    enabled: attackEnabled
+                    onClicked: {
+                        attackEnabled = false;
+                        analyserAccess.switchClicked(index)
+                    }
                 }
             }
         }

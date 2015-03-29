@@ -9,12 +9,14 @@
 #include "libraries/BattleManager/battleclientlog.h"
 #include "battleinfo.h"
 #include "attacklistmodel.h"
+#include "pokemonlistmodel.h"
 
 class AnalyzerAccess : public QObject, public BattleCommandManager<AnalyzerAccess>
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged)
     Q_PROPERTY(QAbstractItemModel * attackListModel READ attackListModel)
+    Q_PROPERTY(QAbstractItemModel * pokemonListModel READ pokemonListModel)
     Q_PROPERTY(QObject * battleClientLog READ battleClientLog NOTIFY battleClientLogChanged)
 public:
     explicit AnalyzerAccess(QObject *parent = 0);
@@ -23,9 +25,12 @@ public:
     Q_INVOKABLE void setPlayerName(QString name);
     Q_INVOKABLE void declineChallenge();
     Q_INVOKABLE void acceptChallenge();
+    Q_INVOKABLE void attackClicked(int i);
+    Q_INVOKABLE void switchClicked(int i);
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();
+    QAbstractItemModel *pokemonListModel();
     QObject *battleClientLog();
 signals:
 
@@ -87,9 +92,6 @@ public slots:
     void onOfferChoice(int, const BattleChoices &c);
     void onChoiceSelection(int player);
 
-    // custom
-    void attackClicked(int i);
-
 private:
     Analyzer * m_analyzer;
     PlayerInfoListModel *m_playerInfoListModel;
@@ -103,6 +105,7 @@ private:
     AttackListModel *m_attackListModel;
     advbattledata_proxy *m_data2;
     int m_battleId;
+    PokemonListModel *m_pokemonListModel;
 
     void sendChoice(const BattleChoice &b);
 };

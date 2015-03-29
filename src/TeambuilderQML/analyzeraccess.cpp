@@ -58,6 +58,7 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
 
     m_playerInfoListModel = new PlayerInfoListModel(this);
     m_attackListModel = new AttackListModel(this);
+    m_pokemonListModel = new PokemonListModel(this);
 
     m_team = new TeamHolder(this);
     m_team->load();
@@ -108,6 +109,11 @@ QAbstractItemModel *AnalyzerAccess::playerInfoListModel()
 QAbstractItemModel *AnalyzerAccess::attackListModel()
 {
     return m_attackListModel;
+}
+
+QAbstractItemModel *AnalyzerAccess::pokemonListModel()
+{
+    return m_pokemonListModel;
 }
 
 QObject *AnalyzerAccess::battleClientLog()
@@ -224,6 +230,9 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     m_battleInput->addOutput(this);
 
     m_battleInfo->data = m_data2;
+
+    m_pokemonListModel->setTeam(&m_data2->team(m_battleInfo->myself));
+
     emit battleStarted();
 //    BattleWindow * mybattle = new BattleWindow(battleId, player(ownId()), player(id), team, conf);
 //    connect(this, SIGNAL(destroyed()), mybattle, SLOT(deleteLater()));
@@ -468,6 +477,22 @@ void AnalyzerAccess::attackClicked(int i)
     b.setAttackSlot(i);
     b.setTarget(m_data2->spot(m_battleInfo->opponent));
     m_battleInfo->done[n] = true;
+    for (int i =0; i < m_battleInfo->available.size(); i++)  {
+        if (m_battleInfo->available[i]) {
+            sendChoice(m_battleInfo->choice[i]);
+        }
+    }
+}
+
+void AnalyzerAccess::switchClicked(int zone)
+{
+    int slot = m_battleInfo->currentSlot;
+    int snum = m_data2->slotNum(slot);
+
+    BattleChoice &b = m_battleInfo->choice[snum];
+    b = BattleChoice(slot, SwitchChoice());
+    b.setPokeSlot(zone);
+    m_battleInfo->done[snum] = true;
     for (int i =0; i < m_battleInfo->available.size(); i++)  {
         if (m_battleInfo->available[i]) {
             sendChoice(m_battleInfo->choice[i]);
