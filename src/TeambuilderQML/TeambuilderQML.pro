@@ -9,7 +9,8 @@ SOURCES =   main.cpp \
             ../Teambuilder/analyze.cpp \
             analyzeraccess.cpp \
             playerinfolistmodel.cpp \
-            battleinfo.cpp
+            battleinfo.cpp \
+            attacklistmodel.cpp
 
 HEADERS =   serverchoicemodel.h \
             ../Teambuilder/analyze.h \
@@ -21,7 +22,8 @@ HEADERS =   serverchoicemodel.h \
             ../libraries/PokemonInfo/networkstructs.h \
             analyzeraccess.h \
             playerinfolistmodel.h \
-            battleinfo.h
+            battleinfo.h \
+            attacklistmodel.h
 
 INCLUDEPATH += "../libraries"
 

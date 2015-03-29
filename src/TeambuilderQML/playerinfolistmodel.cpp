@@ -9,7 +9,6 @@ void PlayerInfoListModel::add(PlayerInfo pi)
 {
     emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_playerInfoList.append(pi);
-    qDebug() << m_playerInfoList.size();
     emit endInsertRows();
 }
 

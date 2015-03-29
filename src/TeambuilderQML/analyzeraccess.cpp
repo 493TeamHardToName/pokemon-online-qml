@@ -6,6 +6,7 @@
 #include "libraries/BattleManager/advancedbattledata.h"
 #include "libraries/BattleManager/teamdata.h"
 #include "libraries/TeambuilderLibrary/theme.h"
+#include "Shared/battlecommands.h"
 
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent)
@@ -53,8 +54,10 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     connect(m_analyzer, SIGNAL(reconnectPassGiven(QByteArray)), SLOT(setReconnectPass(QByteArray)));
     connect(m_analyzer, SIGNAL(reconnectSuccess()), SLOT(cleanData()));
     connect(m_analyzer, SIGNAL(reconnectFailure(int)), SLOT(onReconnectFailure(int)));
+    connect(m_analyzer, SIGNAL(sendCommand(QByteArray)), this, SLOT(sendCommand(QByteArray)));
 
     m_playerInfoListModel = new PlayerInfoListModel(this);
+    m_attackListModel = new AttackListModel(this);
 
     m_team = new TeamHolder(this);
     m_team->load();
@@ -102,6 +105,11 @@ QAbstractItemModel *AnalyzerAccess::playerInfoListModel()
     return m_playerInfoListModel;
 }
 
+QAbstractItemModel *AnalyzerAccess::attackListModel()
+{
+    return m_attackListModel;
+}
+
 QObject *AnalyzerAccess::battleClientLog()
 {
     return m_battleClientLog;
@@ -139,7 +147,7 @@ void AnalyzerAccess::printChannelMessage(QString s, int a, bool b)
 
 void AnalyzerAccess::playerReceived(PlayerInfo pi)
 {
-    qDebug() << "TODO AnalyzerAccess::playerReceived" << pi.name;
+    //qDebug() << "TODO AnalyzerAccess::playerReceived" << pi.name;
     m_playerInfoListModel->add(pi);
 }
 
@@ -152,7 +160,7 @@ void AnalyzerAccess::playerLogin(PlayerInfo p, QStringList sl)
 
 void AnalyzerAccess::playerLogout(int a)
 {
-    qDebug() << "TODO AnalyzerAccess::playerLogout" << a;
+    //qDebug() << "TODO AnalyzerAccess::playerLogout" << a;
 }
 
 void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
@@ -170,6 +178,9 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
 {
     qDebug() << "AnalyzerAccess::handleBattleStarted" << battleId << battle.id1
              << PokemonInfo::Name(team.poke(0).num()) << PokemonInfo::Name(team.poke(1).num()) << PokemonInfo::Name(team.poke(2).num());
+
+    m_battleId = battleId;
+
     int id = battle.id1 == _mid ? battle.id2: battle.id1;
     //ownid() = _ownid;
 
@@ -199,9 +210,9 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     battledata_basic *mData = new battledata_basic(&m_battleConf);
     mData->team(0).name() = m_battleConf.getName(0);
     mData->team(1).name() = m_battleConf.getName(1);
-    advbattledata_proxy *data2 = new advbattledata_proxy(&m_battleConf);
-    data2->team(0).setName(m_battleConf.getName(0));
-    data2->team(1).setName(m_battleConf.getName(1));
+    m_data2 = new advbattledata_proxy(&m_battleConf);
+    m_data2->team(0).setName(m_battleConf.getName(0));
+    m_data2->team(1).setName(m_battleConf.getName(1));
 
     m_battleClientLog = new BattleClientLog(mData, Theme::getBattleTheme());
     emit battleClientLogChanged();
@@ -209,10 +220,10 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     m_battleInput = new BattleInput(&m_battleConf);
     m_battleInput->addOutput(mData);
     m_battleInput->addOutput(m_battleClientLog);
-    m_battleInput->addOutput(data2);
+    m_battleInput->addOutput(m_data2);
+    m_battleInput->addOutput(this);
 
-    m_battleInfo->data = data2;
-
+    m_battleInfo->data = m_data2;
     emit battleStarted();
 //    BattleWindow * mybattle = new BattleWindow(battleId, player(ownId()), player(id), team, conf);
 //    connect(this, SIGNAL(destroyed()), mybattle, SLOT(deleteLater()));
@@ -240,12 +251,12 @@ void AnalyzerAccess::tiersReceived(QStringList sl)
 
 void AnalyzerAccess::handleBattleStarted(int a, Battle b)
 {
-    qDebug() << "TODO AnalyzerAccess::handleBattleStarted" << a;
+    //qDebug() << "TODO AnalyzerAccess::handleBattleStarted" << a;
 }
 
 void AnalyzerAccess::battleFinished(int a, int b, int c, int d)
 {
-    qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
+    //qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
 }
 
 void AnalyzerAccess::battleCommand(int a, QByteArray ba)
@@ -365,13 +376,13 @@ void AnalyzerAccess::channelPlayers(int a, QVector<qint32> v)
 
 void AnalyzerAccess::channelCommandReceived(int a, int b, DataStream * bs)
 {
-    qDebug() << "TODO AnalyzerAccess::channelCommandReceived" << a << b;
+    //qDebug() << "TODO AnalyzerAccess::channelCommandReceived" << a << b;
 
 }
 
 void AnalyzerAccess::addChannel(QString s, int a)
 {
-    qDebug() << "TODO AnalyzerAccess::addChannel" << s << a;
+    //qDebug() << "TODO AnalyzerAccess::addChannel" << s << a;
 
 }
 
@@ -401,8 +412,79 @@ void AnalyzerAccess::cleanData()
 
 void AnalyzerAccess::onReconnectFailure(int a)
 {
-
     qDebug() << "TODO AnalyzerAccess::onReconnectFailure" << a;
+}
+
+void AnalyzerAccess::sendCommand(QByteArray qba)
+{
+    qDebug() << "Client::sendCommand" << qba.size();
+    for (int i = 0; i < (qba.size() / 16) + 1; i++) {
+        QString s;
+        for (int j = 0; j < 16; j++) {
+            if (qba.length() <= i * 16 + j) {
+                break;
+            }
+            fprintf(stderr, "%d ", qba.at(i * 16 + j));
+        }
+        fprintf(stderr, "\n");
+    }
+}
+
+void AnalyzerAccess::onSendOut(int spot, int previndex, ShallowBattlePoke *pokemon, bool silent)
+{
+    if (m_data2->player(spot) == m_battleInfo->myself) {
+        m_attackListModel->setPoke(&m_battleInfo->tempPoke(spot));
+    }
+}
+
+void AnalyzerAccess::onOfferChoice(int, const BattleChoices &c)
+{
+    qDebug() << "AnalyzerAccess::onOfferChoice";
+    if (m_battleInfo->sent) {
+        m_battleInfo->sent = false;
+        for (int i = 0; i < m_battleInfo->available.size(); i++) {
+            m_battleInfo->available[i] = false;
+            m_battleInfo->done[i] = false;
+        }
+    }
+
+    m_battleInfo->choices[c.numSlot/2] = c;
+    m_battleInfo->available[c.numSlot/2] = true;
+}
+
+void AnalyzerAccess::onChoiceSelection(int player)
+{
+    emit allowAttackSelection();
+}
+
+void AnalyzerAccess::attackClicked(int i)
+{
+    int slot = m_battleInfo->currentSlot;
+    int n = m_data2->slotNum(slot);
+
+    BattleChoice &b = m_battleInfo->choice[n];
+    b = BattleChoice(slot, AttackChoice());
+    //set attack and target
+    b.setAttackSlot(i);
+    b.setTarget(m_data2->spot(m_battleInfo->opponent));
+    m_battleInfo->done[n] = true;
+    for (int i =0; i < m_battleInfo->available.size(); i++)  {
+        if (m_battleInfo->available[i]) {
+            sendChoice(m_battleInfo->choice[i]);
+        }
+    }
+}
+
+void AnalyzerAccess::sendChoice(const BattleChoice &b)
+{
+    QByteArray ar;
+    DataStream out(&ar, QIODevice::WriteOnly);
+    out << quint8(BattleCommands::ChoiceMade) << quint8(m_battleInfo->myself) << b;
+
+    m_battleInput->receiveData(ar);
+
+    /* Send choice made to the server */
+    m_analyzer->battleCommand(m_battleId, b);
 }
 
 

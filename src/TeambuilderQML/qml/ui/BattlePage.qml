@@ -5,6 +5,8 @@ import "../js/units.js" as U
 
 Rectangle {
 
+    property bool attackEnabled : true
+
     signal goBack();
 
     anchors.fill: parent
@@ -12,6 +14,11 @@ Rectangle {
     Connections {
         target: analyserAccess.battleClientLog
         onLineToBePrinted:logTextArea.text += line + "\n"
+    }
+
+    Connections {
+        target: analyserAccess
+        onAllowAttackSelection: attackEnabled = true
     }
 
     Column {
@@ -24,7 +31,18 @@ Rectangle {
             height: U.dp(3)
         }
 
-        // TODO 4 skills
+        Repeater {
+            model: analyserAccess.attackListModel
+            delegate: Button {
+                text: name
+                enabled: attackEnabled
+                onClicked: {
+                    attackEnabled = false;
+                    analyserAccess.attackClicked(index)
+                }
+            }
+        }
+
         // TODO 6 pokemons
         Button {
             text: "Forfeit"
