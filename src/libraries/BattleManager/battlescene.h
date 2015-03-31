@@ -124,7 +124,7 @@ signals:
 //      */
 //    void appearing();
 //    void disappearing();
-private:
+protected:
     battledata_ptr mData;
     battledata_ptr data();
 

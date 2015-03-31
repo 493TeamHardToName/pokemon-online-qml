@@ -27,7 +27,10 @@ SOURCES += \
     regularbattlescene.cpp \
     moveinfoaccessor.cpp \
     zoneproxy.cpp \
-    themeaccessor.cpp
+    themeaccessor.cpp \
+    battlesceneqtquick.cpp \
+    pokemoninfoaccessorqtquick.cpp \
+    themeaccessorqtquick.cpp
 
 HEADERS +=\
     command.h \
@@ -64,7 +67,10 @@ HEADERS +=\
     ../PokemonInfo/battlestructs.h \
     moveinfoaccessor.h \
     zoneproxy.h \
-    themeaccessor.h
+    themeaccessor.h \
+    battlesceneqtquick.h \
+    pokemoninfoaccessorqtquick.h \
+    themeaccessorqtquick.h
 
 OTHER_FILES += \
     ../../../bin/qml/battlescene.qml \
