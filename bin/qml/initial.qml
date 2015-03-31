@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 
 Item
 {
@@ -10,6 +10,10 @@ Item
         return {"w": str.substr(0, str.indexOf('x')), "h":str.substr(str.indexOf('x')+1)};
     }
 
+    Text {
+        text: "A random text on the scene";
+    }
+
     Loader {
         id: loader
     }
@@ -17,6 +21,7 @@ Item
     Connections {
         target: battle.scene
         onLaunched: {
+            console.log("Battle launched");
             loader.source = "battlescene.qml"
         }
     }

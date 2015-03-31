@@ -12,6 +12,8 @@
 #include "libraries/PokemonInfo/movesetchecker.h"
 #include "analyzeraccess.h"
 
+QQuickView *qQuickView;
+
 void reloadPokemonDatabase() {
     QSettings s;
 
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
     qreal dpi = QGuiApplication::screens().at(0)->logicalDotsPerInch() * app.devicePixelRatio();
     Q_INIT_RESOURCE(qml);
 
-    QQuickView *view = new QQuickView();
+    qQuickView = new QQuickView();
 
     qRegisterMetaType<QAbstractItemModel *>();
 
@@ -46,11 +48,11 @@ int main(int argc, char *argv[])
     qmlRegisterType<PokeTableModel>("PokemonOnlineQml", 1, 0, "PokeTableModel");
     qmlRegisterType<TeamHolder>("PokemonOnlineQml", 1, 0, "TeamHolder");
     qmlRegisterType<AnalyzerAccess>("PokemonOnlineQml", 1, 0, "AnalyzerAccess");
-    view->engine()->rootContext()->setContextProperty("screenDpi", dpi);
+    qQuickView->engine()->rootContext()->setContextProperty("screenDpi", dpi);
 
-    view->setResizeMode(QQuickView::SizeRootObjectToView);
-    view->setTitle("Pokemon online");
-    view->setSource(QUrl("qrc:/qml/main.qml"));
-    view->show();
+    qQuickView->setResizeMode(QQuickView::SizeRootObjectToView);
+    qQuickView->setTitle("Pokemon online");
+    qQuickView->setSource(QUrl("qrc:/qml/main.qml"));
+    qQuickView->show();
     return app.exec();
 }

@@ -23,54 +23,54 @@ BattleScene::BattleScene(battledata_ptr dat, BattleDefaultTheme *theme, QVariant
     QSettings s;
     mNewSprites = s.value("Battle/NewSprites", true).toBool();
 
-    qmlRegisterType<ProxyDataContainer>("pokemononline.battlemanager.proxies", 1, 0, "BattleData");
-    qmlRegisterType<TeamProxy>("pokemononline.battlemanager.proxies", 1, 0, "TeamData");
-    qmlRegisterType<PokeProxy>("pokemononline.battlemanager.proxies", 1, 0, "PokeData");
-    qmlRegisterType<MoveProxy>("pokemononline.battlemanager.proxies", 1, 0, "MoveData");
-    qmlRegisterType<PokemonInfoAccessor>();
-    qmlRegisterType<BattleSceneProxy>();
-    qmlRegisterType<MoveInfoAccessor>("pokemononline.battlemanager.proxies", 1, 0, "MoveInfo");
-    qmlRegisterType<BattleDefaultTheme>("pokemononline.battlemanager.proxies", 1, 0, "Theme");
-    qmlRegisterType<AuxPokeDataProxy>("pokemononline.battlemanager.proxies", 1, 0, "FieldPokeData");
-    qmlRegisterType<FieldProxy>("pokemononline.battlemanager.proxies", 1, 0, "FieldData");
-    qmlRegisterType<ZoneProxy>("pokemononline.battlemanager.proxies", 1, 0, "ZoneData");
-    qmlRegisterType<BattleScene>("pokemononline.battlemanager.proxies", 1, 0, "BattleScene");
+//    qmlRegisterType<ProxyDataContainer>("pokemononline.battlemanager.proxies", 1, 0, "BattleData");
+//    qmlRegisterType<TeamProxy>("pokemononline.battlemanager.proxies", 1, 0, "TeamData");
+//    qmlRegisterType<PokeProxy>("pokemononline.battlemanager.proxies", 1, 0, "PokeData");
+//    qmlRegisterType<MoveProxy>("pokemononline.battlemanager.proxies", 1, 0, "MoveData");
+//    qmlRegisterType<PokemonInfoAccessor>();
+//    qmlRegisterType<BattleSceneProxy>();
+//    qmlRegisterType<MoveInfoAccessor>("pokemononline.battlemanager.proxies", 1, 0, "MoveInfo");
+//    qmlRegisterType<BattleDefaultTheme>("pokemononline.battlemanager.proxies", 1, 0, "Theme");
+//    qmlRegisterType<AuxPokeDataProxy>("pokemononline.battlemanager.proxies", 1, 0, "FieldPokeData");
+//    qmlRegisterType<FieldProxy>("pokemononline.battlemanager.proxies", 1, 0, "FieldData");
+//    qmlRegisterType<ZoneProxy>("pokemononline.battlemanager.proxies", 1, 0, "ZoneData");
+//    qmlRegisterType<BattleScene>("pokemononline.battlemanager.proxies", 1, 0, "BattleScene");
 
     /* Tells QML not to delete our pokeproxy and teamproxy objects...
 
       See http://apidocs.meego.com/1.1/core/html/qt4/qdeclarativeengine.html#objectOwnership */
-    ProxyDataContainer *data_ptr = getDataProxy();
-    for (int i = 0; i < 2; i++) {
-        QDeclarativeEngine::setObjectOwnership(data_ptr->team(i), QDeclarativeEngine::CppOwnership);
-        for (int j = 0; j < 6; j++) {
-            QDeclarativeEngine::setObjectOwnership(data_ptr->team(i)->poke(j), QDeclarativeEngine::CppOwnership);
-        }
-        for (int j = 0; j < dat->numberOfSlots()/2; j++) {
-            QDeclarativeEngine::setObjectOwnership(data_ptr->field()->poke(j*2+i), QDeclarativeEngine::CppOwnership);
-        }
-    }
-    mWidget = new QDeclarativeView();
-    mWidget->setAttribute(Qt::WA_DeleteOnClose);
+//    ProxyDataContainer *data_ptr = getDataProxy();
+//    for (int i = 0; i < 2; i++) {
+//        QDeclarativeEngine::setObjectOwnership(data_ptr->team(i), QDeclarativeEngine::CppOwnership);
+//        for (int j = 0; j < 6; j++) {
+//            QDeclarativeEngine::setObjectOwnership(data_ptr->team(i)->poke(j), QDeclarativeEngine::CppOwnership);
+//        }
+//        for (int j = 0; j < dat->numberOfSlots()/2; j++) {
+//            QDeclarativeEngine::setObjectOwnership(data_ptr->field()->poke(j*2+i), QDeclarativeEngine::CppOwnership);
+//        }
+//    }
+//    mWidget = new QDeclarativeView();
+//    mWidget->setAttribute(Qt::WA_DeleteOnClose);
 
-    // Set optimizations not already done in QDeclarativeView
-    mWidget->setAttribute(Qt::WA_OpaquePaintEvent);
-    mWidget->setAttribute(Qt::WA_NoSystemBackground);
+//    // Set optimizations not already done in QDeclarativeView
+//    mWidget->setAttribute(Qt::WA_OpaquePaintEvent);
+//    mWidget->setAttribute(Qt::WA_NoSystemBackground);
 
-    // Using OpenGL for the viewport causes horrible lag on Mac
+//    // Using OpenGL for the viewport causes horrible lag on Mac
     
-#ifndef Q_OS_MACX
-    // Make QDeclarativeView use OpenGL backend
-    QGLWidget *glWidget = new QGLWidget(mWidget);
-    mWidget->setViewport(glWidget);
-    mWidget->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-#endif
+//#ifndef Q_OS_MACX
+//    // Make QDeclarativeView use OpenGL backend
+//    QGLWidget *glWidget = new QGLWidget(mWidget);
+//    mWidget->setViewport(glWidget);
+//    mWidget->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+//#endif
 
-    mWidget->engine()->rootContext()->setContextProperty("battle", mOwnProxy);
-    mWidget->engine()->addImageProvider("pokeinfo", new PokemonInfoAccessor());
-    mWidget->engine()->addImageProvider("themeinfo", new ThemeAccessor(theme));
-    mWidget->engine()->rootContext()->setContextProperty("moveInfo", new MoveInfoAccessor(this, data()->gen()));
-    mWidget->engine()->rootContext()->setContextProperty("theme", theme);
-    mWidget->setSource(QString("qml/initial.qml"));
+//    mWidget->engine()->rootContext()->setContextProperty("battle", mOwnProxy);
+//    mWidget->engine()->addImageProvider("pokeinfo", new PokemonInfoAccessor());
+//    mWidget->engine()->addImageProvider("themeinfo", new ThemeAccessor(theme));
+//    mWidget->engine()->rootContext()->setContextProperty("moveInfo", new MoveInfoAccessor(this, data()->gen()));
+//    mWidget->engine()->rootContext()->setContextProperty("theme", theme);
+//    mWidget->setSource(QString("qml/initial.qml"));
 }
 
 QVariant BattleScene::option(const QString &opt, const QVariant &def) const

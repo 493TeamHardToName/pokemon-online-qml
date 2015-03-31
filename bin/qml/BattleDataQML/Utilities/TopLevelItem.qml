@@ -20,7 +20,7 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-import QtQuick 1.1
+import QtQuick 2.4
 
 Item {
     id: placeholder;

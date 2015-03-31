@@ -2,16 +2,17 @@
 #define THEMEACCESSORQTQUICK_H
 
 #include <QtQuick/QQuickImageProvider>
+#include "defaulttheme.h"
 
 class ThemeAccessorQtQuick : public QQuickImageProvider
 {
-    Q_OBJECT
 public:
-    explicit ThemeAccessorQtQuick(QObject *parent = 0);
+    explicit ThemeAccessorQtQuick(BattleDefaultTheme *theme);
 
-signals:
+    QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize);
 
-public slots:
+private:
+    BattleDefaultTheme *m_theme;
 
 };
 

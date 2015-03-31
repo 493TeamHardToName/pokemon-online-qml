@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 
 Image {
@@ -8,25 +8,25 @@ Image {
     anchors.fill: parent;
     z: 200;
 
-    Particles {
-        parent: main.parent;
-        y: 0;
-        x: 0;
-        width: main.parent.width
-        height: main.parent.height;
-        id: particles
-        source: "../../images/lightparticle.png"
-        opacity: 0;
+//    Particles {
+//        parent: main.parent;
+//        y: 0;
+//        x: 0;
+//        width: main.parent.width
+//        height: main.parent.height;
+//        id: particles
+//        source: "../../images/lightparticle.png"
+//        opacity: 0;
 
-        lifeSpan: 800
-        angle: 360
-        velocity: 20
-        count:0;
-        emissionRate: 50;
-        fadeInDuration: 10;
+//        lifeSpan: 800
+//        angle: 360
+//        velocity: 20
+//        count:0;
+//        emissionRate: 50;
+//        fadeInDuration: 10;
 
-        velocityDeviation: 10
-    }
+//        velocityDeviation: 10
+//    }
 
     SequentialAnimation {
         running: false;

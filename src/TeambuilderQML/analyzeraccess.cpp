@@ -8,6 +8,8 @@
 #include "libraries/TeambuilderLibrary/theme.h"
 #include "Shared/battlecommands.h"
 
+extern QQuickView *qQuickView;
+
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent)
 {
@@ -64,6 +66,8 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     m_team->load();
     m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
     m_team->name() = "zAnArbitraryName";
+
+    BattleSceneQtQuick::registerTypes();
 }
 
 void AnalyzerAccess::connectTo(QString host, int port)
@@ -223,10 +227,19 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     m_battleClientLog = new BattleClientLog(mData, Theme::getBattleTheme());
     emit battleClientLogChanged();
 
+    QSettings s;
+    QVariantMap options;
+    options.insert("logger", s.value("Battle/AnimatedLogger", false).toBool());
+    options.insert("weather", s.value("Battle/AnimatedWeather", "always"));
+    options.insert("screensize", s.value("Battle/AnimatedScreenSize", "712x400"));
+    m_battleSceneQtQuick = new BattleSceneQtQuick(m_data2, Theme::getBattleTheme(), options);
+    m_battleSceneQtQuick->setView(qQuickView);
+
     m_battleInput = new BattleInput(&m_battleConf);
     m_battleInput->addOutput(mData);
     m_battleInput->addOutput(m_battleClientLog);
     m_battleInput->addOutput(m_data2);
+    m_battleInput->addOutput(m_battleSceneQtQuick);
     m_battleInput->addOutput(this);
 
     m_battleInfo->data = m_data2;
@@ -498,6 +511,11 @@ void AnalyzerAccess::switchClicked(int zone)
             sendChoice(m_battleInfo->choice[i]);
         }
     }
+}
+
+QQuickItem *AnalyzerAccess::createBattleSceneItem(QQuickItem *parent)
+{
+    return m_battleSceneQtQuick->createItem(parent);
 }
 
 void AnalyzerAccess::sendChoice(const BattleChoice &b)

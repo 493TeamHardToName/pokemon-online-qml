@@ -7,6 +7,7 @@
 #include <QObject>
 #include "libraries/BattleManager/battleinput.h"
 #include "libraries/BattleManager/battleclientlog.h"
+#include "libraries/BattleManager/battlesceneqtquick.h"
 #include "battleinfo.h"
 #include "attacklistmodel.h"
 #include "pokemonlistmodel.h"
@@ -27,6 +28,7 @@ public:
     Q_INVOKABLE void acceptChallenge();
     Q_INVOKABLE void attackClicked(int i);
     Q_INVOKABLE void switchClicked(int i);
+    Q_INVOKABLE QQuickItem *createBattleSceneItem(QQuickItem *parent);
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();
@@ -106,6 +108,7 @@ private:
     advbattledata_proxy *m_data2;
     int m_battleId;
     PokemonListModel *m_pokemonListModel;
+    BattleSceneQtQuick *m_battleSceneQtQuick;
 
     void sendChoice(const BattleChoice &b);
 };

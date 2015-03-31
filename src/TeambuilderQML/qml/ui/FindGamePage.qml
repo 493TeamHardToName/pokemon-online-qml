@@ -40,7 +40,7 @@ Rectangle {
         ]
         delegate: Rectangle {
             id: item
-            height: name.indexOf("poqmtest") == 0 ? 25 : 0
+            height: name.indexOf("poqmtest") === 0 ? 25 : 0
             width: 200
             clip: true
             Text {

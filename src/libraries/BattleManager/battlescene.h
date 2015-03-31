@@ -41,8 +41,8 @@ public:
 
     /* Should the players be reversed positions in the visual scene? */
     bool reversed();
-    int width() const;
-    int height() const;
+    virtual int width() const;
+    virtual int height() const;
     void launch();
     bool newSprites();
     bool mNewSprites;
