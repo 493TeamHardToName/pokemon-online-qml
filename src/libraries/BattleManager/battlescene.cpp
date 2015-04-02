@@ -152,21 +152,23 @@ void BattleScene::debug(const QString &m)
 
 void BattleScene::pause(int ticks)
 {
-    pauseCount += ticks;
-    baseClass::pause(ticks);
+
+    //TODO pause and unpause doesn't work now
+//    pauseCount += ticks;
+//    baseClass::pause(ticks);
 }
 
 void BattleScene::unpause(int ticks)
 {
-    pauseCount -= ticks;
+//    pauseCount -= ticks;
 
-    useCommands();
+//    useCommands();
 
-    if (playingCommands()) {
-        baseClass::pause(-ticks);
-    } else {
-        baseClass::unpause(ticks);
-    }
+//    if (playingCommands()) {
+//        baseClass::pause(-ticks);
+//    } else {
+//        baseClass::unpause(ticks);
+//    }
 }
 
 void BattleScene::useCommands()
