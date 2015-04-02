@@ -200,6 +200,12 @@ void Analyzer::reconnect(int id, const QByteArray &pass, int ccount)
 
 void Analyzer::battleCommand(int id, const BattleChoice &comm)
 {
+    qDebug() << "Analyzer::battleCommand" << id
+             << comm.attackingChoice()
+             << comm.attackSlot()
+             << comm.cancelled()
+             << comm.pokeSlot()
+             << comm.target();
     notify(BattleMessage, qint32(id), comm);
 }
 

@@ -5,6 +5,7 @@ import "../js/units.js" as U
 
 Rectangle {
     signal goBack;
+    signal goToBattle;
     anchors.fill: parent
 
     Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
@@ -13,6 +14,7 @@ Rectangle {
         id: challengePopupComponent
         ChallengeDialog {
             onDecline: analyserAccess.declineChallenge();
+            onAccept: analyserAccess.acceptChallenge();
         }
     }
 
@@ -22,6 +24,9 @@ Rectangle {
                                  pokemonOnlineQml, {
                                     playerName: playerName
                                  });
+        onBattleStarted: {
+            goToBattle();
+        }
     }
 
     VisualDataModel {

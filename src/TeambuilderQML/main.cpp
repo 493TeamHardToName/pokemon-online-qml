@@ -6,6 +6,7 @@
 #include <QtQml/QtQml>
 #include "serverchoicemodel.h"
 #include "libraries/TeambuilderLibrary/poketablemodel.h"
+#include "libraries/TeambuilderLibrary/theme.h"
 #include "libraries/PokemonInfo/teamholder.h"
 #include "libraries/PokemonInfo/pokemoninfo.h"
 #include "libraries/PokemonInfo/movesetchecker.h"
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
     reloadPokemonDatabase();
 
     QGuiApplication app(argc, argv);
+    Theme::init();
     qreal dpi = QGuiApplication::screens().at(0)->logicalDotsPerInch() * app.devicePixelRatio();
     Q_INIT_RESOURCE(qml);
 
