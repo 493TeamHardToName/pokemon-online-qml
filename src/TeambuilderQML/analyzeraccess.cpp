@@ -81,8 +81,11 @@ void AnalyzerAccess::sendChallenge(int playerId)
     cinfo.dsc = ChallengeInfo::Sent;
     cinfo.opp = playerId;
     cinfo.mode = 0;
-    cinfo.clauses = ChallengeInfo::ChallengeCup;
-    cinfo.desttier = "Battle Factory";
+    //cinfo.clauses = ChallengeInfo::ChallengeCup;
+    //TODO tire can change here.
+    PlayerInfo myInfo = m_playerInfoListModel->findPlayerById(_mid);
+    cinfo.desttier = myInfo.ratings.keys()[0];
+    qDebug() << "Tier set to " << myInfo.ratings << cinfo.desttier;
     cinfo.team = m_team->currentTeam();
     m_analyzer->sendChallengeStuff(cinfo);
 }
@@ -175,7 +178,7 @@ void AnalyzerAccess::playerLogout(int a)
 
 void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
 {
-    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc();
+    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc() << ci.battleText(0);
     if (ci.desc() == ChallengeInfo::Refused) {
         emit challengeDeclined();
     } else if (ci.desc() == ChallengeInfo::Sent) {
