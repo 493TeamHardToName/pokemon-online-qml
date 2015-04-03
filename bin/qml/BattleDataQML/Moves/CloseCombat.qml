@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 import "../" 1.0
 
@@ -14,22 +14,22 @@ Move {
          * The main animation of Close combat
          * Lucky punch is used as a (placeholder) image
          */
-        Particles {
-            parent: defender.pokeSprite.parent
-            z: defender.infront(5)
-            width: defender.width;
-            height: defender.height;
-            source: "../../images/fist.png"
-            lifeSpan: 200
-            count: 10
-            angle: 0
-            angleDeviation: 180
-            velocity: 0
-            velocityDeviation: 5
-            scale: calculateScale(defender.z)
+//        Particles {
+//            parent: defender.pokeSprite.parent
+//            z: defender.infront(5)
+//            width: defender.width;
+//            height: defender.height;
+//            source: "../../images/fist.png"
+//            lifeSpan: 200
+//            count: 10
+//            angle: 0
+//            angleDeviation: 180
+//            velocity: 0
+//            velocityDeviation: 5
+//            scale: calculateScale(defender.z)
 
-            transformOrigin: Item.Bottom
-        }        
+//            transformOrigin: Item.Bottom
+//        }
 
         SequentialAnimation  {
                 id: animation;

@@ -25,6 +25,12 @@ Rectangle {
         width: parent.width
         // TODO scene window
 
+        Column {
+            id: battleSceneContainer
+            width: parent.width
+            Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
+        }
+
         TextArea {
             id: logTextArea
             width: parent.width

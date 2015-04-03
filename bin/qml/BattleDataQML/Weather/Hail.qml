@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 
 Item {
@@ -13,29 +13,29 @@ Item {
         color: "black";
     }
 
-    Particles {
-        parent: main.parent;
-        y: 0;
-        x: 0;
-        width: main.parent.width
-        height: 250;
-        id: particles
-        source: "../../images/hailstone.png"
+//    Particles {
+//        parent: main.parent;
+//        y: 0;
+//        x: 0;
+//        width: main.parent.width
+//        height: 250;
+//        id: particles
+//        source: "../../images/hailstone.png"
 
-        lifeSpan: 1600
-        angle: 70
-        angleDeviation: 36
-        velocity: 120
-        count: 0;
-        emissionRate: 60;
-        opacity: 0;
+//        lifeSpan: 1600
+//        angle: 70
+//        angleDeviation: 36
+//        velocity: 120
+//        count: 0;
+//        emissionRate: 60;
+//        opacity: 0;
 
-        velocityDeviation: 10
-        ParticleMotionWander {
-            xvariance: 20
-            pace: 100
-        }
-    }
+//        velocityDeviation: 10
+//        ParticleMotionWander {
+//            xvariance: 20
+//            pace: 100
+//        }
+//    }
 
     SequentialAnimation {
         id: animation;

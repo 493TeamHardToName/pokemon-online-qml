@@ -42,6 +42,7 @@ Rectangle {
             id: item
             height: name.indexOf("poqmtest") == 0 ? 25 : 0
             width: 500
+
             clip: true
             Text {
                 text: {

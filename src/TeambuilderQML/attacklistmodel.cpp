@@ -1,7 +1,7 @@
 #include "attacklistmodel.h"
 
 AttackListModel::AttackListModel(QObject *parent) :
-    QAbstractListModel(parent)
+    QAbstractListModel(parent), m_pokeProxy(0)
 {
 }
 

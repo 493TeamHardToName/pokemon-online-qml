@@ -1,6 +1,6 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import pokemononline.battlemanager.proxies 1.0
-import Qt.labs.shaders 1.0
+//import Qt.labs.shaders 1.0
 import "colors.js" as Colors
 import "Utilities" 1.0
 
@@ -39,7 +39,7 @@ Item {
         image: img
         blendColor: Colors.statusColor(pokemon.status)
         alpha: pokemon.status === 0 ? 0.0 : 0.5
-        opac: 1
+        opacity: 1
     }
 
     Tooltip {
