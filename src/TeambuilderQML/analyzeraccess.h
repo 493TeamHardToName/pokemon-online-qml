@@ -4,18 +4,26 @@
 #include "libraries/PokemonInfo/battlestructs.h"
 #include "../Teambuilder/analyze.h"
 #include "playerinfolistmodel.h"
+#include <QAbstractListModel>
+
+#include "libraries/PokemonInfo/pokemonstructs.h"
+#include "libraries/PokemonInfo/teamholder.h"
 #include <QObject>
 
 class AnalyzerAccess : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged)
+    Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged) //前面是前段看到的，后面read之后是后端调用的，notify会告诉bind 的model change
 public:
     explicit AnalyzerAccess(QObject *parent = 0);
     Q_INVOKABLE void connectTo(QString host, int port);
     Q_INVOKABLE void sendChallenge(int playerId);
     Q_INVOKABLE void setPlayerName(QString name);
     Q_INVOKABLE void declineChallenge();
+    Q_INVOKABLE void setCurrentTeam();
+    Q_INVOKABLE void setTeam(int pokonId);
+    Q_INVOKABLE void setPos(int pos);
+    Q_INVOKABLE void downloadTeam();
 
     QAbstractItemModel *playerInfoListModel();
 signals:
@@ -68,6 +76,8 @@ private:
     Analyzer * m_analyzer;
     PlayerInfoListModel *m_playerInfoListModel;
     TeamHolder *m_team;
+    int currentPos;
+    QList<int> userTeam; //新加的
     ChallengeInfo m_cinfo; //store challengeInfo recieved
 };
 

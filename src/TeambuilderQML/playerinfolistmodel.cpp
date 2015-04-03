@@ -45,7 +45,7 @@ QVariant PlayerInfoListModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> PlayerInfoListModel::roleNames() const
 {
     QHash<int, QByteArray> r;
-    r[RoleName] = "name";
+    r[RoleName] = "name"; //后面那个是qml调用的
     r[RolePlayerId] = "playerId";
     return r;
 }

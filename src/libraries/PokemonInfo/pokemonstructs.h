@@ -209,10 +209,11 @@ class Team
 {
     PROPERTY(QString, defaultTier)
 protected:
-    PokeTeam m_pokes[6];
+    //PokeTeam m_pokes[6];//change to public
     Pokemon::gen m_gen;
 
 public:
+    PokeTeam m_pokes[6]; //change from protected to public
     Team();
     Pokemon::gen gen() const {return m_gen;}
     void setGen(Pokemon::gen gen);

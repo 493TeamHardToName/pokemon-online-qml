@@ -2,7 +2,7 @@
 #define ZIPUTILS_H
 
 #ifdef __WIN32
-#include "../../SpecialIncludes/zip.h"
+//#include "../../SpecialIncludes/zip.h"
 #else
 #include <zip.h>
 #endif

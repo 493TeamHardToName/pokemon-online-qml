@@ -8,7 +8,8 @@ SOURCES =   main.cpp \
             serverchoicemodel.cpp \
             ../Teambuilder/analyze.cpp \
             analyzeraccess.cpp \
-    playerinfolistmodel.cpp
+    playerinfolistmodel.cpp \
+    teaminfolistmodel.cpp
 
 HEADERS =   serverchoicemodel.h \
             ../Teambuilder/analyze.h \
@@ -19,7 +20,8 @@ HEADERS =   serverchoicemodel.h \
             ../libraries/PokemonInfo/battlestructs.h \
             ../libraries/PokemonInfo/networkstructs.h \
             analyzeraccess.h \
-    playerinfolistmodel.h
+    playerinfolistmodel.h \
+    teaminfolistmodel.h
 
 INCLUDEPATH += "../libraries"
 

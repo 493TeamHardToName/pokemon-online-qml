@@ -35,7 +35,7 @@ Rectangle {
         ]
         delegate: Rectangle {
             id: item
-            height: name.indexOf("poqmtest") == 0 ? 25 : 0
+            height: name.indexOf("poqmtest") == 0 ? 25 : 0   //name is a variable of playersInfoListModel
             width: 200
             clip: true
             Text {

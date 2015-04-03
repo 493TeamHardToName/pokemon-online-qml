@@ -52,7 +52,8 @@ HEADERS += otherwidgets.h \
     baseanalyzer.h \
     keypresseater.h \
     exesuffix.h \
-    pluginmanagerdialog.h
+    pluginmanagerdialog.h \
+    ../../../SpecialIncludes/zip.h
 
 windows: {
 HEADERS += coro/taskimpl.h \
