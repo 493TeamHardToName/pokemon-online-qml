@@ -41,11 +41,11 @@ Rectangle {
         delegate: Rectangle {
             id: item
             height: name.indexOf("poqmtest") == 0 ? 25 : 0
-            width: 200
+            width: 500
             clip: true
             Text {
                 text: {
-                    var text = "Name: " + name
+                    var text = "Name: " + name + " IsBattling: " + isBattling
                     if (item.VisualDataModel.inSelected)
                         text += " (" + item.VisualDataModel.selectedIndex + ")"
                     return text;

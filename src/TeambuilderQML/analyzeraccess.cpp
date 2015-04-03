@@ -167,6 +167,7 @@ void AnalyzerAccess::playerLogin(PlayerInfo p, QStringList sl)
 void AnalyzerAccess::playerLogout(int a)
 {
     //qDebug() << "TODO AnalyzerAccess::playerLogout" << a;
+    m_playerInfoListModel->remove(a);
 }
 
 void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
@@ -261,6 +262,7 @@ void AnalyzerAccess::tiersReceived(QStringList sl)
 void AnalyzerAccess::handleBattleStarted(int a, Battle b)
 {
     //qDebug() << "TODO AnalyzerAccess::handleBattleStarted" << a;
+    m_playerInfoListModel->update(b.id1, b.id2);
 }
 
 void AnalyzerAccess::battleFinished(int a, int b, int c, int d)
