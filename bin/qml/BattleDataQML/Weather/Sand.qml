@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 
 Item {
@@ -13,30 +13,30 @@ Item {
         color: "#deac00";
     }
 
-    Particles {
-        parent: main.parent;
-        y: 0;
-        x: 0;
-        width: main.parent.width
-        height: main.parent.height;
-        id: particles
-        source: "../../images/sand.png"
-        opacity: 0;
+//    Particles {
+//        parent: main.parent;
+//        y: 0;
+//        x: 0;
+//        width: main.parent.width
+//        height: main.parent.height;
+//        id: particles
+//        source: "../../images/sand.png"
+//        opacity: 0;
 
-        lifeSpan: 1000
-        angle: 165
-        angleDeviation: 20
-        velocity: 400
-        count:0;
-        emissionRate: 300;
-        fadeInDuration: 10;
+//        lifeSpan: 1000
+//        angle: 165
+//        angleDeviation: 20
+//        velocity: 400
+//        count:0;
+//        emissionRate: 300;
+//        fadeInDuration: 10;
 
-        velocityDeviation: 10
-        ParticleMotionWander {
-            pace: 100
-            xvariance: 80
-        }
-    }
+//        velocityDeviation: 10
+//        ParticleMotionWander {
+//            pace: 100
+//            xvariance: 80
+//        }
+//    }
 
     SequentialAnimation {
         id: animation;

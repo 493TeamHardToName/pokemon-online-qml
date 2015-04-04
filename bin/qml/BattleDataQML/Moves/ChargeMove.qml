@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 import "../" 1.0
 
@@ -23,31 +23,31 @@ Move {
     property int y0: attacker.pokeSprite.anchors.bottomMargin;
     property int z0: attacker.pokeSprite.z;
 
-    Particles {
-        id: particles;
+//    Particles {
+//        id: particles;
 
-        x: attacker.pokeSprite.x + attacker.pokeSprite.width/2 - width/2
-        y: attacker.pokeSprite.y + attacker.pokeSprite.height-35
-        width: 2
-        height: 2
-        source: ""
+//        x: attacker.pokeSprite.x + attacker.pokeSprite.width/2 - width/2
+//        y: attacker.pokeSprite.y + attacker.pokeSprite.height-35
+//        width: 2
+//        height: 2
+//        source: ""
 
-        lifeSpan: 1400
-        lifeSpanDeviation: 100
-        angle: 270
-        angleDeviation: 50
-        velocity: 100
-        count: 0
-        emissionRate: 100
+//        lifeSpan: 1400
+//        lifeSpanDeviation: 100
+//        angle: 270
+//        angleDeviation: 50
+//        velocity: 100
+//        count: 0
+//        emissionRate: 100
 
-        velocityDeviation: 20
-        z: attacker.pokeSprite.z + 10
+//        velocityDeviation: 20
+//        z: attacker.pokeSprite.z + 10
 
-        ParticleMotionGravity {
-            yattractor: 1000
-            acceleration: 100
-        }
-    }
+//        ParticleMotionGravity {
+//            yattractor: 1000
+//            acceleration: 100
+//        }
+//    }
 
     property int origin: 0
 

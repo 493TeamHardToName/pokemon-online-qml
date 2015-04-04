@@ -5,6 +5,7 @@ import "../js/units.js" as U
 
 Rectangle {
     signal goBack;
+    signal goToBattle;
     anchors.fill: parent
 
     Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
@@ -13,6 +14,7 @@ Rectangle {
         id: challengePopupComponent
         ChallengeDialog {
             onDecline: analyserAccess.declineChallenge();
+            onAccept: analyserAccess.acceptChallenge();
         }
     }
 
@@ -22,6 +24,9 @@ Rectangle {
                                  pokemonOnlineQml, {
                                     playerName: playerName
                                  });
+        onBattleStarted: {
+            goToBattle();
+        }
     }
 
     VisualDataModel {
@@ -35,12 +40,13 @@ Rectangle {
         ]
         delegate: Rectangle {
             id: item
-            height: name.indexOf("poqmtest") == 0 ? 25 : 0   //name is a variable of playersInfoListModel
-            width: 200
+            height: name.indexOf("poqmtest") == 0 ? 25 : 0//name is a variable of playersInfoListModel
+            width: 500
+
             clip: true
             Text {
                 text: {
-                    var text = "Name: " + name
+                    var text = "Name: " + name + " IsBattling: " + isBattling
                     if (item.VisualDataModel.inSelected)
                         text += " (" + item.VisualDataModel.selectedIndex + ")"
                     return text;

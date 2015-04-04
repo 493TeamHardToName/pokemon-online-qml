@@ -1,5 +1,5 @@
-import QtQuick 1.1
-import Qt.labs.shaders 1.0
+import QtQuick 2.4
+//import Qt.labs.shaders 1.0
 
 /**
  *Blends a color on a picture, following its mask if any.
@@ -12,62 +12,64 @@ import Qt.labs.shaders 1.0
  * "live images", i.e. animations, then maybe expose the live
  * property, otherwise do shader.sourceShader.live = true
 */
-ShaderEffectItem {
+//ShaderEffectItem {
+Item {
     property variant image
     property real alpha: 0.5
+    property variant blendColor
+    function grab() { }
+//    ShaderEffectSource {
+//        id: sourceImage
+//        hideSource: false
+//        sourceItem: image
+//        live: false
+//    }
 
-    ShaderEffectSource {
-        id: sourceImage
-        hideSource: false
-        sourceItem: image
-        live: false
-    }
+//    function grab() {
+//        sourceImage.grab();
+//    }
 
-    function grab() {
-        sourceImage.grab();
-    }
+//    x: image.x
+//    y: image.y
+//    z: image.z + 1
+//    width: image.width
+//    height: image.height
+//    parent: image.parent
+//    scale: image.scale
+//    rotation: image.rotation
+//    transformOrigin: image.transformOrigin
 
-    x: image.x
-    y: image.y
-    z: image.z + 1
-    width: image.width
-    height: image.height
-    parent: image.parent
-    scale: image.scale
-    rotation: image.rotation
-    transformOrigin: image.transformOrigin
+//    property real opac: image.opacity
 
-    property real opac: image.opacity
+//    property variant sourceTexture: sourceImage
 
-    property variant sourceTexture: sourceImage
-
-    property color blendColor: "black"
+//    property color blendColor: "black"
 
 
-    vertexShader:
-            "uniform highp mat4 qt_ModelViewProjectionMatrix;
-            attribute highp vec4 qt_Vertex;
-            attribute highp vec2 qt_MultiTexCoord0;
+//    vertexShader:
+//            "uniform highp mat4 qt_ModelViewProjectionMatrix;
+//            attribute highp vec4 qt_Vertex;
+//            attribute highp vec2 qt_MultiTexCoord0;
 
-            varying highp vec2 qt_TexCoord;
+//            varying highp vec2 qt_TexCoord;
 
-            void main(void)
-            {
-                qt_TexCoord = qt_MultiTexCoord0;
-                gl_Position =  qt_ModelViewProjectionMatrix * qt_Vertex;
-            }"
+//            void main(void)
+//            {
+//                qt_TexCoord = qt_MultiTexCoord0;
+//                gl_Position =  qt_ModelViewProjectionMatrix * qt_Vertex;
+//            }"
 
-    fragmentShader:
-            "uniform highp sampler2D sourceTexture;
-            uniform lowp vec4 blendColor;
-            uniform lowp float alpha;
-            uniform lowp float opac;
-            varying highp vec2 qt_TexCoord;
+//    fragmentShader:
+//            "uniform highp sampler2D sourceTexture;
+//            uniform lowp vec4 blendColor;
+//            uniform lowp float alpha;
+//            uniform lowp float opac;
+//            varying highp vec2 qt_TexCoord;
 
-            void main (void)
-            {
-                highp vec4 c = texture2D(sourceTexture, qt_TexCoord);
+//            void main (void)
+//            {
+//                highp vec4 c = texture2D(sourceTexture, qt_TexCoord);
 
-                gl_FragColor = vec4((c.rgb*(1.0-alpha)+blendColor.rgb*alpha)*c.a*opac, c.a*opac);
-            }"
+//                gl_FragColor = vec4((c.rgb*(1.0-alpha)+blendColor.rgb*alpha)*c.a*opac, c.a*opac);
+//            }"
 }

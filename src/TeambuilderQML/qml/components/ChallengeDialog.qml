@@ -6,6 +6,7 @@ Item {
     property string playerName
 
     signal decline;
+    signal accept;
 
     anchors.fill: parent
     Rectangle {
@@ -35,6 +36,10 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 Button {
                     text: "Accept"
+                    onTriggered: {
+                        accept();
+                        root.destroy();
+                    }
                 }
                 Button {
                     text: "Decline"

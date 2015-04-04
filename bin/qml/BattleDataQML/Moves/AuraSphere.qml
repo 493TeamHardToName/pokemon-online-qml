@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.4
 import Qt.labs.particles 1.0
 import "../" 1.0
 
@@ -14,28 +14,28 @@ Move {
     property int y0: attacker.y + attacker.pokeSprite.y + attacker.pokeSprite.height - attacker.pokeSprite.height*attacker.pokeSprite.scale*0.4
                      - aura.height*attacker.pokeSprite.scale*0.4;
 
-    Particles {
-        parent: defender;
-        x: defender.pokeSprite.x + defender.pokeSprite.width/2 - width/2
-        y: defender.pokeSprite.y+defender.pokeSprite.height -defender.pokeSprite.height*0.4*scale;
-        z: defender.pokeSprite.z+2;
-        width: 2
-        height: 2
-        scale: defender.pokeSprite.scale;
-        id: particles
-        property int n: 1;
-        source: "../../images/lightparticle" + n +".png"
+//    Particles {
+//        parent: defender;
+//        x: defender.pokeSprite.x + defender.pokeSprite.width/2 - width/2
+//        y: defender.pokeSprite.y+defender.pokeSprite.height -defender.pokeSprite.height*0.4*scale;
+//        z: defender.pokeSprite.z+2;
+//        width: 2
+//        height: 2
+//        scale: defender.pokeSprite.scale;
+//        id: particles
+//        property int n: 1;
+//        source: "../../images/lightparticle" + n +".png"
 
-        lifeSpan: 800
-        angle: 0
-        angleDeviation: 360
-        velocity: 40
-        count: 0;
-        emissionRate: 80;
-        opacity: 1;
+//        lifeSpan: 800
+//        angle: 0
+//        angleDeviation: 360
+//        velocity: 40
+//        count: 0;
+//        emissionRate: 80;
+//        opacity: 1;
 
-        velocityDeviation: 10
-    }
+//        velocityDeviation: 10
+//    }
 
     property int oxt: defender.x-attacker.x;
     property int oyt: attacker.y-defender.y;

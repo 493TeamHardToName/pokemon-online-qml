@@ -68,10 +68,10 @@ public:
 
     const AbilityGroup &abilities() const;
     int genderAvail() const;
-    int type1() const;
-    int type2() const;
+    int type1() const; //显示
+    int type2() const; //显示
 
-    const QSet<int>& moves() const;
+    const QSet<int>& moves() const; //显示
 
     /* loads using num() */
     void load();

@@ -54,6 +54,14 @@ Item {
         id: findGamePageComponent
         FindGamePage {
             onGoBack: pageStack.pop()
+            onGoToBattle: pageStack.push(battlePageComponent)
+        }
+    }
+
+    Component {
+        id: battlePageComponent
+        BattlePage {
+            onGoBack: pageStack.pop()
         }
     }
 }

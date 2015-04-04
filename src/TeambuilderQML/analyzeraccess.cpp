@@ -3,6 +3,13 @@
 #include "../Teambuilder/analyze.h"
 #include "libraries/PokemonInfo/teamholder.h"
 #include <iostream>
+#include "libraries/BattleManager/battledatatypes.h"
+#include "libraries/BattleManager/advancedbattledata.h"
+#include "libraries/BattleManager/teamdata.h"
+#include "libraries/TeambuilderLibrary/theme.h"
+#include "Shared/battlecommands.h"
+
+extern QQuickView *qQuickView;
 
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent)
@@ -20,9 +27,9 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     connect(m_analyzer, SIGNAL(playerLogout(int)), SLOT(playerLogout(int)));
     connect(m_analyzer, SIGNAL(challengeStuff(ChallengeInfo)), SLOT(challengeStuff(ChallengeInfo)));
     connect(m_analyzer, SIGNAL(battleStarted(int, Battle, TeamBattle, BattleConfiguration)),
-            SLOT(battleStarted(int, Battle, TeamBattle, BattleConfiguration)));
+            SLOT(handleBattleStarted(int, Battle, TeamBattle, BattleConfiguration)));
     connect(m_analyzer, SIGNAL(teamApproved(QStringList)), SLOT(tiersReceived(QStringList)));
-    connect(m_analyzer, SIGNAL(battleStarted(int, Battle)), SLOT(battleStarted(int, Battle)));
+    connect(m_analyzer, SIGNAL(battleStarted(int, Battle)), SLOT(handleBattleStarted(int, Battle)));
     connect(m_analyzer, SIGNAL(battleFinished(int, int,int,int)), SLOT(battleFinished(int, int,int,int)));
     connect(m_analyzer, SIGNAL(battleMessage(int, QByteArray)), this, SLOT(battleCommand(int, QByteArray)));
     connect(m_analyzer, SIGNAL(passRequired(QByteArray)), SLOT(askForPass(QByteArray)));
@@ -50,8 +57,11 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     connect(m_analyzer, SIGNAL(reconnectPassGiven(QByteArray)), SLOT(setReconnectPass(QByteArray)));
     connect(m_analyzer, SIGNAL(reconnectSuccess()), SLOT(cleanData()));
     connect(m_analyzer, SIGNAL(reconnectFailure(int)), SLOT(onReconnectFailure(int)));
+    connect(m_analyzer, SIGNAL(sendCommand(QByteArray)), this, SLOT(sendCommand(QByteArray)));
 
     m_playerInfoListModel = new PlayerInfoListModel(this);
+    m_attackListModel = new AttackListModel(this);
+    m_pokemonListModel = new PokemonListModel(this);
 
     userTeam.append(0);userTeam.append(1);userTeam.append(2);userTeam.append(3);userTeam.append(4);userTeam.append(5);
     currentPos = 0;
@@ -65,6 +75,8 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     //m_team->load();
     //m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
     m_team->name() = "zAnArbitraryName";
+
+    BattleSceneQtQuick::registerTypes();
 }
 
 void AnalyzerAccess::connectTo(QString host, int port)
@@ -78,8 +90,11 @@ void AnalyzerAccess::sendChallenge(int playerId)
     cinfo.dsc = ChallengeInfo::Sent;
     cinfo.opp = playerId;
     cinfo.mode = 0;
-    cinfo.clauses = 0;
-    cinfo.desttier = "Battle Factory";
+    //cinfo.clauses = ChallengeInfo::ChallengeCup;
+    //TODO tire can change here.
+    PlayerInfo myInfo = m_playerInfoListModel->findPlayerById(_mid);
+    cinfo.desttier = myInfo.ratings.keys()[0];
+    qDebug() << "Tier set to " << myInfo.ratings << cinfo.desttier;
     cinfo.team = m_team->currentTeam();
     m_analyzer->sendChallengeStuff(cinfo);
 }
@@ -96,9 +111,30 @@ void AnalyzerAccess::declineChallenge()
     m_analyzer->sendChallengeStuff(m_cinfo);
 }
 
+void AnalyzerAccess::acceptChallenge()
+{
+    m_cinfo.dsc = ChallengeInfo::Accepted;
+    m_analyzer->sendChallengeStuff(m_cinfo);
+}
+
 QAbstractItemModel *AnalyzerAccess::playerInfoListModel()
 {
     return m_playerInfoListModel;
+}
+
+QAbstractItemModel *AnalyzerAccess::attackListModel()
+{
+    return m_attackListModel;
+}
+
+QAbstractItemModel *AnalyzerAccess::pokemonListModel()
+{
+    return m_pokemonListModel;
+}
+
+QObject *AnalyzerAccess::battleClientLog()
+{
+    return m_battleClientLog;
 }
 
 void AnalyzerAccess::errorFromNetwork(int a, QString b)
@@ -133,23 +169,26 @@ void AnalyzerAccess::printChannelMessage(QString s, int a, bool b)
 
 void AnalyzerAccess::playerReceived(PlayerInfo pi)
 {
-    qDebug() << "TODO AnalyzerAccess::playerReceived" << pi.name;
+    //qDebug() << "TODO AnalyzerAccess::playerReceived" << pi.name;
     m_playerInfoListModel->add(pi);
 }
 
-void AnalyzerAccess::playerLogin(PlayerInfo pi, QStringList sl)
+void AnalyzerAccess::playerLogin(PlayerInfo p, QStringList sl)
 {
-    qDebug() << "TODO AnalyzerAccess::playerLogin" << pi.name << sl;
+    _mid = p.id;
+    playerReceived(p);
+    qDebug() << "AnalyzerAccess::playerLogin" << p.name << sl;
 }
 
 void AnalyzerAccess::playerLogout(int a)
 {
-    qDebug() << "TODO AnalyzerAccess::playerLogout" << a;
+    //qDebug() << "TODO AnalyzerAccess::playerLogout" << a;
+    m_playerInfoListModel->remove(a);
 }
 
 void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
 {
-    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc();
+    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc() << ci.battleText(0);
     if (ci.desc() == ChallengeInfo::Refused) {
         emit challengeDeclined();
     } else if (ci.desc() == ChallengeInfo::Sent) {
@@ -158,9 +197,86 @@ void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
     }
 }
 
-void AnalyzerAccess::battleStarted(int a, Battle b, TeamBattle tb, BattleConfiguration bc)
+void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle team, BattleConfiguration conf)
 {
-    qDebug() << "TODO AnalyzerAccess::battleStarted" << a;
+    qDebug() << "AnalyzerAccess::handleBattleStarted" << battleId << battle.id1
+             << PokemonInfo::Name(team.poke(0).num()) << PokemonInfo::Name(team.poke(1).num()) << PokemonInfo::Name(team.poke(2).num());
+
+    m_battleId = battleId;
+
+    int id = battle.id1 == _mid ? battle.id2: battle.id1;
+    //ownid() = _ownid;
+
+    PlayerInfo me = m_playerInfoListModel->findPlayerById(_mid);
+    PlayerInfo opponent = m_playerInfoListModel->findPlayerById(id);
+
+    m_battleConf = conf;
+    m_battleInfo = new BattleInfo(team, me, opponent, conf.mode, conf.spot(me.id), conf.spot(opponent.id));
+    m_battleInfo->_myteam.name = me.name;
+
+    int myId = 0;
+    if (m_battleConf.ids[0] == _mid) {
+        m_battleConf.receivingMode[0] = BattleConfiguration::Player;
+        m_battleConf.teams[0] = &m_battleInfo->_myteam;
+        m_battleConf.receivingMode[1] = BattleConfiguration::Spectator;
+    } else {
+        m_battleConf.teams[1] = &m_battleInfo->_myteam;
+        m_battleConf.receivingMode[1] = BattleConfiguration::Player;
+        m_battleConf.receivingMode[0] = BattleConfiguration::Spectator;
+        myId = 1;
+    }
+    m_battleConf.avatar[m_battleInfo->myself] = me.avatar;
+    m_battleConf.avatar[m_battleInfo->opponent] = opponent.avatar;
+    m_battleConf.name[m_battleInfo->opponent] = opponent.name;
+    m_battleInfo->gen = m_battleConf.gen;
+
+    battledata_basic *mData = new battledata_basic(&m_battleConf);
+    mData->team(0).name() = m_battleConf.getName(0);
+    mData->team(1).name() = m_battleConf.getName(1);
+    m_data2 = new advbattledata_proxy(&m_battleConf);
+    m_data2->team(0).setName(m_battleConf.getName(0));
+    m_data2->team(1).setName(m_battleConf.getName(1));
+
+    m_battleClientLog = new BattleClientLog(mData, Theme::getBattleTheme());
+    emit battleClientLogChanged();
+
+    QSettings s;
+    QVariantMap options;
+    options.insert("logger", s.value("Battle/AnimatedLogger", false).toBool());
+    options.insert("weather", s.value("Battle/AnimatedWeather", "always"));
+    options.insert("screensize", s.value("Battle/AnimatedScreenSize", "712x400"));
+    m_battleSceneQtQuick = new BattleSceneQtQuick(m_data2, Theme::getBattleTheme(), options);
+    m_battleSceneQtQuick->setView(qQuickView);
+
+    m_battleInput = new BattleInput(&m_battleConf);
+    m_battleInput->addOutput(mData);
+    m_battleInput->addOutput(m_battleClientLog);
+    m_battleInput->addOutput(m_data2);
+    m_battleInput->addOutput(m_battleSceneQtQuick);
+    m_battleInput->addOutput(this);
+
+    m_battleInfo->data = m_data2;
+
+    m_pokemonListModel->setTeam(&m_data2->team(m_battleInfo->myself));
+
+    emit battleStarted();
+//    BattleWindow * mybattle = new BattleWindow(battleId, player(ownId()), player(id), team, conf);
+//    connect(this, SIGNAL(destroyed()), mybattle, SLOT(deleteLater()));
+
+//    mybattle->activateWindow();
+
+//    connect(mybattle, SIGNAL(forfeit(int)), SLOT(forfeitBattle(int)));
+//    connect(mybattle, SIGNAL(battleCommand(int, BattleChoice)), &relay(), SLOT(battleCommand(int, BattleChoice)));
+//    connect(mybattle, SIGNAL(battleMessage(int, QString)), &relay(), SLOT(battleMessage(int, QString)));
+//    connect(this, SIGNAL(destroyed()), mybattle, SLOT(close()));
+//    connect(&relay(), SIGNAL(disconnected()), mybattle, SLOT(onDisconnection()));
+//    //connect(this, SIGNAL(musicPlayingChanged(bool)), mybattle, SLOT(playMusic(bool)));
+
+//    mybattles[battleId] = mybattle;
+
+//    battleStarted(battleId, battle);
+
+//    call("onScriptedBattleStarted(BaseBattleWindowInterface*)", static_cast<BaseBattleWindowInterface*>(mybattle));
 }
 
 void AnalyzerAccess::tiersReceived(QStringList sl)
@@ -168,20 +284,22 @@ void AnalyzerAccess::tiersReceived(QStringList sl)
     qDebug() << "TODO AnalyzerAccess::tiersReceived" << sl;
 }
 
-void AnalyzerAccess::battleStarted(int a, Battle b)
+void AnalyzerAccess::handleBattleStarted(int a, Battle b)
 {
-    qDebug() << "TODO AnalyzerAccess::battleStarted" << a;
+    //qDebug() << "TODO AnalyzerAccess::handleBattleStarted" << a;
+    m_playerInfoListModel->update(b.id1, b.id2);
 }
 
 void AnalyzerAccess::battleFinished(int a, int b, int c, int d)
 {
-    qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
+    //qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
 }
 
 void AnalyzerAccess::battleCommand(int a, QByteArray ba)
 {
-    qDebug() << "TODO AnalyzerAccess::battleCommand" << a << QString::fromLatin1(ba);
-
+    qDebug() << "AnalyzerAccess::battleCommand" << a;
+    if (m_battleInput)
+        m_battleInput->receiveData(ba);
 }
 
 void AnalyzerAccess::askForPass(QByteArray ba)
@@ -294,13 +412,13 @@ void AnalyzerAccess::channelPlayers(int a, QVector<qint32> v)
 
 void AnalyzerAccess::channelCommandReceived(int a, int b, DataStream * bs)
 {
-    qDebug() << "TODO AnalyzerAccess::channelCommandReceived" << a << b;
+    //qDebug() << "TODO AnalyzerAccess::channelCommandReceived" << a << b;
 
 }
 
 void AnalyzerAccess::addChannel(QString s, int a)
 {
-    qDebug() << "TODO AnalyzerAccess::addChannel" << s << a;
+    //qDebug() << "TODO AnalyzerAccess::addChannel" << s << a;
 
 }
 
@@ -330,13 +448,105 @@ void AnalyzerAccess::cleanData()
 
 void AnalyzerAccess::onReconnectFailure(int a)
 {
-
     qDebug() << "TODO AnalyzerAccess::onReconnectFailure" << a;
 }
 
+void AnalyzerAccess::sendCommand(QByteArray qba)
+{
+    qDebug() << "Client::sendCommand" << qba.size();
+    for (int i = 0; i < (qba.size() / 16) + 1; i++) {
+        QString s;
+        for (int j = 0; j < 16; j++) {
+            if (qba.length() <= i * 16 + j) {
+                break;
+            }
+            fprintf(stderr, "%d ", qba.at(i * 16 + j));
+        }
+        fprintf(stderr, "\n");
+    }
+}
+
+void AnalyzerAccess::onSendOut(int spot, int previndex, ShallowBattlePoke *pokemon, bool silent)
+{
+    if (m_data2->player(spot) == m_battleInfo->myself) {
+        m_attackListModel->setPoke(&m_battleInfo->tempPoke(spot));
+    }
+}
+
+void AnalyzerAccess::onOfferChoice(int, const BattleChoices &c)
+{
+    qDebug() << "AnalyzerAccess::onOfferChoice";
+    if (m_battleInfo->sent) {
+        m_battleInfo->sent = false;
+        for (int i = 0; i < m_battleInfo->available.size(); i++) {
+            m_battleInfo->available[i] = false;
+            m_battleInfo->done[i] = false;
+        }
+    }
+
+    m_battleInfo->choices[c.numSlot/2] = c;
+    m_battleInfo->available[c.numSlot/2] = true;
+}
+
+void AnalyzerAccess::onChoiceSelection(int player)
+{
+    emit allowAttackSelection();
+}
+
+void AnalyzerAccess::attackClicked(int i)
+{
+    int slot = m_battleInfo->currentSlot;
+    int n = m_data2->slotNum(slot);
+
+    BattleChoice &b = m_battleInfo->choice[n];
+    b = BattleChoice(slot, AttackChoice());
+    //set attack and target
+    b.setAttackSlot(i);
+    b.setTarget(m_data2->spot(m_battleInfo->opponent));
+    m_battleInfo->done[n] = true;
+    for (int i =0; i < m_battleInfo->available.size(); i++)  {
+        if (m_battleInfo->available[i]) {
+            sendChoice(m_battleInfo->choice[i]);
+        }
+    }
+}
+
+void AnalyzerAccess::switchClicked(int zone)
+{
+    int slot = m_battleInfo->currentSlot;
+    int snum = m_data2->slotNum(slot);
+
+    BattleChoice &b = m_battleInfo->choice[snum];
+    b = BattleChoice(slot, SwitchChoice());
+    b.setPokeSlot(zone);
+    m_battleInfo->done[snum] = true;
+    for (int i =0; i < m_battleInfo->available.size(); i++)  {
+        if (m_battleInfo->available[i]) {
+            sendChoice(m_battleInfo->choice[i]);
+        }
+    }
+}
+
+QQuickItem *AnalyzerAccess::createBattleSceneItem(QQuickItem *parent)
+{
+    return m_battleSceneQtQuick->createItem(parent);
+}
+
+void AnalyzerAccess::sendChoice(const BattleChoice &b)
+{
+    QByteArray ar;
+    DataStream out(&ar, QIODevice::WriteOnly);
+    out << quint8(BattleCommands::ChoiceMade) << quint8(m_battleInfo->myself) << b;
+
+    m_battleInput->receiveData(ar);
+
+    /* Send choice made to the server */
+    m_analyzer->battleCommand(m_battleId, b);
+}
+
+
 void AnalyzerAccess::setCurrentTeam()
 {
-
     for(int i=0; i<6; i++){
         int teamId, teamOffset;
         teamId = userTeam.at(i)/6;
@@ -349,6 +559,7 @@ void AnalyzerAccess::setCurrentTeam()
 void AnalyzerAccess::setTeam(int pokonId)
 {
     userTeam.replace(currentPos, pokonId);
+    emit pokemonSelected();
 }
 
 void AnalyzerAccess::setPos(int pos)
@@ -363,4 +574,30 @@ void AnalyzerAccess::downloadTeam()
     else
         qDebug()<<"shibai";
     qDebug()<<"aaaaaaaaaaaaaaa";
+}
+
+int AnalyzerAccess::getPokeId(int pos)
+{
+    return m_team->team(pos/6).m_pokes[pos%6].num().pokenum;
+}
+
+void AnalyzerAccess::generateRandomTeam()
+{
+    std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    for(int i=0; i<6; i++){
+        std::random_shuffle(v.begin(), v.end());
+        userTeam.replace(i, v[0]);
+        v.erase(v.begin());
+    }
+    emit pokemonSelected();
+}
+
+QString AnalyzerAccess::getPokeName(int pos)
+{
+    return PokemonInfo::Name(m_team->team(pos/6).m_pokes[pos%6].num());
+}
+
+int AnalyzerAccess::userTeamInfo(int id)
+{
+    return userTeam.at(id);
 }
