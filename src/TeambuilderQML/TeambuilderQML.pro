@@ -8,7 +8,7 @@ SOURCES =   main.cpp \
             serverchoicemodel.cpp \
             ../Teambuilder/analyze.cpp \
             analyzeraccess.cpp \
-            playerinfolistmodel.cpp \
+    playerinfolistmodel.cpp  \
             battleinfo.cpp \
             attacklistmodel.cpp \
     pokemonlistmodel.cpp

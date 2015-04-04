@@ -19,14 +19,13 @@ Item {
             stack[stack.length - 1].destroy()
             stack.pop();
         }
-        Component.onCompleted: pageStack.push(mainMenuPageComponent)
+        Component.onCompleted: pageStack.push(mainMenuPageComponent)   // add on, this is slot
     }
 
 
     AnalyzerAccess {
         id: analyserAccess
     }
-
 
     Component {
         id: mainMenuPageComponent
@@ -46,6 +45,7 @@ Item {
         id: buildTeamPageComponent
         BuildTeamPage {
             onGoBack: pageStack.pop()
+            onRandomGame: pageStack.push(findGamePageComponent)
             onGoFindGame: pageStack.push(findGamePageComponent)
         }
     }

@@ -718,6 +718,7 @@ bool Team::saveToFile(const QString &path) const
     if(!file.open(QIODevice::WriteOnly))
     {
         QMessageBox::warning(0, QObject::tr("Error while saving the team"),QObject::tr("Can't create file ")+file.fileName());
+        qDebug()<<"file can't open"<<file.exists();
         return false;
     }
 

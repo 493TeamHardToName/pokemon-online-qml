@@ -2,6 +2,7 @@
 #include "libraries/PokemonInfo/battlestructs.h"
 #include "../Teambuilder/analyze.h"
 #include "libraries/PokemonInfo/teamholder.h"
+#include <iostream>
 #include "libraries/BattleManager/battledatatypes.h"
 #include "libraries/BattleManager/advancedbattledata.h"
 #include "libraries/BattleManager/teamdata.h"
@@ -62,9 +63,17 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     m_attackListModel = new AttackListModel(this);
     m_pokemonListModel = new PokemonListModel(this);
 
+    userTeam.append(0);userTeam.append(1);userTeam.append(2);userTeam.append(3);userTeam.append(4);userTeam.append(5);
+    currentPos = 0;
     m_team = new TeamHolder(this);
-    m_team->load();
-    m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
+    m_team->addTeam(); m_team->addTeam(); m_team->addTeam(); m_team->addTeam();
+    m_team->team(0).loadFromFile("/Users/zyx/Desktop/EECS493/default_team1");
+    m_team->team(1).loadFromFile("/Users/zyx/Desktop/EECS493/default_team2");
+    m_team->team(2).loadFromFile("/Users/zyx/Desktop/EECS493/default_team3");
+
+
+    //m_team->load();
+    //m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
     m_team->name() = "zAnArbitraryName";
 
     BattleSceneQtQuick::registerTypes();
@@ -536,4 +545,59 @@ void AnalyzerAccess::sendChoice(const BattleChoice &b)
 }
 
 
+void AnalyzerAccess::setCurrentTeam()
+{
+    for(int i=0; i<6; i++){
+        int teamId, teamOffset;
+        teamId = userTeam.at(i)/6;
+        teamOffset = userTeam.at(i)%6;
+        m_team->team(3).m_pokes[i] = m_team->team(teamId).m_pokes[teamOffset];
+    }
+    m_team->setCurrent(3);
+}
 
+void AnalyzerAccess::setTeam(int pokonId)
+{
+    userTeam.replace(currentPos, pokonId);
+    emit pokemonSelected();
+}
+
+void AnalyzerAccess::setPos(int pos)
+{
+    currentPos = pos;
+}
+
+void AnalyzerAccess::downloadTeam()
+{
+    if(m_team->team(3).saveToFile("/Users/zyx/Desktop/EECS493/userTeam"))
+        qDebug()<<"chenggong";
+    else
+        qDebug()<<"shibai";
+    qDebug()<<"aaaaaaaaaaaaaaa";
+}
+
+int AnalyzerAccess::getPokeId(int pos)
+{
+    return m_team->team(pos/6).m_pokes[pos%6].num().pokenum;
+}
+
+void AnalyzerAccess::generateRandomTeam()
+{
+    std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    for(int i=0; i<6; i++){
+        std::random_shuffle(v.begin(), v.end());
+        userTeam.replace(i, v[0]);
+        v.erase(v.begin());
+    }
+    emit pokemonSelected();
+}
+
+QString AnalyzerAccess::getPokeName(int pos)
+{
+    return PokemonInfo::Name(m_team->team(pos/6).m_pokes[pos%6].num());
+}
+
+int AnalyzerAccess::userTeamInfo(int id)
+{
+    return userTeam.at(id);
+}
