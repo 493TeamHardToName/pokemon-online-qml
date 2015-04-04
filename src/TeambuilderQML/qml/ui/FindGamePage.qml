@@ -27,6 +27,9 @@ Rectangle {
         onBattleStarted: {
             goToBattle();
         }
+        onChallengeDeclined: {
+            waitingDialog.visible = false;
+        }
     }
 
     VisualDataModel {
@@ -80,13 +83,26 @@ Rectangle {
             id: challengeButton
             text: "Challenge"
             onTriggered:  {
-                text = "Challenging"
-                analyserAccess.challengeDeclined.connect(function (){
-                    challengeButton.text = "Challenge";
-                });
+//                text = "Challenging"
+//                analyserAccess.challengeDeclined.connect(function (){
+//                    challengeButton.text = "Challenge";
+//                });
+                waitingDialog.visible = true
 
                 analyserAccess.sendChallenge(selectedGroup.get(0).model.playerId)
             }
         }
+    }
+
+    WaitingDialog {
+        id: waitingDialog
+        visible: false
+    }
+
+    MouseArea {
+        id: blockArea
+        anchors.fill: parent
+        onClicked: {}
+        enabled: waitingDialog.visible
     }
 }
