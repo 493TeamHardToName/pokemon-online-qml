@@ -14,7 +14,32 @@ extern QQuickView *qQuickView;
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent)
 {
+    //m_analyzer = new Analyzer();
+
+    m_playerInfoListModel = new PlayerInfoListModel(this);
+    m_attackListModel = new AttackListModel(this);
+    m_pokemonListModel = new PokemonListModel(this);
+
+    userTeam.append(0);userTeam.append(1);userTeam.append(2);userTeam.append(3);userTeam.append(4);userTeam.append(5);
+    currentPos = 0;
+    m_team = new TeamHolder(this);
+    m_team->addTeam(); m_team->addTeam(); m_team->addTeam(); m_team->addTeam();
+    m_team->team(0).loadFromFile("/Users/zyx/Desktop/EECS493/default_team1");
+    m_team->team(1).loadFromFile("/Users/zyx/Desktop/EECS493/default_team2");
+    m_team->team(2).loadFromFile("/Users/zyx/Desktop/EECS493/default_team3");
+
+
+    //m_team->load();
+    //m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
+    m_team->name() = "zAnArbitraryName";
+
+    BattleSceneQtQuick::registerTypes();
+}
+
+void AnalyzerAccess::connectTo(QString host, int port)
+{
     m_analyzer = new Analyzer();
+
     connect(m_analyzer, SIGNAL(connectionError(int, QString)), SLOT(errorFromNetwork(int, QString)));
     connect(m_analyzer, SIGNAL(protocolError(int, QString)), SLOT(errorFromNetwork(int, QString)));
     connect(m_analyzer, SIGNAL(connected()), SLOT(connected()));
@@ -59,28 +84,6 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     connect(m_analyzer, SIGNAL(reconnectFailure(int)), SLOT(onReconnectFailure(int)));
     connect(m_analyzer, SIGNAL(sendCommand(QByteArray)), this, SLOT(sendCommand(QByteArray)));
 
-    m_playerInfoListModel = new PlayerInfoListModel(this);
-    m_attackListModel = new AttackListModel(this);
-    m_pokemonListModel = new PokemonListModel(this);
-
-    userTeam.append(0);userTeam.append(1);userTeam.append(2);userTeam.append(3);userTeam.append(4);userTeam.append(5);
-    currentPos = 0;
-    m_team = new TeamHolder(this);
-    m_team->addTeam(); m_team->addTeam(); m_team->addTeam(); m_team->addTeam();
-    m_team->team(0).loadFromFile("/Users/zyx/Desktop/EECS493/default_team1");
-    m_team->team(1).loadFromFile("/Users/zyx/Desktop/EECS493/default_team2");
-    m_team->team(2).loadFromFile("/Users/zyx/Desktop/EECS493/default_team3");
-
-
-    //m_team->load();
-    //m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
-    m_team->name() = "zAnArbitraryName";
-
-    BattleSceneQtQuick::registerTypes();
-}
-
-void AnalyzerAccess::connectTo(QString host, int port)
-{
     m_analyzer->connectTo(host, port);
 }
 
@@ -530,6 +533,13 @@ void AnalyzerAccess::switchClicked(int zone)
 QQuickItem *AnalyzerAccess::createBattleSceneItem(QQuickItem *parent)
 {
     return m_battleSceneQtQuick->createItem(parent);
+}
+
+void AnalyzerAccess::logout()
+{
+    m_analyzer->logout();
+    m_playerInfoListModel->clear();
+    delete m_analyzer;
 }
 
 void AnalyzerAccess::sendChoice(const BattleChoice &b)

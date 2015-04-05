@@ -46,6 +46,7 @@ public:
     Q_INVOKABLE void attackClicked(int i);
     Q_INVOKABLE void switchClicked(int i);
     Q_INVOKABLE QQuickItem *createBattleSceneItem(QQuickItem *parent);
+    Q_INVOKABLE void logout();
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();

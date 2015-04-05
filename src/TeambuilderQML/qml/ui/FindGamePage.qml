@@ -72,7 +72,11 @@ Rectangle {
         }
         Button {
             text: "Back"
-            onTriggered: goBack();
+//            onTriggered: goBack();
+            onTriggered: {
+                analyserAccess.logout();
+                goBack();
+            }
         }
         ListView {
             width: parent.width

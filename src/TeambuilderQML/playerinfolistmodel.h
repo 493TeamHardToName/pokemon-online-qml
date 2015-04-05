@@ -19,6 +19,7 @@ public:
     void add(PlayerInfo pi);
     void remove(int piId);
     void update(int id1, int id2);
+    void clear();
     PlayerInfo findPlayerById(int id);
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
