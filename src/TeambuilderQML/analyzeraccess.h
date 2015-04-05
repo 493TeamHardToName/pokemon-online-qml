@@ -4,6 +4,11 @@
 #include "libraries/PokemonInfo/battlestructs.h"
 #include "../Teambuilder/analyze.h"
 #include "playerinfolistmodel.h"
+#include <QAbstractListModel>
+
+#include "libraries/PokemonInfo/pokemonstructs.h"
+#include "libraries/PokemonInfo/teamholder.h"
+#include "libraries/PokemonInfo/pokemoninfo.h"
 #include <QObject>
 #include "libraries/BattleManager/battleinput.h"
 #include "libraries/BattleManager/battleclientlog.h"
@@ -11,11 +16,13 @@
 #include "battleinfo.h"
 #include "attacklistmodel.h"
 #include "pokemonlistmodel.h"
+#include <random>
+#include <algorithm>
 
 class AnalyzerAccess : public QObject, public BattleCommandManager<AnalyzerAccess>
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged)
+    Q_PROPERTY(QAbstractItemModel * playersInfoListModel READ playerInfoListModel NOTIFY modelChanged) //前面是前段看到的，后面read之后是后端调用的，notify会告诉bind 的model change
     Q_PROPERTY(QAbstractItemModel * attackListModel READ attackListModel)
     Q_PROPERTY(QAbstractItemModel * pokemonListModel READ pokemonListModel)
     Q_PROPERTY(QObject * battleClientLog READ battleClientLog NOTIFY battleClientLogChanged)
@@ -25,10 +32,21 @@ public:
     Q_INVOKABLE void sendChallenge(int playerId);
     Q_INVOKABLE void setPlayerName(QString name);
     Q_INVOKABLE void declineChallenge();
+
+    Q_INVOKABLE void setCurrentTeam();
+    Q_INVOKABLE void setTeam(int pokonId);
+    Q_INVOKABLE void setPos(int pos);
+    Q_INVOKABLE int getPokeId(int pos);
+    Q_INVOKABLE QString getPokeName(int pos);
+    Q_INVOKABLE void generateRandomTeam();
+    Q_INVOKABLE void downloadTeam();
+    Q_INVOKABLE int userTeamInfo(int id);
+
     Q_INVOKABLE void acceptChallenge();
     Q_INVOKABLE void attackClicked(int i);
     Q_INVOKABLE void switchClicked(int i);
     Q_INVOKABLE QQuickItem *createBattleSceneItem(QQuickItem *parent);
+    Q_INVOKABLE void logout();
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();
@@ -43,6 +61,8 @@ signals:
 
     void battleClientLogChanged();
     void allowAttackSelection();
+
+    void pokemonSelected();
 
 public slots:
 
@@ -98,6 +118,8 @@ private:
     Analyzer * m_analyzer;
     PlayerInfoListModel *m_playerInfoListModel;
     TeamHolder *m_team;
+    int currentPos;
+    QList<int> userTeam; //新加的
     ChallengeInfo m_cinfo; //store challengeInfo recieved
     int _mid;
     FullBattleConfiguration m_battleConf;

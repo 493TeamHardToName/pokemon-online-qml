@@ -11,11 +11,15 @@ class PlayerInfoListModel : public QAbstractListModel
 
     enum {
         RoleName = Qt::UserRole + 1,
-        RolePlayerId
+        RolePlayerId,
+        IsBattling
     };
 public:
     explicit PlayerInfoListModel(QObject *parent = 0);
     void add(PlayerInfo pi);
+    void remove(int piId);
+    void update(int id1, int id2);
+    void clear();
     PlayerInfo findPlayerById(int id);
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -28,6 +32,7 @@ public slots:
 
 private:
     QList<PlayerInfo> m_playerInfoList;
+    QHash<int, bool> m_playersCountIn;
 };
 
 #endif // PLAYERINFOLISTMODEL_H

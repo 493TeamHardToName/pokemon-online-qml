@@ -14,7 +14,6 @@
 #define OS_EXE_SUFFIX (SUFFIX ".exe")
 #define OS_LIB_SUFFIX (SUFFIX ".dll")
 #else
-//#error "unkown OS"
 #define OS_EXE_SUFFIX (SUFFIX "")
 #define OS_LIB_SUFFIX (SUFFIX ".so.1.0.0")
 #endif

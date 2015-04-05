@@ -27,6 +27,9 @@ Rectangle {
         onBattleStarted: {
             goToBattle();
         }
+        onChallengeDeclined: {
+            waitingDialog.visible = false;
+        }
     }
 
     VisualDataModel {
@@ -40,12 +43,13 @@ Rectangle {
         ]
         delegate: Rectangle {
             id: item
-            height: name.indexOf("poqmtest") === 0 ? 25 : 0
-            width: 200
+            height: name.indexOf("poqmtest") == 0 ? 25 : 0//name is a variable of playersInfoListModel
+            width: 500
+
             clip: true
             Text {
                 text: {
-                    var text = "Name: " + name
+                    var text = "Name: " + name + " IsBattling: " + isBattling
                     if (item.VisualDataModel.inSelected)
                         text += " (" + item.VisualDataModel.selectedIndex + ")"
                     return text;
@@ -68,7 +72,11 @@ Rectangle {
         }
         Button {
             text: "Back"
-            onTriggered: goBack();
+//            onTriggered: goBack();
+            onTriggered: {
+                analyserAccess.logout();
+                goBack();
+            }
         }
         ListView {
             width: parent.width
@@ -79,13 +87,26 @@ Rectangle {
             id: challengeButton
             text: "Challenge"
             onTriggered:  {
-                text = "Challenging"
-                analyserAccess.challengeDeclined.connect(function (){
-                    challengeButton.text = "Challenge";
-                });
+//                text = "Challenging"
+//                analyserAccess.challengeDeclined.connect(function (){
+//                    challengeButton.text = "Challenge";
+//                });
+                waitingDialog.visible = true
 
                 analyserAccess.sendChallenge(selectedGroup.get(0).model.playerId)
             }
         }
+    }
+
+    WaitingDialog {
+        id: waitingDialog
+        visible: false
+    }
+
+    MouseArea {
+        id: blockArea
+        anchors.fill: parent
+        onClicked: {}
+        enabled: waitingDialog.visible
     }
 }

@@ -10,6 +10,7 @@
 #include "libraries/PokemonInfo/teamholder.h"
 #include "libraries/PokemonInfo/pokemoninfo.h"
 #include "libraries/PokemonInfo/movesetchecker.h"
+#include "libraries/BattleManager/pokemoninfoaccessorqtquick.h"
 #include "analyzeraccess.h"
 
 QQuickView *qQuickView;
@@ -54,11 +55,12 @@ int main(int argc, char *argv[])
 
     qQuickView = new QQuickView();
 
-    qRegisterMetaType<QAbstractItemModel *>();
+    qRegisterMetaType<QAbstractItemModel *>();  //qml
 
-    qmlRegisterType<PokemonOnlineQML::ServerChoiceModel>("PokemonOnlineQml", 1, 0, "ServerChoiceModel");
+    qmlRegisterType<PokemonOnlineQML::ServerChoiceModel>("PokemonOnlineQml", 1, 0, "ServerChoiceModel");  //qian  <方括号是后台里的类>， （里都是text）
     qmlRegisterType<PokeTableModel>("PokemonOnlineQml", 1, 0, "PokeTableModel");
     qmlRegisterType<TeamHolder>("PokemonOnlineQml", 1, 0, "TeamHolder");
+    qQuickView->engine()->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
     qmlRegisterType<AnalyzerAccess>("PokemonOnlineQml", 1, 0, "AnalyzerAccess");
     qQuickView->engine()->rootContext()->setContextProperty("screenDpi", dpi);
 

@@ -9,6 +9,7 @@
         <file>qml/ui/FindGamePage.qml</file>
         <file>qml/components/ChallengeDialog.qml</file>
         <file>qml/ui/BattlePage.qml</file>
+        <file>qml/components/WaitingDialog.qml</file>
     </qresource>
     <qresource prefix="/battlescene">
         <file>qml/BattleDataQML/CommonEffects/StatDown.qml</file>

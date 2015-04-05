@@ -68,10 +68,10 @@ public:
 
     const AbilityGroup &abilities() const;
     int genderAvail() const;
-    int type1() const;
-    int type2() const;
+    int type1() const; //显示
+    int type2() const; //显示
 
-    const QSet<int>& moves() const;
+    const QSet<int>& moves() const; //显示
 
     /* loads using num() */
     void load();
@@ -209,10 +209,11 @@ class Team
 {
     PROPERTY(QString, defaultTier)
 protected:
-    PokeTeam m_pokes[6];
+    //PokeTeam m_pokes[6];//change to public
     Pokemon::gen m_gen;
 
 public:
+    PokeTeam m_pokes[6]; //change from protected to public
     Team();
     Pokemon::gen gen() const {return m_gen;}
     void setGen(Pokemon::gen gen);
