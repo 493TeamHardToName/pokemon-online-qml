@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += declarative opengl
+QT += declarative opengl quick
 TARGET = po-battlemanager
 TEMPLATE = lib
 

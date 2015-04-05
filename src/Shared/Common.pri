@@ -59,3 +59,12 @@ contains(QT_VERSION, ^5\\.[0-9]\\..*) {
 unix:!mac {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN'"
 }
+
+android {
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5Xml.so
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5Declarative.so
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5Script.so
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5Sql.so
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5XmlPatterns.so
+    ANDROID_EXTRA_LIBS += $$[QT_INSTALL_LIBS]/libQt5OpenGL.so
+}

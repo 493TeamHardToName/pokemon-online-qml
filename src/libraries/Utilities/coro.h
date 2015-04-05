@@ -223,6 +223,8 @@ void coro_destroy (coro_context *ctx);
 #  define CORO_SJLJ 1
 # elif defined(__MACH__)
 #  define CORO_PTHREAD 1
+# elif defined(ANDROID)
+#  define CORO_PTHREAD 1
 # else
 error unknown or unsupported architecture
 # endif
