@@ -4,11 +4,14 @@ import "../components" as Comp
 import "../js/units.js" as U
 
 Rectangle {
+    id: root
 
-    property bool attackEnabled : true
+    property bool switchEnabled:  true
 
     signal goBack();
+    signal disable();
 
+    onDisable: console.log("root disabled")
     anchors.fill: parent
 
     Connections {
@@ -18,12 +21,11 @@ Rectangle {
 
     Connections {
         target: analyserAccess
-        onAllowAttackSelection: attackEnabled = true
+        onSwitchAllowed: switchEnabled = true;
     }
 
     Column {
         width: parent.width
-        // TODO scene window
 
         Column {
             id: battleSceneContainer
@@ -42,11 +44,23 @@ Rectangle {
             Repeater {
                 model: analyserAccess.attackListModel
                 delegate: Button {
+                    id: atkButton
+                    enabled: true
                     text: name
-                    enabled: attackEnabled
                     onClicked: {
-                        attackEnabled = false;
+                        disable();
                         analyserAccess.attackClicked(index)
+                    }
+                    Connections {
+                        target: analyserAccess
+                        onAttackAllowed: {
+                            if (attackIdx == index)
+                                atkButton.enabled = true;
+                        }
+                    }
+                    Connections {
+                        target: root
+                        onDisable: atkButton.enabled = false
                     }
                 }
             }
@@ -61,9 +75,10 @@ Rectangle {
                 model: analyserAccess.pokemonListModel
                 delegate: Button {
                     text: name
-                    enabled: attackEnabled
+                    enabled: switchEnabled
                     onClicked: {
-                        attackEnabled = false;
+                        disable()
+                        switchEnabled = false
                         analyserAccess.switchClicked(index)
                     }
                 }

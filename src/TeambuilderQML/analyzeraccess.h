@@ -60,7 +60,8 @@ signals:
     void battleStarted();
 
     void battleClientLogChanged();
-    void allowAttackSelection();
+    void attackAllowed(int attackIdx);
+    void switchAllowed();
 
     void pokemonSelected();
 

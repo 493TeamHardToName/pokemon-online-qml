@@ -490,11 +490,24 @@ void AnalyzerAccess::onOfferChoice(int, const BattleChoices &c)
 
     m_battleInfo->choices[c.numSlot/2] = c;
     m_battleInfo->available[c.numSlot/2] = true;
+
+    if (c.attacksAllowed) {
+        for (int i = 0; i < 4; i++) {
+            if (c.attackAllowed[i]) {
+                emit attackAllowed(i);
+            }
+        }
+    }
+
+    if (c.switchAllowed) {
+        emit switchAllowed();
+    }
+
 }
 
 void AnalyzerAccess::onChoiceSelection(int player)
 {
-    emit allowAttackSelection();
+
 }
 
 void AnalyzerAccess::attackClicked(int i)
