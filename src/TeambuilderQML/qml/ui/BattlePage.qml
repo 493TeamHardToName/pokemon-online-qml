@@ -33,12 +33,6 @@ Rectangle {
             Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
         }
 
-        TextArea {
-            id: logTextArea
-            width: parent.width
-            height: U.dp(3)
-        }
-
         Flow {
             width: parent.width
             Repeater {
@@ -46,7 +40,7 @@ Rectangle {
                 delegate: Button {
                     id: atkButton
                     enabled: true
-                    text: name
+                    text: name + " " + pp + "/" + maxpp
                     onClicked: {
                         disable();
                         analyserAccess.attackClicked(index)
@@ -92,6 +86,12 @@ Rectangle {
                 //TODO forfeit
                 goBack();
             }
+        }
+
+        TextArea {
+            id: logTextArea
+            width: parent.width
+            height: U.dp(3)
         }
     }
 }

@@ -114,6 +114,7 @@ public slots:
     void onSendOut(int spot, int previndex, ShallowBattlePoke* pokemon, bool silent);
     void onOfferChoice(int, const BattleChoices &c);
     void onKo(int spot);
+    void onPPChange(int spot, int move, int PP);
 
 private:
     Analyzer * m_analyzer;

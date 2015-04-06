@@ -9,7 +9,14 @@ class AttackListModel : public QAbstractListModel
     Q_OBJECT
 public:
     typedef enum {
-        RoleAttackName = Qt::UserRole + 1
+        RoleAttackName = Qt::UserRole + 1,
+        RolePP,
+        RoleMaxPP,
+        RoleDamageClass, // Physical, Special or Null
+        RoleCategory, // grass
+        RolePower,
+        RoleAccuracy,
+        RoleDescription
     } Role;
     explicit AttackListModel(QObject *parent = 0);
 

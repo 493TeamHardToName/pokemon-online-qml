@@ -517,6 +517,13 @@ void AnalyzerAccess::onKo(int spot)
     }
 }
 
+void AnalyzerAccess::onPPChange(int spot, int move, int PP)
+{
+    if (m_data2->isOut(spot)) {
+        m_attackListModel->dataChanged(m_attackListModel->index(move), m_attackListModel->index(move));
+    }
+}
+
 void AnalyzerAccess::attackClicked(int i)
 {
     int slot = m_battleInfo->currentSlot;
