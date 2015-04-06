@@ -601,3 +601,9 @@ int AnalyzerAccess::userTeamInfo(int id)
 {
     return userTeam.at(id);
 }
+
+QString AnalyzerAccess::getMoves(int pos)
+{
+    QSet<int> temp = m_team->team(pos/6).m_pokes[pos%6].moves();
+
+}

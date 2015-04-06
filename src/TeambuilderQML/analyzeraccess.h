@@ -10,6 +10,7 @@
 #include "libraries/PokemonInfo/teamholder.h"
 #include "libraries/PokemonInfo/pokemoninfo.h"
 #include <QObject>
+#include <QSet>
 #include "libraries/BattleManager/battleinput.h"
 #include "libraries/BattleManager/battleclientlog.h"
 #include "libraries/BattleManager/battlesceneqtquick.h"
@@ -41,6 +42,7 @@ public:
     Q_INVOKABLE void generateRandomTeam();
     Q_INVOKABLE void downloadTeam();
     Q_INVOKABLE int userTeamInfo(int id);
+    Q_INVOKABLE QString getMoves(int pos);
 
     Q_INVOKABLE void acceptChallenge();
     Q_INVOKABLE void attackClicked(int i);

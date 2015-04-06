@@ -54,7 +54,9 @@ Rectangle {
                     MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                pokeImage.source = "image://pokeinfo/pokemon/5"
+                                //pokeImage.source = "image://pokeinfo/pokemon/5"
+                                //get move information;
+                                analyserAccess.getMoves(index);
                             }
                     }
                 }
@@ -123,6 +125,10 @@ Rectangle {
         Button {
             text: "Find game"
             onClicked: goFindGame();
+        }
+
+        Text{
+            text: "adfasdfadsfasdfasddfas"
         }
     }
    }
