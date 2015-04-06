@@ -75,7 +75,7 @@ Rectangle {
                 model: analyserAccess.pokemonListModel
                 delegate: Button {
                     text: name
-                    enabled: switchEnabled
+                    enabled: switchEnabled && !isKoed
                     onClicked: {
                         disable()
                         switchEnabled = false

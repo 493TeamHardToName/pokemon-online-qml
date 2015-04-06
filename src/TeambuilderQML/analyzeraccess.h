@@ -113,7 +113,7 @@ public slots:
     //battle manager
     void onSendOut(int spot, int previndex, ShallowBattlePoke* pokemon, bool silent);
     void onOfferChoice(int, const BattleChoices &c);
-    void onChoiceSelection(int player);
+    void onKo(int spot);
 
 private:
     Analyzer * m_analyzer;

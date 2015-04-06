@@ -24,6 +24,8 @@ QVariant PokemonListModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case RolePokemonName:
         return PokemonInfo::Name(m_teamProxy->poke(index.row())->num());
+    case RolePokemonIsKoed:
+        return m_teamProxy->poke(index.row())->isKoed();
     }
     return QVariant();
 }
@@ -32,5 +34,6 @@ QHash<int, QByteArray> PokemonListModel::roleNames() const
 {
     QHash<int, QByteArray> retVal;
     retVal[RolePokemonName] = "name";
+    retVal[RolePokemonIsKoed] = "isKoed";
     return retVal;
 }

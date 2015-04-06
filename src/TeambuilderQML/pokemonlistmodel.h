@@ -9,7 +9,8 @@ class PokemonListModel : public QAbstractListModel
     Q_OBJECT
 public:
     typedef enum {
-        RolePokemonName = Qt::UserRole + 1
+        RolePokemonName = Qt::UserRole + 1,
+        RolePokemonIsKoed
     } Role;
 
     explicit PokemonListModel(QObject *parent = 0);

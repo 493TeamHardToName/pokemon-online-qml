@@ -474,6 +474,11 @@ void AnalyzerAccess::onSendOut(int spot, int previndex, ShallowBattlePoke *pokem
 {
     if (m_data2->player(spot) == m_battleInfo->myself) {
         m_attackListModel->setPoke(&m_battleInfo->tempPoke(spot));
+
+        //swap pokemon list
+        int snum = m_data2->slotNum(spot);
+        m_pokemonListModel->dataChanged(m_pokemonListModel->index(m_data2->slotNum(snum)), m_pokemonListModel->index(m_data2->slotNum(snum)));
+        m_pokemonListModel->dataChanged(m_pokemonListModel->index(previndex), m_pokemonListModel->index(previndex));
     }
 }
 
@@ -505,9 +510,11 @@ void AnalyzerAccess::onOfferChoice(int, const BattleChoices &c)
 
 }
 
-void AnalyzerAccess::onChoiceSelection(int player)
+void AnalyzerAccess::onKo(int spot)
 {
-
+    if (m_data2->player(spot) == m_battleInfo->myself) {
+        m_pokemonListModel->dataChanged(m_pokemonListModel->index(m_data2->slotNum(spot)), m_pokemonListModel->index(m_data2->slotNum(spot)));
+    }
 }
 
 void AnalyzerAccess::attackClicked(int i)
