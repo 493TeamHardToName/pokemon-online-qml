@@ -42,9 +42,13 @@ RESOURCES += \
     defaultteam.qrc
 
 include(../Shared/Common.pri)
-exists ($$LIBZIP_PATH) {
-    LIBS += -L$$LIBZIP_PATH/lib/.libs/ -lzip#$$LIBZIP_PATH/lib/.libs/libzip.a
+exists ($$LIBZIP_PATH){
+!android {
+    LIBS += -L$$LIBZIP_PATH/lib/.libs/ -lzip
 }
-
+android {
+    LIBS += $$LIBZIP_PATH/lib/.libs/libzip.a
+}
+}
 
 LIBS += $$teambuilder

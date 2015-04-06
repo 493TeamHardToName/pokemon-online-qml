@@ -27,7 +27,14 @@ include(../../Shared/Common.pri)
 LIBS += $$utilities
 
 exists ($$LIBZIP_PATH) {
+
+android {
+    LIBS += $$LIBZIP_PATH/lib/.libs/libzip.a
+}
+!android {
     LIBS += -L$$LIBZIP_PATH/lib/.libs/ -lzip#$$LIBZIP_PATH/lib/.libs/libzip.a
+}
+
     INCLUDEPATH += $$LIBZIP_PATH/lib
 }
 
