@@ -24,14 +24,13 @@ AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     currentPos = 0;
     m_team = new TeamHolder(this);
     m_team->addTeam(); m_team->addTeam(); m_team->addTeam(); m_team->addTeam();
-    m_team->team(0).loadFromFile("/Users/zyx/Desktop/EECS493/default_team1");
-    m_team->team(1).loadFromFile("/Users/zyx/Desktop/EECS493/default_team2");
-    m_team->team(2).loadFromFile("/Users/zyx/Desktop/EECS493/default_team3");
-
+    m_team->team(0).loadFromFile(":/defaultteam/team1.tp");
+    m_team->team(1).loadFromFile(":/defaultteam/t1.tp");
+    m_team->team(2).loadFromFile(":/defaultteam/t2.tp");
+    m_team->team(3).loadFromFile(":/defaultteam/t3.tp");
 
     //m_team->load();
     //m_team->team().loadFromFile(QDir::homePath() + "/team1.tp");
-    m_team->name() = "zAnArbitraryName";
 
     BattleSceneQtQuick::registerTypes();
 }
@@ -96,8 +95,9 @@ void AnalyzerAccess::sendChallenge(int playerId)
     //cinfo.clauses = ChallengeInfo::ChallengeCup;
     //TODO tire can change here.
     PlayerInfo myInfo = m_playerInfoListModel->findPlayerById(_mid);
-    cinfo.desttier = myInfo.ratings.keys()[0];
-    qDebug() << "Tier set to " << myInfo.ratings << cinfo.desttier;
+//    cinfo.desttier = myInfo.ratings.keys()[0];
+    cinfo.desttier = "XY"; // should pick tier from a list, hard code here for convenience.
+//    qDebug() << "Tier set to " << myInfo.ratings << cinfo.desttier;
     cinfo.team = m_team->currentTeam();
     m_analyzer->sendChallengeStuff(cinfo);
 }
@@ -117,6 +117,7 @@ void AnalyzerAccess::declineChallenge()
 void AnalyzerAccess::acceptChallenge()
 {
     m_cinfo.dsc = ChallengeInfo::Accepted;
+    qDebug() << "acceptChallenge";
     m_analyzer->sendChallengeStuff(m_cinfo);
 }
 
@@ -191,7 +192,7 @@ void AnalyzerAccess::playerLogout(int a)
 
 void AnalyzerAccess::challengeStuff(ChallengeInfo ci)
 {
-    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc() << ci.battleText(0);
+    qDebug() << "TODO AnalyzerAccess::challengeStuff" << ci.desc();
     if (ci.desc() == ChallengeInfo::Refused) {
         emit challengeDeclined();
     } else if (ci.desc() == ChallengeInfo::Sent) {
@@ -557,13 +558,13 @@ void AnalyzerAccess::sendChoice(const BattleChoice &b)
 
 void AnalyzerAccess::setCurrentTeam()
 {
+    qDebug() << "setCurrentTeam";
     for(int i=0; i<6; i++){
         int teamId, teamOffset;
         teamId = userTeam.at(i)/6;
         teamOffset = userTeam.at(i)%6;
-        m_team->team(3).m_pokes[i] = m_team->team(teamId).m_pokes[teamOffset];
+        m_team->team(0).m_pokes[i] = m_team->team(teamId + 1).m_pokes[teamOffset];
     }
-    m_team->setCurrent(3);
 }
 
 void AnalyzerAccess::setTeam(int pokonId)
@@ -588,7 +589,7 @@ void AnalyzerAccess::downloadTeam()
 
 int AnalyzerAccess::getPokeId(int pos)
 {
-    return m_team->team(pos/6).m_pokes[pos%6].num().pokenum;
+    return m_team->team(pos/6 + 1).m_pokes[pos%6].num().pokenum;
 }
 
 void AnalyzerAccess::generateRandomTeam()
@@ -604,7 +605,7 @@ void AnalyzerAccess::generateRandomTeam()
 
 QString AnalyzerAccess::getPokeName(int pos)
 {
-    return PokemonInfo::Name(m_team->team(pos/6).m_pokes[pos%6].num());
+    return PokemonInfo::Name(m_team->team(pos/6 + 1).m_pokes[pos%6].num());
 }
 
 int AnalyzerAccess::userTeamInfo(int id)

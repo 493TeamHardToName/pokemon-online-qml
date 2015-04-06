@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>defaultteam/t3.tp</file>
+        <file>defaultteam/t2.tp</file>
+        <file>defaultteam/t1.tp</file>
+        <file>defaultteam/team1.tp</file>
+    </qresource>
+</RCC>
