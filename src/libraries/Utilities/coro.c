@@ -458,7 +458,15 @@ coro_destroy (coro_context *ctx)
 {
   if (!pthread_equal (ctx->id, null_tid))
     {
+#ifndef ANDROID
       pthread_cancel (ctx->id);
+#else
+  printf("TODO: Calling coro_destroy, signal kill, should have a custom handler as a workarround for pthread_cancel\n");
+  if (pthread_kill(ctx->id, SIGKILL) != 0)
+  {
+    printf("Error cancelling thread %d\n", ctx->id);
+  }
+#endif
       pthread_mutex_unlock (&coro_mutex);
       pthread_join (ctx->id, 0);
       pthread_mutex_lock (&coro_mutex);

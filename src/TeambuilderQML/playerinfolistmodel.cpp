@@ -39,6 +39,12 @@ void PlayerInfoListModel::update(int id1, int id2)
     }
 }
 
+void PlayerInfoListModel::clear()
+{
+    m_playerInfoList.clear();
+    m_playersCountIn.clear();
+}
+
 PlayerInfo PlayerInfoListModel::findPlayerById(int id)
 {
     //TODO use hash table

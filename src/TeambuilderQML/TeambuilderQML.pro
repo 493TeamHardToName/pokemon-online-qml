@@ -30,12 +30,25 @@ HEADERS =   serverchoicemodel.h \
 INCLUDEPATH += "../libraries"
 
 RESOURCES += \
-    qml.qrc
+    qml.qrc \
+    db1.qrc \
+    dbpoke1.qrc \
+    dbpoke2.qrc \
+    dbpoke3.qrc \
+    dbpoke4.qrc \
+    dbpoke5.qrc \
+    dbpoke6.qrc \
+    dbcry.qrc \
+    defaultteam.qrc
 
 include(../Shared/Common.pri)
-exists ($$LIBZIP_PATH) {
-    LIBS += -L$$LIBZIP_PATH/lib/.libs -lzip
+exists ($$LIBZIP_PATH){
+!android {
+    LIBS += -L$$LIBZIP_PATH/lib/.libs/ -lzip
 }
-
+android {
+    LIBS += $$LIBZIP_PATH/lib/.libs/libzip.a
+}
+}
 
 LIBS += $$teambuilder

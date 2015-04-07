@@ -18,6 +18,7 @@ QQuickView *qQuickView;
 void reloadPokemonDatabase() {
     QSettings s;
 
+    PokemonInfoConfig::setDataRepo(":/");
     GenInfo::init("db/gens/");
     PokemonInfo::init("db/pokes/");
     MoveSetChecker::init("db/pokes/", s.value("TeamBuilder/EnforceMinLevels").toBool());
@@ -34,12 +35,24 @@ void reloadPokemonDatabase() {
 
 int main(int argc, char *argv[])
 {
-    reloadPokemonDatabase();
 
     QGuiApplication app(argc, argv);
-    Theme::init();
+
     qreal dpi = QGuiApplication::screens().at(0)->logicalDotsPerInch() * app.devicePixelRatio();
     Q_INIT_RESOURCE(qml);
+
+    Q_INIT_RESOURCE(db1);
+    Q_INIT_RESOURCE(dbpoke1);
+    Q_INIT_RESOURCE(dbpoke2);
+    Q_INIT_RESOURCE(dbpoke3);
+    Q_INIT_RESOURCE(dbpoke4);
+    Q_INIT_RESOURCE(dbpoke5);
+    Q_INIT_RESOURCE(dbpoke6);
+    Q_INIT_RESOURCE(dbcry);
+    Q_INIT_RESOURCE(defaultteam);
+
+    reloadPokemonDatabase();
+    Theme::init();
 
     qQuickView = new QQuickView();
 

@@ -106,43 +106,50 @@ namespace {
 
 QByteArray readZipFile(const char *archiveName, const char *fileName)
 {
-    /* Allows to read standard files too */
-    QString archiveS(archiveName);
-    if (!archiveS.endsWith(".zip")) {
-        return getFileContent(archiveS + "/" + fileName);
-    }
-
-    int error = 0;
-    char buffer[1024];
-    int readsize = 0;
-    QByteArray ret;
-
-    zip * archive = zip_open(archiveName, 0, &error);
-
-    if (!archive)
-    {
-        return ret;
-    }
-
-    zip_file *file = zip_fopen(archive, fileName, 0);
-
-    if (!file)
-    {
-        zip_close(archive);
-        return ret;
-    }
-
-    do
-    {
-        ret.append(buffer, readsize);
-
-        readsize = zip_fread(file, buffer, 1024);
-    } while (readsize > 0) ;
-
-    zip_fclose(file);
-    zip_close(archive);
-
+    //there is no longer a zip file, everything in qt resource now
+    QString filePath = PokemonInfoConfig::dataRepo() + archiveName + "/" + fileName;
+    QFile f(filePath);
+    f.open(QFile::ReadOnly);
+    QByteArray ret = f.readAll();
+    f.close();
     return ret;
+    /* Allows to read standard files too */
+//    QString archiveS(archiveName);
+//    if (!archiveS.endsWith(".zip")) {
+//        return getFileContent(archiveS + "/" + fileName);
+//    }
+
+//    int error = 0;
+//    char buffer[1024];
+//    int readsize = 0;
+//    QByteArray ret;
+
+//    zip * archive = zip_open(archiveName, 0, &error);
+
+//    if (!archive)
+//    {
+//        return ret;
+//    }
+
+//    zip_file *file = zip_fopen(archive, fileName, 0);
+
+//    if (!file)
+//    {
+//        zip_close(archive);
+//        return ret;
+//    }
+
+//    do
+//    {
+//        ret.append(buffer, readsize);
+
+//        readsize = zip_fread(file, buffer, 1024);
+//    } while (readsize > 0) ;
+
+//    zip_fclose(file);
+//    zip_close(archive);
+
+//    return ret;
 }
 
 }

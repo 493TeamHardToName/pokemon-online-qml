@@ -28,6 +28,20 @@ QVariant AttackListModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case RoleAttackName:
         return MoveInfo::Name(m_pokeProxy->move(index.row())->exposedData().num());
+    case RolePP:
+        return m_pokeProxy->move(index.row())->exposedData().PP();
+    case RoleMaxPP:
+        return m_pokeProxy->move(index.row())->exposedData().totalPP();
+    case RoleDamageClass:
+        return CategoryInfo::Name(MoveInfo::Category(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen()));
+    case RoleCategory:
+        return TypeInfo::Name(MoveInfo::Type(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen()));
+    case RoleDescription:
+        return MoveInfo::Description(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
+    case RolePower:
+        return MoveInfo::PowerS(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
+    case RoleAccuracy:
+        return MoveInfo::AccS(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
     }
     return QVariant();
 }
@@ -36,5 +50,12 @@ QHash<int, QByteArray> AttackListModel::roleNames() const
 {
     QHash<int, QByteArray> retVal;
     retVal[RoleAttackName] = "name";
+    retVal[RolePP] = "pp";
+    retVal[RoleMaxPP] = "maxpp";
+    retVal[RoleDamageClass] = "damageClass"; // Physical, Special or Null
+    retVal[RoleCategory] = "category"; // grass
+    retVal[RolePower] = "power";
+    retVal[RoleDescription] = "description";
+    retVal[RoleAccuracy] = "accuracy";
     return retVal;
 }

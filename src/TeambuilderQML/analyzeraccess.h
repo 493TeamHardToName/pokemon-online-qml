@@ -42,12 +42,14 @@ public:
     Q_INVOKABLE void generateRandomTeam();
     Q_INVOKABLE void downloadTeam();
     Q_INVOKABLE int userTeamInfo(int id);
-    Q_INVOKABLE QString getMoves(int pos);
+    Q_INVOKABLE void getPokeInfo(int pos);
+    //Q_INVOKABLE QString getMoves(int pos);
 
     Q_INVOKABLE void acceptChallenge();
     Q_INVOKABLE void attackClicked(int i);
     Q_INVOKABLE void switchClicked(int i);
     Q_INVOKABLE QQuickItem *createBattleSceneItem(QQuickItem *parent);
+    Q_INVOKABLE void logout();
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();
@@ -61,7 +63,8 @@ signals:
     void battleStarted();
 
     void battleClientLogChanged();
-    void allowAttackSelection();
+    void attackAllowed(int attackIdx);
+    void switchAllowed();
 
     void pokemonSelected();
 
@@ -113,7 +116,8 @@ public slots:
     //battle manager
     void onSendOut(int spot, int previndex, ShallowBattlePoke* pokemon, bool silent);
     void onOfferChoice(int, const BattleChoices &c);
-    void onChoiceSelection(int player);
+    void onKo(int spot);
+    void onPPChange(int spot, int move, int PP);
 
 private:
     Analyzer * m_analyzer;

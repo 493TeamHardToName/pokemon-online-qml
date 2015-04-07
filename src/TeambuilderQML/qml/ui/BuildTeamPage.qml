@@ -124,7 +124,10 @@ Rectangle {
 
         Button {
             text: "Find game"
-            onClicked: goFindGame();
+            onClicked:  {
+                analyserAccess.setCurrentTeam();
+                goFindGame();
+            }
         }
 
         Text{

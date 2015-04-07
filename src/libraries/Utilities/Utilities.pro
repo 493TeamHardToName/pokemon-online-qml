@@ -96,15 +96,22 @@ contains(QT_VERSION, ^5\\.[0-9]\\..*) {
 
 include(../../Shared/Common.pri)
 
-CUSTOM_INCLUDE_PATH = 
-CUSTOM_LIB_PATH = 
 exists ($$LIBZIP_PATH) {
-    CUSTOM_LIB_PATH += -L$$LIBZIP_PATH/lib/.libs
+
+android {
+    LIBS += $$LIBZIP_PATH/lib/.libs/libzip.a
+}
+!android {
+    LIBS += -L$$LIBZIP_PATH/lib/.libs/ -lzip#$$LIBZIP_PATH/lib/.libs/libzip.a
+}
+
     INCLUDEPATH += $$LIBZIP_PATH/lib
 }
 
+!exists ($$LIBZIP_PATH) {
 windows: { LIBS += -L$$bin -lzip-2 }
 !windows: { LIBS += $$CUSTOM_LIB_PATH -lzip }
+}
 
 FORMS += \
     pluginmanagerdialog.ui
