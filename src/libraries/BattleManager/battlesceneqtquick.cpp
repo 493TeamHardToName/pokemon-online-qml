@@ -45,17 +45,16 @@ void BattleSceneQtQuick::registerTypes()
     qmlRegisterType<BattleScene>("pokemononline.battlemanager.proxies", 1, 0, "BattleScene");
 }
 
-void BattleSceneQtQuick::setView(QQuickView *view)
+void BattleSceneQtQuick::setEngine(QQmlApplicationEngine *engin)
 {
-    m_view = view;
-
-    view->engine()->removeImageProvider("pokeinfo");
-    view->engine()->removeImageProvider("themeinfo");
-    view->engine()->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
-    view->engine()->addImageProvider("themeinfo", new ThemeAccessorQtQuick(m_theme));
-    view->engine()->rootContext()->setContextProperty("battle", mOwnProxy);
-    view->engine()->rootContext()->setContextProperty("moveInfo", new MoveInfoAccessor(this, m_data->gen()));
-    view->engine()->rootContext()->setContextProperty("theme", m_theme);
+    m_engine = engin;
+    engin->removeImageProvider("pokeinfo");
+    engin->removeImageProvider("themeinfo");
+    engin->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
+    engin->addImageProvider("themeinfo", new ThemeAccessorQtQuick(m_theme));
+    engin->rootContext()->setContextProperty("battle", mOwnProxy);
+    engin->rootContext()->setContextProperty("moveInfo", new MoveInfoAccessor(this, m_data->gen()));
+    engin->rootContext()->setContextProperty("theme", m_theme);
 }
 
 QQuickItem *BattleSceneQtQuick::createItem(QQuickItem *parent)
@@ -71,8 +70,9 @@ QQuickItem *BattleSceneQtQuick::createItem(QQuickItem *parent)
         }
     }
 
-    QQmlComponent comp(m_view->engine(), QUrl("qrc:/battlescene/qml/initial.qml"));
-    m_item = qobject_cast<QQuickItem *>(comp.create(m_view->rootContext()));
+
+    QQmlComponent comp(m_engine, QUrl("qrc:/battlescene/qml/initial.qml"));
+    m_item = qobject_cast<QQuickItem *>(comp.create(m_engine->rootContext()));
     m_item->setParent(parent);
     m_item->setParentItem(parent);
     launch();

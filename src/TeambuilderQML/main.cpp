@@ -13,7 +13,8 @@
 #include "libraries/BattleManager/pokemoninfoaccessorqtquick.h"
 #include "analyzeraccess.h"
 
-QQuickView *qQuickView;
+
+QQmlApplicationEngine *engin;
 
 void reloadPokemonDatabase() {
     QSettings s;
@@ -54,20 +55,17 @@ int main(int argc, char *argv[])
     reloadPokemonDatabase();
     Theme::init();
 
-    qQuickView = new QQuickView();
+    engin = new QQmlApplicationEngine();
 
     qRegisterMetaType<QAbstractItemModel *>();  //qml
 
     qmlRegisterType<PokemonOnlineQML::ServerChoiceModel>("PokemonOnlineQml", 1, 0, "ServerChoiceModel");  //qian  <方括号是后台里的类>， （里都是text）
     qmlRegisterType<PokeTableModel>("PokemonOnlineQml", 1, 0, "PokeTableModel");
     qmlRegisterType<TeamHolder>("PokemonOnlineQml", 1, 0, "TeamHolder");
-    qQuickView->engine()->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
     qmlRegisterType<AnalyzerAccess>("PokemonOnlineQml", 1, 0, "AnalyzerAccess");
-    qQuickView->engine()->rootContext()->setContextProperty("screenDpi", dpi);
+    engin->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
+    engin->rootContext()->setContextProperty("screenDpi", dpi);
 
-    qQuickView->setResizeMode(QQuickView::SizeRootObjectToView);
-    qQuickView->setTitle("Pokemon online");
-    qQuickView->setSource(QUrl("qrc:/qml/main.qml"));
-    qQuickView->show();
+    engin->load(QUrl("qrc:/qml/main.qml"));
     return app.exec();
 }
