@@ -23,6 +23,7 @@
 #include "battlescene.h"
 #include <QtQuick/QQuickItem>
 #include <QtQuick/QQuickView>
+#include <QtQml/QQmlApplicationEngine>
 
 class BattleSceneQtQuick : public BattleScene
 {
@@ -31,7 +32,7 @@ public:
     explicit BattleSceneQtQuick(battledata_ptr data=0, BattleDefaultTheme *theme=0, QVariantMap options = QVariantMap());
 
     static void registerTypes();
-    void setView(QQuickView *view);
+    void setEngine(QQmlApplicationEngine *engin);
     QQuickItem *createItem(QQuickItem *parent);
 
     virtual int width() const;
@@ -41,7 +42,7 @@ signals:
 public slots:
 
 private:
-    QQuickView *m_view;
+    QQmlApplicationEngine *m_engine;
     BattleDefaultTheme *m_theme;
     BattleScene::battledata_ptr m_data;
     QQuickItem *m_item;

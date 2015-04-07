@@ -3,8 +3,8 @@ import PokemonOnlineQml 1.0
 import "../components"
 import "../js/units.js" as U
 
-import QtQuick.Controls 1.2
-Rectangle {
+import QtQuick.Controls 1.3
+Page {
     id: root
     signal goBack;
     signal randomGame;
@@ -13,6 +13,17 @@ Rectangle {
     property var fruitModel: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     property var vegetableModel: [0,0,0,0,0,0]
     anchors.fill: parent
+
+    title: "Build team"
+    actions: [
+        Action {
+            text: "Login"
+            onTriggered: {
+                analyserAccess.setCurrentTeam();
+                goFindGame();
+            }
+        }
+    ]
 
     TeamHolder {
         id: teamHolder
@@ -89,20 +100,20 @@ Rectangle {
                 }
             }
         }
-        Button {
-            text: "Confirm Team"
-            onClicked: analyserAccess.setCurrentTeam();
-        }
+//        Button {
+//            text: "Confirm Team"
+//            onClicked: analyserAccess.setCurrentTeam();
+//        }
 
-        Button {
-            text: "Download Team"
-            onClicked: analyserAccess.downloadTeam();
-        }
+//        Button {
+//            text: "Download Team"
+//            onClicked: analyserAccess.downloadTeam();
+//        }
 
-        Button {
-            text: "Back to server list"
-            onClicked: goBack();
-        }
+//        Button {
+//            text: "Back to server list"
+//            onClicked: goBack();
+//        }
 
 
         Rectangle {
@@ -117,14 +128,6 @@ Rectangle {
                 id: nameInput
                 anchors.fill: parent
                 onTextChanged: analyserAccess.setPlayerName(text)
-            }
-        }
-
-        Button {
-            text: "Find game"
-            onClicked:  {
-                analyserAccess.setCurrentTeam();
-                goFindGame();
             }
         }
     }

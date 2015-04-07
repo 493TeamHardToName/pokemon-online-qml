@@ -9,7 +9,7 @@
 #include "libraries/TeambuilderLibrary/theme.h"
 #include "Shared/battlecommands.h"
 
-extern QQuickView *qQuickView;
+extern QQmlApplicationEngine *engin;
 
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent)
@@ -250,7 +250,7 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     options.insert("weather", s.value("Battle/AnimatedWeather", "always"));
     options.insert("screensize", s.value("Battle/AnimatedScreenSize", "712x400"));
     m_battleSceneQtQuick = new BattleSceneQtQuick(m_data2, Theme::getBattleTheme(), options);
-    m_battleSceneQtQuick->setView(qQuickView);
+    m_battleSceneQtQuick->setEngine(engin);
 
     m_battleInput = new BattleInput(&m_battleConf);
     m_battleInput->addOutput(mData);

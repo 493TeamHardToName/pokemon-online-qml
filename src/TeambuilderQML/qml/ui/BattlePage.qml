@@ -1,22 +1,37 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.3
+import QtWebKit 3.0
 import "../components" as Comp
 import "../js/units.js" as U
 
-Rectangle {
+Comp.Page {
     id: root
 
     property bool switchEnabled:  true
+    property string logHtml: ""
 
     signal goBack();
     signal disable();
+
+    backAction: Action {
+        text: "Forfeit"
+        onTriggered: {
+            onClicked: {
+                //TODO forfeit
+                goBack();
+            }
+        }
+    }
 
     onDisable: console.log("root disabled")
     anchors.fill: parent
 
     Connections {
         target: analyserAccess.battleClientLog
-        onLineToBePrinted:logTextArea.text += line + "\n"
+        onLineToBePrinted: {
+            logWebview.loadHtml(logHtml);
+            logHtml += line + "\n"
+        }
     }
 
     Connections {
@@ -24,15 +39,21 @@ Rectangle {
         onSwitchAllowed: switchEnabled = true;
     }
 
-    Column {
+    Item {
+        id: battleSceneContainer
         width: parent.width
-
-        Column {
-            id: battleSceneContainer
-            width: parent.width
-            Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
+        anchors {
+            top: parent.top
+            bottom: stuffAtBottom.top
         }
 
+        Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
+    }
+
+    Column {
+        id: stuffAtBottom
+        anchors.bottom: parent.bottom
+        width: parent.width
         Flow {
             width: parent.width
             Repeater {
@@ -79,19 +100,22 @@ Rectangle {
             }
         }
 
-        // TODO 6 pokemons
-        Button {
-            text: "Forfeit"
-            onClicked: {
-                //TODO forfeit
-                goBack();
+        WebView {
+            id: logWebview
+            width: parent.width
+            height: U.dp(1)
+            onLoadingChanged: {
+                if (!loading) {
+                    setContentYTimer.restart();
+                }
             }
         }
-
-        TextArea {
-            id: logTextArea
-            width: parent.width
-            height: U.dp(3)
-        }
+    }
+    Timer {
+        id: setContentYTimer
+        property int contentYTarget: 0
+        interval: 100
+        repeat: false
+        onTriggered: logWebview.contentY = logWebview.contentHeight - logWebview.height
     }
 }

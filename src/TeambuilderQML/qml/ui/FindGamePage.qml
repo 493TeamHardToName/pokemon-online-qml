@@ -1,12 +1,23 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import "../components"
 import PokemonOnlineQml 1.0
 import "../js/units.js" as U
+import QtQuick.Controls 1.3
 
-Rectangle {
+Page {
     signal goBack;
     signal goToBattle;
     anchors.fill: parent
+
+    title: 'Online Players'
+
+    backAction: Action {
+        text: "Back"
+        onTriggered: {
+            analyserAccess.logout();
+            goBack();
+        }
+    }
 
     Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
 
@@ -67,17 +78,6 @@ Rectangle {
     }
     Column {
         width: parent.width
-        Text {
-            text: "Online players"
-        }
-        Button {
-            text: "Back"
-//            onTriggered: goBack();
-            onTriggered: {
-                analyserAccess.logout();
-                goBack();
-            }
-        }
         ListView {
             width: parent.width
             height: U.dp(4)
@@ -86,7 +86,7 @@ Rectangle {
         Button {
             id: challengeButton
             text: "Challenge"
-            onTriggered:  {
+            onClicked:  {
 //                text = "Challenging"
 //                analyserAccess.challengeDeclined.connect(function (){
 //                    challengeButton.text = "Challenge";

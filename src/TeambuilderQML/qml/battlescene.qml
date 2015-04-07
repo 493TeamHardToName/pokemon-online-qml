@@ -6,14 +6,13 @@ import "BattleDataQML/weather.js" as Weather
 
 Item {
     id: scene;
-    width: bg.width;
-    height: bg.height
     /* Separate element so that it can have a negative Z and be separate from the rest */
     Image {
         id: bg;
         source: "images/grass.png"
-        width: battle.scene.width
-        height: battle.scene.height
+        anchors.fill: parent
+//        width: battle.scene.width
+//        height: battle.scene.height
         z: -500;
     }
 
