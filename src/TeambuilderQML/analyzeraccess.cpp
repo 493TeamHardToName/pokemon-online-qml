@@ -105,7 +105,7 @@ void AnalyzerAccess::sendChallenge(int playerId)
 void AnalyzerAccess::setPlayerName(QString name)
 {
     qDebug() << "AnalyzerAccess::setPlayerName" << name;
-    m_team->name() = name;
+    m_team->name() = "poqmtest_" + name;
 }
 
 void AnalyzerAccess::declineChallenge()
@@ -522,6 +522,11 @@ void AnalyzerAccess::onPPChange(int spot, int move, int PP)
     if (m_data2->isOut(spot)) {
         m_attackListModel->dataChanged(m_attackListModel->index(move), m_attackListModel->index(move));
     }
+}
+
+void AnalyzerAccess::onBattleEnd(int res, int winner)
+{
+    emit battleEnded();
 }
 
 void AnalyzerAccess::attackClicked(int i)

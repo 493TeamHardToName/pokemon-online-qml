@@ -37,6 +37,7 @@ Page {
                                  });
         onBattleStarted: {
             goToBattle();
+            waitingDialog.visible = false;
         }
         onChallengeDeclined: {
             waitingDialog.visible = false;
@@ -60,7 +61,7 @@ Page {
             clip: true
             Text {
                 text: {
-                    var text = "Name: " + name + " IsBattling: " + isBattling
+                    var text = "Name: " + name.substring(9) + " IsBattling: " + isBattling
                     if (item.VisualDataModel.inSelected)
                         text += " (" + item.VisualDataModel.selectedIndex + ")"
                     return text;

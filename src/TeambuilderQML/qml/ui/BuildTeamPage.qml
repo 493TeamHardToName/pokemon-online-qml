@@ -45,7 +45,7 @@ Page {
         Text {
             text: "Build team"
         }
-        Text{text: "Choose your characters"}
+        Text { text: "Choose your characters" }
         Button{
             text: "Random Build Team"
             onClicked: {
@@ -77,8 +77,10 @@ Page {
                 }
             }
         }
+
         Repeater{
             model: vegetableModel
+
             delegate:
             Column{
                 Image{
@@ -87,12 +89,14 @@ Page {
                     height: 50
                     source: "image://pokeinfo/pokemon/" + analyserAccess.getPokeId(analyserAccess.userTeamInfo(index));
                 }
+
                 Connections {
                     target: analyserAccess
                     onPokemonSelected: {
                                teamImage.source="image://pokeinfo/pokemon/" + analyserAccess.getPokeId(analyserAccess.userTeamInfo(index));
                     }
                 }
+
                 Button {
                   text: "Pos" + (index+1)
                   anchors.horizontalCenter: teamImage.horizontalCenter
@@ -132,4 +136,4 @@ Page {
         }
     }
    }
-  }
+ }
