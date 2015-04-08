@@ -1,6 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import QtQuick.Controls 1.3
-import QtWebKit 3.0
 import "../components" as Comp
 import "../js/units.js" as U
 
@@ -29,8 +28,9 @@ Comp.Page {
     Connections {
         target: analyserAccess.battleClientLog
         onLineToBePrinted: {
-            logWebview.loadHtml(logHtml);
             logHtml += line + "\n"
+            logWebview.text = logHtml;
+            logWebview.flickableItem.contentY = logWebview.flickableItem.contentHeight - logWebview.height
         }
     }
 
@@ -43,13 +43,8 @@ Comp.Page {
     }
 
     Item {
+        id: battleSceneContainer
         width: parent.width
-        Column {
-            id: battleSceneContainer
-            width: parent.width
-            Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
-        }
-
         anchors {
             top: parent.top
             bottom: stuffAtBottom.top
@@ -108,28 +103,10 @@ Comp.Page {
             }
         }
 
-        WebView {
+        TextArea {
             id: logWebview
             width: parent.width
             height: U.dp(1)
-            onLoadingChanged: {
-                if (!loading) {
-                    setContentYTimer.restart();
-                }
-            }
         }
-
-        TextArea {
-            id: logTextArea
-            width: parent.width
-            height: U.dp(3)
-        }
-    }
-    Timer {
-        id: setContentYTimer
-        property int contentYTarget: 0
-        interval: 100
-        repeat: false
-        onTriggered: logWebview.contentY = logWebview.contentHeight - logWebview.height
     }
 }

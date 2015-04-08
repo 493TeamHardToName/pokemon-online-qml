@@ -11,6 +11,7 @@
 #include "libraries/PokemonInfo/pokemoninfo.h"
 #include "libraries/PokemonInfo/movesetchecker.h"
 #include "libraries/BattleManager/pokemoninfoaccessorqtquick.h"
+
 #include "analyzeraccess.h"
 
 
