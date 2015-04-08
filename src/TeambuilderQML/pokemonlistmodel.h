@@ -12,7 +12,8 @@ public:
         RolePokemonName = Qt::UserRole + 1,
         RolePokemonIsKoed,
         RolePokemonHp,
-        RolePokemonHpMax
+        RolePokemonHpMax,
+        RolePokemonNum
     } Role;
 
     explicit PokemonListModel(QObject *parent = 0);

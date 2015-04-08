@@ -12,7 +12,7 @@ class PlayerInfoListModel : public QAbstractListModel
     enum {
         RoleName = Qt::UserRole + 1,
         RolePlayerId,
-        IsBattling
+        RoleIsBattling
     };
 public:
     explicit PlayerInfoListModel(QObject *parent = 0);

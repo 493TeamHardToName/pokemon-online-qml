@@ -71,7 +71,7 @@ QVariant PlayerInfoListModel::data(const QModelIndex &index, int role) const
         return m_playerInfoList[index.row()].name;
     case RolePlayerId:
         return m_playerInfoList[index.row()].id;
-    case IsBattling:
+    case RoleIsBattling:
         return m_playerInfoList[index.row()].battling();
     }
     return QVariant();
@@ -82,6 +82,6 @@ QHash<int, QByteArray> PlayerInfoListModel::roleNames() const
     QHash<int, QByteArray> r;
     r[RoleName] = "name"; //后面那个是qml调用的
     r[RolePlayerId] = "playerId";
-    r[IsBattling] = "isBattling";
+    r[RoleIsBattling] = "isBattling";
     return r;
 }

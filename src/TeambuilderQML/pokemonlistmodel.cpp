@@ -30,6 +30,8 @@ QVariant PokemonListModel::data(const QModelIndex &index, int role) const
         return m_teamProxy->poke(index.row())->life();
     case RolePokemonHpMax:
         return m_teamProxy->poke(index.row())->totalLife();
+    case RolePokemonNum:
+        return m_teamProxy->poke(index.row())->num().pokenum;
     }
     return QVariant();
 }
@@ -41,5 +43,6 @@ QHash<int, QByteArray> PokemonListModel::roleNames() const
     retVal[RolePokemonIsKoed] = "isKoed";
     retVal[RolePokemonHp] = "hp";
     retVal[RolePokemonHpMax] = "hpMax";
+    retVal[RolePokemonNum]= "num";
     return retVal;
 }

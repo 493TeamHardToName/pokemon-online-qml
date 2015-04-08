@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
+import QtQuick.Layouts 1.1
 import "../components" as Comp
 import "../js/units.js" as U
 
@@ -127,18 +128,53 @@ Comp.Page {
             }
             Tab {
                 title: "Pokemons"
-                Flow {
-                    width: parent.width
-                    Repeater {
-                        model: analyserAccess.pokemonListModel
-                        delegate: Button {
-                            text: name + " " + hp + "/" + hpMax
-                            enabled: switchEnabled && !isKoed && index != 0
-                            onClicked: {
-                                disable()
-                                switchEnabled = false
-                                analyserAccess.switchClicked(index)
+                ListView {
+                    id: pokesColumn
+                    anchors {
+                        top: parent.top
+                        bottom: parent.bottom
+                        left: parent.left
+                        right: parent.right
+                        leftMargin: U.dp(0.1)
+                        rightMargin: U.dp(0.1)
+                    }
+                    spacing: U.dp(0.1)
+                    model: analyserAccess.pokemonListModel
+                    clip: true
+                    delegate: Button {
+                        height: U.dp(0.6)
+                        width: parent.width
+                        Image {
+                            id: pokeIcon
+                            anchors {
+                                left: parent.left
+                                leftMargin: U.dp(0.1)
+                                verticalCenter: parent.verticalCenter
                             }
+
+                            source: "image://pokeinfo/icon/" + num;
+                        }
+
+                        Column {
+                            anchors {
+                                verticalCenter: parent.verticalCenter
+                                right: parent.right
+                                left: pokeIcon.right
+                                leftMargin: U.dp(0.1)
+                            }
+
+                            Label {
+                                text: name
+                            }
+                            Label {
+                                text: hp + "/" + hpMax
+                            }
+                        }
+                        enabled: switchEnabled && !isKoed && index != 0
+                        onClicked: {
+                            disable()
+                            switchEnabled = false
+                            analyserAccess.switchClicked(index)
                         }
                     }
                 }
