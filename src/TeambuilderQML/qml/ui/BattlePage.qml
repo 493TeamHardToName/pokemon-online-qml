@@ -13,6 +13,7 @@ Comp.Page {
     signal disable();
 
     backAction: Action {
+        id: end
         text: "Forfeit"
         onTriggered: {
             onClicked: {
@@ -36,6 +37,9 @@ Comp.Page {
     Connections {
         target: analyserAccess
         onSwitchAllowed: switchEnabled = true;
+        onBattleEnded: {
+            end.text = "Close"
+        }
     }
 
     Item {
@@ -93,7 +97,7 @@ Comp.Page {
             Repeater {
                 model: analyserAccess.pokemonListModel
                 delegate: Button {
-                    text: name
+                    text: name + " " + hp + "/" + hpMax
                     enabled: switchEnabled && !isKoed
                     onClicked: {
                         disable()

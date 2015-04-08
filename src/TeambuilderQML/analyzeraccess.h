@@ -61,6 +61,7 @@ signals:
     void challengeDeclined();
     void challengeRecieved(QString playerName);
     void battleStarted();
+    void battleEnded();
 
     void battleClientLogChanged();
     void attackAllowed(int attackIdx);
@@ -118,6 +119,8 @@ public slots:
     void onOfferChoice(int, const BattleChoices &c);
     void onKo(int spot);
     void onPPChange(int spot, int move, int PP);
+    void onHpChange(int spot, int newHp);
+    void onBattleEnd(int res, int winner);
 
 private:
     Analyzer * m_analyzer;
