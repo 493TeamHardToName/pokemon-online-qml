@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.3
 import "../components" as Comp
 import "../js/units.js" as U
 
@@ -40,7 +41,8 @@ Comp.Page {
     Connections {
         target: analyserAccess.battleClientLog
         onLineToBePrinted: {
-            logHtml += line + "\n"
+            logHtml += line.replace(/<(?:.|\n)*?>/gm, '').replace("&apos;", '\''); + "\n"
+            stuffAtBottom.currentIndex = 2;
         }
     }
 
@@ -55,21 +57,41 @@ Comp.Page {
         Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
     }
 
-    TabView {
+    SplitView {
         id: stuffAtBottom
         width: parent.width
         height: U.dp(3)
         anchors.bottom: parent.bottom
-        Tab {
-            title: "Attack"
-            Flow {
-                width: parent.width
-                Repeater {
+        TabView {
+            width: parent.width / 3
+            height: parent.height
+            Tab {
+                id: attackTab
+                title: "Moves"
+                ListView {
+                    width: parent.width
+                    height: parent.height
                     model: analyserAccess.attackListModel
                     delegate: Button {
                         id: atkButton
                         enabled: true
-                        text: name + " " + pp + "/" + maxpp
+                        width: parent.width
+                        height: attackTab.height / 4
+
+                        style: ButtonStyle {
+                            background: Item {
+                                Rectangle {
+                                    radius: U.dp(0.1)
+                                    anchors {
+                                        fill: parent
+                                        margins: U.dp(0.1)
+                                    }
+                                    color: attackColor
+                                    opacity: control.pressed ? 1.0 : 0.5
+                                }
+                            }
+                        }
+
                         onClicked: {
                             disable();
                             analyserAccess.attackClicked(index)
@@ -85,37 +107,49 @@ Comp.Page {
                             target: root
                             onDisable: atkButton.enabled = false
                         }
+                        Label {
+                            text: name
+                            anchors.centerIn: parent
+                            anchors.verticalCenterOffset: U.dp(-0.1)
+                        }
+
+                        Label {
+                            text: "PP " + pp + "/" + maxpp
+                            anchors {
+                                bottom: parent.bottom
+                                right: parent.right
+                                margins: U.dp(0.1)
+                            }
+
+                        }
                     }
                 }
             }
-        }
-        Tab {
-            title: "Pokemon"
-            Flow {
-                width: parent.width
-                Repeater {
-                    model: analyserAccess.pokemonListModel
-                    delegate: Button {
-                        text: name + " " + hp + "/" + hpMax
-                        enabled: switchEnabled && !isKoed && index != 0
-                        onClicked: {
-                            disable()
-                            switchEnabled = false
-                            analyserAccess.switchClicked(index)
+            Tab {
+                title: "Pokemons"
+                Flow {
+                    width: parent.width
+                    Repeater {
+                        model: analyserAccess.pokemonListModel
+                        delegate: Button {
+                            text: name + " " + hp + "/" + hpMax
+                            enabled: switchEnabled && !isKoed && index != 0
+                            onClicked: {
+                                disable()
+                                switchEnabled = false
+                                analyserAccess.switchClicked(index)
+                            }
                         }
                     }
                 }
             }
         }
-        Tab {
-            title: "Log"
-
-            TextArea {
-                id: logWebview
-                anchors.fill: parent
-                text: logHtml
-                onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
-            }
+        TextArea {
+            id: logWebview
+            width: parent.width / 3 * 2
+            height: parent.height
+            text: logHtml
+            onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
         }
     }
 }

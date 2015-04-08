@@ -1,4 +1,5 @@
 #include "attacklistmodel.h"
+#include "TeambuilderLibrary/theme.h"
 
 AttackListModel::AttackListModel(QObject *parent) :
     QAbstractListModel(parent), m_pokeProxy(0)
@@ -8,10 +9,6 @@ AttackListModel::AttackListModel(QObject *parent) :
 void AttackListModel::setPoke(PokeProxy *p)
 {
     m_pokeProxy = p;
-    qDebug() << "m_pokeProxy" << m_pokeProxy->move(0)->exposedData().num()
-                << m_pokeProxy->move(1)->exposedData().num()
-                   << m_pokeProxy->move(2)->exposedData().num()
-                      << m_pokeProxy->move(3)->exposedData().num();
     emit dataChanged(index(0), index(3));
 }
 
@@ -25,23 +22,35 @@ QVariant AttackListModel::data(const QModelIndex &index, int role) const
     if (!index.isValid() || !m_pokeProxy) {
         return QVariant();
     }
+    BattleMove bm = m_pokeProxy->move(index.row())->exposedData();
     switch (role) {
     case RoleAttackName:
-        return MoveInfo::Name(m_pokeProxy->move(index.row())->exposedData().num());
+        return MoveInfo::Name(bm.num());
     case RolePP:
-        return m_pokeProxy->move(index.row())->exposedData().PP();
+        return bm.PP();
     case RoleMaxPP:
-        return m_pokeProxy->move(index.row())->exposedData().totalPP();
+        return bm.totalPP();
     case RoleDamageClass:
-        return CategoryInfo::Name(MoveInfo::Category(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen()));
+        return CategoryInfo::Name(MoveInfo::Category(bm.num(),  m_pokeProxy->gen()));
     case RoleCategory:
-        return TypeInfo::Name(MoveInfo::Type(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen()));
+        return TypeInfo::Name(MoveInfo::Type(bm.num(),  m_pokeProxy->gen()));
     case RoleDescription:
-        return MoveInfo::Description(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
+        return MoveInfo::Description(bm.num(),  m_pokeProxy->gen());
     case RolePower:
-        return MoveInfo::PowerS(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
+        return MoveInfo::PowerS(bm.num(),  m_pokeProxy->gen());
     case RoleAccuracy:
-        return MoveInfo::AccS(m_pokeProxy->move(index.row())->exposedData().num(),  m_pokeProxy->gen());
+        return MoveInfo::AccS(bm.num(),  m_pokeProxy->gen());
+    case RoleAttackColor:
+        int type = bm.num() == Move::HiddenPower ?
+            HiddenPowerInfo::Type(m_pokeProxy->gen(),
+                m_pokeProxy->dvs()[0],
+                m_pokeProxy->dvs()[1],
+                m_pokeProxy->dvs()[2],
+                m_pokeProxy->dvs()[3],
+                m_pokeProxy->dvs()[4],
+                m_pokeProxy->dvs()[5])
+                : MoveInfo::Type(bm.num(), m_pokeProxy->gen());
+        return Theme::TypeColor(type).name();
     }
     return QVariant();
 }
@@ -57,5 +66,6 @@ QHash<int, QByteArray> AttackListModel::roleNames() const
     retVal[RolePower] = "power";
     retVal[RoleDescription] = "description";
     retVal[RoleAccuracy] = "accuracy";
+    retVal[RoleAttackColor] = "attackColor";
     return retVal;
 }

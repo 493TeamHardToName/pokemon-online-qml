@@ -16,7 +16,8 @@ public:
         RoleCategory, // grass
         RolePower,
         RoleAccuracy,
-        RoleDescription
+        RoleDescription,
+        RoleAttackColor,
     } Role;
     explicit AttackListModel(QObject *parent = 0);
 
