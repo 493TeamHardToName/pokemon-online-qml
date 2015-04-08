@@ -30,19 +30,17 @@ Comp.Page {
     anchors.fill: parent
 
     Connections {
-        target: analyserAccess.battleClientLog
-        onLineToBePrinted: {
-            logHtml += line + "\n"
-            logWebview.text = logHtml;
-            logWebview.flickableItem.contentY = logWebview.flickableItem.contentHeight - logWebview.height
-        }
-    }
-
-    Connections {
         target: analyserAccess
         onSwitchAllowed: switchEnabled = true;
         onBattleEnded: {
             battleEnded = true;
+        }
+    }
+
+    Connections {
+        target: analyserAccess.battleClientLog
+        onLineToBePrinted: {
+            logHtml += line + "\n"
         }
     }
 
@@ -57,60 +55,67 @@ Comp.Page {
         Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
     }
 
-    Column {
+    TabView {
         id: stuffAtBottom
-        anchors.bottom: parent.bottom
         width: parent.width
-        Flow {
-            width: parent.width
-            Repeater {
-                model: analyserAccess.attackListModel
-                delegate: Button {
-                    id: atkButton
-                    enabled: true
-                    text: name + " " + pp + "/" + maxpp
-                    onClicked: {
-                        disable();
-                        analyserAccess.attackClicked(index)
-                    }
-                    Connections {
-                        target: analyserAccess
-                        onAttackAllowed: {
-                            if (attackIdx == index)
-                                atkButton.enabled = true;
+        height: U.dp(3)
+        anchors.bottom: parent.bottom
+        Tab {
+            title: "Attack"
+            Flow {
+                width: parent.width
+                Repeater {
+                    model: analyserAccess.attackListModel
+                    delegate: Button {
+                        id: atkButton
+                        enabled: true
+                        text: name + " " + pp + "/" + maxpp
+                        onClicked: {
+                            disable();
+                            analyserAccess.attackClicked(index)
+                        }
+                        Connections {
+                            target: analyserAccess
+                            onAttackAllowed: {
+                                if (attackIdx == index)
+                                    atkButton.enabled = true;
+                            }
+                        }
+                        Connections {
+                            target: root
+                            onDisable: atkButton.enabled = false
                         }
                     }
-                    Connections {
-                        target: root
-                        onDisable: atkButton.enabled = false
+                }
+            }
+        }
+        Tab {
+            title: "Pokemon"
+            Flow {
+                width: parent.width
+                Repeater {
+                    model: analyserAccess.pokemonListModel
+                    delegate: Button {
+                        text: name + " " + hp + "/" + hpMax
+                        enabled: switchEnabled && !isKoed && index != 0
+                        onClicked: {
+                            disable()
+                            switchEnabled = false
+                            analyserAccess.switchClicked(index)
+                        }
                     }
                 }
             }
         }
+        Tab {
+            title: "Log"
 
-        Label {
-            text: "Switch"
-        }
-        Flow {
-            width: parent.width
-            Repeater {
-                model: analyserAccess.pokemonListModel
-                delegate: Button {
-                    text: name + " " + hp + "/" + hpMax
-                    enabled: switchEnabled && !isKoed && index != 0
-                    onClicked: {
-                        disable()
-                        switchEnabled = false
-                        analyserAccess.switchClicked(index)
-                    }
-                }
+            TextArea {
+                id: logWebview
+                anchors.fill: parent
+                text: logHtml
+                onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
             }
-        }
-
-        TextArea {
-            id: logWebview
-            width: parent.width
-            height: U.dp(1)
         }
     }
 }
