@@ -508,6 +508,7 @@ void AnalyzerAccess::onOfferChoice(int, const BattleChoices &c)
 
 }
 
+
 void AnalyzerAccess::onKo(int spot)
 {
     if (m_data2->player(spot) == m_battleInfo->myself) {
@@ -648,4 +649,10 @@ QString AnalyzerAccess::getPokeName(int pos)
 int AnalyzerAccess::userTeamInfo(int id)
 {
     return userTeam.at(id);
+}
+
+void AnalyzerAccess::getPokeInfo(int pos)
+{
+    //m_team->team(pos/6).m_pokes[pos%6].num();
+    //m_attackListModel->setPoke(m_team->team(pos/6).m_pokes[pos%6].num());
 }

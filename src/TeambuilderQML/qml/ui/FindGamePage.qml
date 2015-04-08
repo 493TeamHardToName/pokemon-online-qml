@@ -81,6 +81,9 @@ Page {
     }
     Column {
         width: parent.width
+        Text {
+            text: "Online players"
+        }
         ListView {
             width: parent.width
             height: U.dp(4)

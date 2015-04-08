@@ -70,6 +70,7 @@ QQuickItem *BattleSceneQtQuick::createItem(QQuickItem *parent)
         }
     }
 
+
     QQmlComponent comp(m_engine, QUrl("qrc:/battlescene/qml/initial.qml"));
     m_item = qobject_cast<QQuickItem *>(comp.create(m_engine->rootContext()));
     m_item->setParent(parent);

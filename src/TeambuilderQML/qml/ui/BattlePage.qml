@@ -9,7 +9,6 @@ Comp.Page {
 
     property bool switchEnabled:  true
     property string logHtml: ""
-
     signal goBack();
     signal disable();
 
@@ -44,8 +43,13 @@ Comp.Page {
     }
 
     Item {
-        id: battleSceneContainer
         width: parent.width
+        Column {
+            id: battleSceneContainer
+            width: parent.width
+            Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
+        }
+
         anchors {
             top: parent.top
             bottom: stuffAtBottom.top
@@ -113,6 +117,12 @@ Comp.Page {
                     setContentYTimer.restart();
                 }
             }
+        }
+
+        TextArea {
+            id: logTextArea
+            width: parent.width
+            height: U.dp(3)
         }
     }
     Timer {
