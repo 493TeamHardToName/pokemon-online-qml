@@ -27,7 +27,7 @@ Item {
         Column {
             width: parent.width
             Text {
-                text: "Waiting for " + playerName + "accept your challenge..."
+                text: "Waiting for " + playerName.substring(9) + "accept your challenge..."
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
