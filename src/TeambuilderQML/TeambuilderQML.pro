@@ -39,7 +39,8 @@ RESOURCES += \
     dbpoke5.qrc \
     dbpoke6.qrc \
     dbcry.qrc \
-    defaultteam.qrc
+    defaultteam.qrc \
+    theme.qrc
 
 include(../Shared/Common.pri)
 exists ($$LIBZIP_PATH){

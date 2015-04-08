@@ -84,8 +84,7 @@ QString Theme::path(const QString& file, bool def)
         if (QFile::exists(test))
             return test;
     }
-
-    return ("Themes/" DEFAULT_PO_THEME "/") + file;
+    return (":/Themes/" DEFAULT_PO_THEME "/") + file;
 }
 
 QString Theme::dirPath(const QString& dir, bool def) {
@@ -96,7 +95,7 @@ QString Theme::dirPath(const QString& dir, bool def) {
             return test;
     }
 
-    return ("Themes/" DEFAULT_PO_THEME "/") + dir;
+    return (":/Themes/" DEFAULT_PO_THEME "/") + dir;
 }
 
 void Theme::loadColors()
@@ -111,7 +110,7 @@ void Theme::loadColors()
     if (m_TColors.size() < temp.size()) {
         m_TColors = temp;
     }
-
+    Q_ASSERT(!m_TColors.isEmpty());
     /* Loads first the default file, in case the custom file misses
       some keys */
     QSettings ini(path("colors.ini", true), QSettings::IniFormat);

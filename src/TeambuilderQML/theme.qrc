@@ -1,0 +1,916 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Themes/Classic/battle_fields/1.png</file>
+        <file>Themes/Classic/battle_fields/10.png</file>
+        <file>Themes/Classic/battle_fields/11.png</file>
+        <file>Themes/Classic/battle_fields/2.png</file>
+        <file>Themes/Classic/battle_fields/3.png</file>
+        <file>Themes/Classic/battle_fields/4.png</file>
+        <file>Themes/Classic/battle_fields/5.png</file>
+        <file>Themes/Classic/battle_fields/6.png</file>
+        <file>Themes/Classic/battle_fields/7.png</file>
+        <file>Themes/Classic/battle_fields/8.png</file>
+        <file>Themes/Classic/battle_fields/9.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/0C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/0D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/0H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/10C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/10D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/10H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/11C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/11D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/11H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/12C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/12D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/12H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/13C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/13D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/13H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/14C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/14D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/14H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/15C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/15D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/15H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/16C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/16D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/16H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/17C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/17D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/17H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/18C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/18D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/18H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/1C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/1D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/1H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/2C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/2D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/2H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/3C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/3D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/3H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/4C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/4D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/4H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/5C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/5D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/5H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/6C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/6D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/6H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/7C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/7D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/7H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/8C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/8D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/8H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/9C.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/9D.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/9H.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/AttackC.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/AttackD.png</file>
+        <file>Themes/Classic/BattleWindow/Buttons/AttackH.png</file>
+        <file>Themes/Classic/BattleWindow/HP.png</file>
+        <file>Themes/Classic/BattleWindow/NewPokeBar.png</file>
+        <file>Themes/Classic/categories/category_colors.txt</file>
+        <file>Themes/Classic/client/aAvailable.png</file>
+        <file>Themes/Classic/client/aAway.png</file>
+        <file>Themes/Classic/client/aBattle.png</file>
+        <file>Themes/Classic/client/aIgnore.png</file>
+        <file>Themes/Classic/client/chat_colors.txt</file>
+        <file>Themes/Classic/client/chatoticon.png</file>
+        <file>Themes/Classic/client/greychatot.png</file>
+        <file>Themes/Classic/client/mAvailable.png</file>
+        <file>Themes/Classic/client/mAway.png</file>
+        <file>Themes/Classic/client/mBattle.png</file>
+        <file>Themes/Classic/client/mIgnore.png</file>
+        <file>Themes/Classic/client/oAvailable.png</file>
+        <file>Themes/Classic/client/oAway.png</file>
+        <file>Themes/Classic/client/oBattle.png</file>
+        <file>Themes/Classic/client/oIgnore.png</file>
+        <file>Themes/Classic/client/uAvailable.png</file>
+        <file>Themes/Classic/client/uAway.png</file>
+        <file>Themes/Classic/client/uBattle.png</file>
+        <file>Themes/Classic/client/uIgnore.png</file>
+        <file>Themes/Classic/Fonts/LCD.ttf</file>
+        <file>Themes/Classic/Fonts/Signshsc.ttf</file>
+        <file>Themes/Classic/genders/battle_gender1.png</file>
+        <file>Themes/Classic/genders/battle_gender2.png</file>
+        <file>Themes/Classic/genders/gender0.png</file>
+        <file>Themes/Classic/genders/gender1.png</file>
+        <file>Themes/Classic/genders/gender2.png</file>
+        <file>Themes/Classic/genders/ingame_gender1.png</file>
+        <file>Themes/Classic/genders/ingame_gender2.png</file>
+        <file>Themes/Classic/menu/logo.png</file>
+        <file>Themes/Classic/Registry/locked.png</file>
+        <file>Themes/Classic/Registry/mixed-lock.png</file>
+        <file>Themes/Classic/Registry/unlocked.png</file>
+        <file>Themes/Classic/status/battle_status0.png</file>
+        <file>Themes/Classic/status/battle_status1.png</file>
+        <file>Themes/Classic/status/battle_status2.png</file>
+        <file>Themes/Classic/status/battle_status3.png</file>
+        <file>Themes/Classic/status/battle_status31.png</file>
+        <file>Themes/Classic/status/battle_status4.png</file>
+        <file>Themes/Classic/status/battle_status5.png</file>
+        <file>Themes/Classic/status/status0.png</file>
+        <file>Themes/Classic/status/status1.png</file>
+        <file>Themes/Classic/status/status2.png</file>
+        <file>Themes/Classic/status/status3.png</file>
+        <file>Themes/Classic/status/status31.png</file>
+        <file>Themes/Classic/status/status4.png</file>
+        <file>Themes/Classic/status/status5.png</file>
+        <file>Themes/Classic/Teambuilder/Box/clicked.png</file>
+        <file>Themes/Classic/Teambuilder/Box/empty.png</file>
+        <file>Themes/Classic/Teambuilder/Box/hover.png</file>
+        <file>Themes/Classic/Teambuilder/Box/occupied.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/check-checked-hover.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/check-checked.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/check-pressed.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/radio-checked-hover.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/radio-checked.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/radio-pressed.png</file>
+        <file>Themes/Classic/Teambuilder/check-icons/radio.png</file>
+        <file>Themes/Classic/Teambuilder/Team/+.png</file>
+        <file>Themes/Classic/Teambuilder/Team/+hover.png</file>
+        <file>Themes/Classic/Teambuilder/Team/-.png</file>
+        <file>Themes/Classic/Teambuilder/Team/-hover.png</file>
+        <file>Themes/Classic/Teambuilder/Team/=.png</file>
+        <file>Themes/Classic/Teambuilder/Team/=hover.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/At.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/AtH.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/Cf.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/CfH.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/Dt.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/DtH.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/It.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/ItH.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/Lt.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/LtH.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/St.png</file>
+        <file>Themes/Classic/Teambuilder/trainer/StH.png</file>
+        <file>Themes/Classic/Teambuilder/ScrollBall.png</file>
+        <file>Themes/Classic/Trainer Sprites/1.png</file>
+        <file>Themes/Classic/Trainer Sprites/10.png</file>
+        <file>Themes/Classic/Trainer Sprites/100.png</file>
+        <file>Themes/Classic/Trainer Sprites/101.png</file>
+        <file>Themes/Classic/Trainer Sprites/102.png</file>
+        <file>Themes/Classic/Trainer Sprites/103.png</file>
+        <file>Themes/Classic/Trainer Sprites/104.png</file>
+        <file>Themes/Classic/Trainer Sprites/105.png</file>
+        <file>Themes/Classic/Trainer Sprites/106.png</file>
+        <file>Themes/Classic/Trainer Sprites/107.png</file>
+        <file>Themes/Classic/Trainer Sprites/108.png</file>
+        <file>Themes/Classic/Trainer Sprites/109.png</file>
+        <file>Themes/Classic/Trainer Sprites/11.png</file>
+        <file>Themes/Classic/Trainer Sprites/110.png</file>
+        <file>Themes/Classic/Trainer Sprites/111.png</file>
+        <file>Themes/Classic/Trainer Sprites/112.png</file>
+        <file>Themes/Classic/Trainer Sprites/113.png</file>
+        <file>Themes/Classic/Trainer Sprites/114.png</file>
+        <file>Themes/Classic/Trainer Sprites/115.png</file>
+        <file>Themes/Classic/Trainer Sprites/116.png</file>
+        <file>Themes/Classic/Trainer Sprites/117.png</file>
+        <file>Themes/Classic/Trainer Sprites/118.png</file>
+        <file>Themes/Classic/Trainer Sprites/119.png</file>
+        <file>Themes/Classic/Trainer Sprites/12.png</file>
+        <file>Themes/Classic/Trainer Sprites/120.png</file>
+        <file>Themes/Classic/Trainer Sprites/121.png</file>
+        <file>Themes/Classic/Trainer Sprites/122.png</file>
+        <file>Themes/Classic/Trainer Sprites/123.png</file>
+        <file>Themes/Classic/Trainer Sprites/124.png</file>
+        <file>Themes/Classic/Trainer Sprites/125.png</file>
+        <file>Themes/Classic/Trainer Sprites/126.png</file>
+        <file>Themes/Classic/Trainer Sprites/127.png</file>
+        <file>Themes/Classic/Trainer Sprites/128.png</file>
+        <file>Themes/Classic/Trainer Sprites/129.png</file>
+        <file>Themes/Classic/Trainer Sprites/13.png</file>
+        <file>Themes/Classic/Trainer Sprites/130.png</file>
+        <file>Themes/Classic/Trainer Sprites/131.png</file>
+        <file>Themes/Classic/Trainer Sprites/132.png</file>
+        <file>Themes/Classic/Trainer Sprites/133.png</file>
+        <file>Themes/Classic/Trainer Sprites/134.png</file>
+        <file>Themes/Classic/Trainer Sprites/135.png</file>
+        <file>Themes/Classic/Trainer Sprites/136.png</file>
+        <file>Themes/Classic/Trainer Sprites/137.png</file>
+        <file>Themes/Classic/Trainer Sprites/138.png</file>
+        <file>Themes/Classic/Trainer Sprites/139.png</file>
+        <file>Themes/Classic/Trainer Sprites/14.png</file>
+        <file>Themes/Classic/Trainer Sprites/140.png</file>
+        <file>Themes/Classic/Trainer Sprites/141.png</file>
+        <file>Themes/Classic/Trainer Sprites/142.png</file>
+        <file>Themes/Classic/Trainer Sprites/143.png</file>
+        <file>Themes/Classic/Trainer Sprites/144.png</file>
+        <file>Themes/Classic/Trainer Sprites/145.png</file>
+        <file>Themes/Classic/Trainer Sprites/146.png</file>
+        <file>Themes/Classic/Trainer Sprites/147.png</file>
+        <file>Themes/Classic/Trainer Sprites/148.png</file>
+        <file>Themes/Classic/Trainer Sprites/149.png</file>
+        <file>Themes/Classic/Trainer Sprites/15.png</file>
+        <file>Themes/Classic/Trainer Sprites/150.png</file>
+        <file>Themes/Classic/Trainer Sprites/151.png</file>
+        <file>Themes/Classic/Trainer Sprites/152.png</file>
+        <file>Themes/Classic/Trainer Sprites/153.png</file>
+        <file>Themes/Classic/Trainer Sprites/154.png</file>
+        <file>Themes/Classic/Trainer Sprites/155.png</file>
+        <file>Themes/Classic/Trainer Sprites/156.png</file>
+        <file>Themes/Classic/Trainer Sprites/157.png</file>
+        <file>Themes/Classic/Trainer Sprites/158.png</file>
+        <file>Themes/Classic/Trainer Sprites/159.png</file>
+        <file>Themes/Classic/Trainer Sprites/16.png</file>
+        <file>Themes/Classic/Trainer Sprites/160.png</file>
+        <file>Themes/Classic/Trainer Sprites/161.png</file>
+        <file>Themes/Classic/Trainer Sprites/162.png</file>
+        <file>Themes/Classic/Trainer Sprites/163.png</file>
+        <file>Themes/Classic/Trainer Sprites/164.png</file>
+        <file>Themes/Classic/Trainer Sprites/165.png</file>
+        <file>Themes/Classic/Trainer Sprites/166.png</file>
+        <file>Themes/Classic/Trainer Sprites/167.png</file>
+        <file>Themes/Classic/Trainer Sprites/168.png</file>
+        <file>Themes/Classic/Trainer Sprites/169.png</file>
+        <file>Themes/Classic/Trainer Sprites/17.png</file>
+        <file>Themes/Classic/Trainer Sprites/170.png</file>
+        <file>Themes/Classic/Trainer Sprites/171.png</file>
+        <file>Themes/Classic/Trainer Sprites/172.png</file>
+        <file>Themes/Classic/Trainer Sprites/173.png</file>
+        <file>Themes/Classic/Trainer Sprites/174.png</file>
+        <file>Themes/Classic/Trainer Sprites/175.png</file>
+        <file>Themes/Classic/Trainer Sprites/176.png</file>
+        <file>Themes/Classic/Trainer Sprites/177.png</file>
+        <file>Themes/Classic/Trainer Sprites/178.png</file>
+        <file>Themes/Classic/Trainer Sprites/179.png</file>
+        <file>Themes/Classic/Trainer Sprites/18.png</file>
+        <file>Themes/Classic/Trainer Sprites/180.png</file>
+        <file>Themes/Classic/Trainer Sprites/181.png</file>
+        <file>Themes/Classic/Trainer Sprites/182.png</file>
+        <file>Themes/Classic/Trainer Sprites/183.png</file>
+        <file>Themes/Classic/Trainer Sprites/184.png</file>
+        <file>Themes/Classic/Trainer Sprites/185.png</file>
+        <file>Themes/Classic/Trainer Sprites/186.png</file>
+        <file>Themes/Classic/Trainer Sprites/187.png</file>
+        <file>Themes/Classic/Trainer Sprites/188.png</file>
+        <file>Themes/Classic/Trainer Sprites/189.png</file>
+        <file>Themes/Classic/Trainer Sprites/19.png</file>
+        <file>Themes/Classic/Trainer Sprites/190.png</file>
+        <file>Themes/Classic/Trainer Sprites/191.png</file>
+        <file>Themes/Classic/Trainer Sprites/192.png</file>
+        <file>Themes/Classic/Trainer Sprites/193.png</file>
+        <file>Themes/Classic/Trainer Sprites/194.png</file>
+        <file>Themes/Classic/Trainer Sprites/195.png</file>
+        <file>Themes/Classic/Trainer Sprites/196.png</file>
+        <file>Themes/Classic/Trainer Sprites/197.png</file>
+        <file>Themes/Classic/Trainer Sprites/198.png</file>
+        <file>Themes/Classic/Trainer Sprites/199.png</file>
+        <file>Themes/Classic/Trainer Sprites/2.png</file>
+        <file>Themes/Classic/Trainer Sprites/20.png</file>
+        <file>Themes/Classic/Trainer Sprites/200.png</file>
+        <file>Themes/Classic/Trainer Sprites/201.png</file>
+        <file>Themes/Classic/Trainer Sprites/202.png</file>
+        <file>Themes/Classic/Trainer Sprites/203.png</file>
+        <file>Themes/Classic/Trainer Sprites/204.png</file>
+        <file>Themes/Classic/Trainer Sprites/205.png</file>
+        <file>Themes/Classic/Trainer Sprites/206.png</file>
+        <file>Themes/Classic/Trainer Sprites/207.png</file>
+        <file>Themes/Classic/Trainer Sprites/208.png</file>
+        <file>Themes/Classic/Trainer Sprites/209.png</file>
+        <file>Themes/Classic/Trainer Sprites/21.png</file>
+        <file>Themes/Classic/Trainer Sprites/210.png</file>
+        <file>Themes/Classic/Trainer Sprites/211.png</file>
+        <file>Themes/Classic/Trainer Sprites/212.png</file>
+        <file>Themes/Classic/Trainer Sprites/213.png</file>
+        <file>Themes/Classic/Trainer Sprites/214.png</file>
+        <file>Themes/Classic/Trainer Sprites/215.png</file>
+        <file>Themes/Classic/Trainer Sprites/216.png</file>
+        <file>Themes/Classic/Trainer Sprites/217.png</file>
+        <file>Themes/Classic/Trainer Sprites/218.png</file>
+        <file>Themes/Classic/Trainer Sprites/219.png</file>
+        <file>Themes/Classic/Trainer Sprites/22.png</file>
+        <file>Themes/Classic/Trainer Sprites/220.png</file>
+        <file>Themes/Classic/Trainer Sprites/221.png</file>
+        <file>Themes/Classic/Trainer Sprites/222.png</file>
+        <file>Themes/Classic/Trainer Sprites/223.png</file>
+        <file>Themes/Classic/Trainer Sprites/224.png</file>
+        <file>Themes/Classic/Trainer Sprites/225.png</file>
+        <file>Themes/Classic/Trainer Sprites/226.png</file>
+        <file>Themes/Classic/Trainer Sprites/227.png</file>
+        <file>Themes/Classic/Trainer Sprites/228.png</file>
+        <file>Themes/Classic/Trainer Sprites/229.png</file>
+        <file>Themes/Classic/Trainer Sprites/23.png</file>
+        <file>Themes/Classic/Trainer Sprites/230.png</file>
+        <file>Themes/Classic/Trainer Sprites/231.png</file>
+        <file>Themes/Classic/Trainer Sprites/232.png</file>
+        <file>Themes/Classic/Trainer Sprites/233.png</file>
+        <file>Themes/Classic/Trainer Sprites/234.png</file>
+        <file>Themes/Classic/Trainer Sprites/235.png</file>
+        <file>Themes/Classic/Trainer Sprites/236.png</file>
+        <file>Themes/Classic/Trainer Sprites/237.png</file>
+        <file>Themes/Classic/Trainer Sprites/238.png</file>
+        <file>Themes/Classic/Trainer Sprites/239.png</file>
+        <file>Themes/Classic/Trainer Sprites/24.png</file>
+        <file>Themes/Classic/Trainer Sprites/240.png</file>
+        <file>Themes/Classic/Trainer Sprites/241.png</file>
+        <file>Themes/Classic/Trainer Sprites/242.png</file>
+        <file>Themes/Classic/Trainer Sprites/243.png</file>
+        <file>Themes/Classic/Trainer Sprites/244.png</file>
+        <file>Themes/Classic/Trainer Sprites/245.png</file>
+        <file>Themes/Classic/Trainer Sprites/246.png</file>
+        <file>Themes/Classic/Trainer Sprites/247.png</file>
+        <file>Themes/Classic/Trainer Sprites/248.png</file>
+        <file>Themes/Classic/Trainer Sprites/249.png</file>
+        <file>Themes/Classic/Trainer Sprites/25.png</file>
+        <file>Themes/Classic/Trainer Sprites/250.png</file>
+        <file>Themes/Classic/Trainer Sprites/251.png</file>
+        <file>Themes/Classic/Trainer Sprites/252.png</file>
+        <file>Themes/Classic/Trainer Sprites/253.png</file>
+        <file>Themes/Classic/Trainer Sprites/254.png</file>
+        <file>Themes/Classic/Trainer Sprites/255.png</file>
+        <file>Themes/Classic/Trainer Sprites/256.png</file>
+        <file>Themes/Classic/Trainer Sprites/257.png</file>
+        <file>Themes/Classic/Trainer Sprites/258.png</file>
+        <file>Themes/Classic/Trainer Sprites/259.png</file>
+        <file>Themes/Classic/Trainer Sprites/26.png</file>
+        <file>Themes/Classic/Trainer Sprites/260.png</file>
+        <file>Themes/Classic/Trainer Sprites/261.png</file>
+        <file>Themes/Classic/Trainer Sprites/262.png</file>
+        <file>Themes/Classic/Trainer Sprites/263.png</file>
+        <file>Themes/Classic/Trainer Sprites/264.png</file>
+        <file>Themes/Classic/Trainer Sprites/265.png</file>
+        <file>Themes/Classic/Trainer Sprites/266.png</file>
+        <file>Themes/Classic/Trainer Sprites/267.png</file>
+        <file>Themes/Classic/Trainer Sprites/268.png</file>
+        <file>Themes/Classic/Trainer Sprites/269.png</file>
+        <file>Themes/Classic/Trainer Sprites/27.png</file>
+        <file>Themes/Classic/Trainer Sprites/270.png</file>
+        <file>Themes/Classic/Trainer Sprites/271.png</file>
+        <file>Themes/Classic/Trainer Sprites/272.png</file>
+        <file>Themes/Classic/Trainer Sprites/273.png</file>
+        <file>Themes/Classic/Trainer Sprites/274.png</file>
+        <file>Themes/Classic/Trainer Sprites/275.png</file>
+        <file>Themes/Classic/Trainer Sprites/276.png</file>
+        <file>Themes/Classic/Trainer Sprites/277.png</file>
+        <file>Themes/Classic/Trainer Sprites/278.png</file>
+        <file>Themes/Classic/Trainer Sprites/279.png</file>
+        <file>Themes/Classic/Trainer Sprites/28.png</file>
+        <file>Themes/Classic/Trainer Sprites/280.png</file>
+        <file>Themes/Classic/Trainer Sprites/281.png</file>
+        <file>Themes/Classic/Trainer Sprites/282.png</file>
+        <file>Themes/Classic/Trainer Sprites/283.png</file>
+        <file>Themes/Classic/Trainer Sprites/284.png</file>
+        <file>Themes/Classic/Trainer Sprites/285.png</file>
+        <file>Themes/Classic/Trainer Sprites/286.png</file>
+        <file>Themes/Classic/Trainer Sprites/287.png</file>
+        <file>Themes/Classic/Trainer Sprites/288.png</file>
+        <file>Themes/Classic/Trainer Sprites/289.png</file>
+        <file>Themes/Classic/Trainer Sprites/29.png</file>
+        <file>Themes/Classic/Trainer Sprites/290.png</file>
+        <file>Themes/Classic/Trainer Sprites/291.png</file>
+        <file>Themes/Classic/Trainer Sprites/292.png</file>
+        <file>Themes/Classic/Trainer Sprites/293.png</file>
+        <file>Themes/Classic/Trainer Sprites/294.png</file>
+        <file>Themes/Classic/Trainer Sprites/295.png</file>
+        <file>Themes/Classic/Trainer Sprites/296.png</file>
+        <file>Themes/Classic/Trainer Sprites/297.png</file>
+        <file>Themes/Classic/Trainer Sprites/298.png</file>
+        <file>Themes/Classic/Trainer Sprites/299.png</file>
+        <file>Themes/Classic/Trainer Sprites/3.png</file>
+        <file>Themes/Classic/Trainer Sprites/30.png</file>
+        <file>Themes/Classic/Trainer Sprites/300.png</file>
+        <file>Themes/Classic/Trainer Sprites/301.png</file>
+        <file>Themes/Classic/Trainer Sprites/302.png</file>
+        <file>Themes/Classic/Trainer Sprites/303.png</file>
+        <file>Themes/Classic/Trainer Sprites/304.png</file>
+        <file>Themes/Classic/Trainer Sprites/305.png</file>
+        <file>Themes/Classic/Trainer Sprites/306.png</file>
+        <file>Themes/Classic/Trainer Sprites/307.png</file>
+        <file>Themes/Classic/Trainer Sprites/308.png</file>
+        <file>Themes/Classic/Trainer Sprites/309.png</file>
+        <file>Themes/Classic/Trainer Sprites/31.png</file>
+        <file>Themes/Classic/Trainer Sprites/310.png</file>
+        <file>Themes/Classic/Trainer Sprites/311.png</file>
+        <file>Themes/Classic/Trainer Sprites/312.png</file>
+        <file>Themes/Classic/Trainer Sprites/313.png</file>
+        <file>Themes/Classic/Trainer Sprites/314.png</file>
+        <file>Themes/Classic/Trainer Sprites/315.png</file>
+        <file>Themes/Classic/Trainer Sprites/316.png</file>
+        <file>Themes/Classic/Trainer Sprites/317.png</file>
+        <file>Themes/Classic/Trainer Sprites/318.png</file>
+        <file>Themes/Classic/Trainer Sprites/319.png</file>
+        <file>Themes/Classic/Trainer Sprites/32.png</file>
+        <file>Themes/Classic/Trainer Sprites/320.png</file>
+        <file>Themes/Classic/Trainer Sprites/321.png</file>
+        <file>Themes/Classic/Trainer Sprites/322.png</file>
+        <file>Themes/Classic/Trainer Sprites/323.png</file>
+        <file>Themes/Classic/Trainer Sprites/324.png</file>
+        <file>Themes/Classic/Trainer Sprites/325.png</file>
+        <file>Themes/Classic/Trainer Sprites/326.png</file>
+        <file>Themes/Classic/Trainer Sprites/327.png</file>
+        <file>Themes/Classic/Trainer Sprites/328.png</file>
+        <file>Themes/Classic/Trainer Sprites/329.png</file>
+        <file>Themes/Classic/Trainer Sprites/33.png</file>
+        <file>Themes/Classic/Trainer Sprites/330.png</file>
+        <file>Themes/Classic/Trainer Sprites/331.png</file>
+        <file>Themes/Classic/Trainer Sprites/332.png</file>
+        <file>Themes/Classic/Trainer Sprites/333.png</file>
+        <file>Themes/Classic/Trainer Sprites/334.png</file>
+        <file>Themes/Classic/Trainer Sprites/335.png</file>
+        <file>Themes/Classic/Trainer Sprites/336.png</file>
+        <file>Themes/Classic/Trainer Sprites/337.png</file>
+        <file>Themes/Classic/Trainer Sprites/338.png</file>
+        <file>Themes/Classic/Trainer Sprites/339.png</file>
+        <file>Themes/Classic/Trainer Sprites/34.png</file>
+        <file>Themes/Classic/Trainer Sprites/340.png</file>
+        <file>Themes/Classic/Trainer Sprites/341.png</file>
+        <file>Themes/Classic/Trainer Sprites/342.png</file>
+        <file>Themes/Classic/Trainer Sprites/343.png</file>
+        <file>Themes/Classic/Trainer Sprites/344.png</file>
+        <file>Themes/Classic/Trainer Sprites/345.png</file>
+        <file>Themes/Classic/Trainer Sprites/346.png</file>
+        <file>Themes/Classic/Trainer Sprites/347.png</file>
+        <file>Themes/Classic/Trainer Sprites/348.png</file>
+        <file>Themes/Classic/Trainer Sprites/349.png</file>
+        <file>Themes/Classic/Trainer Sprites/35.png</file>
+        <file>Themes/Classic/Trainer Sprites/350.png</file>
+        <file>Themes/Classic/Trainer Sprites/351.png</file>
+        <file>Themes/Classic/Trainer Sprites/352.png</file>
+        <file>Themes/Classic/Trainer Sprites/353.png</file>
+        <file>Themes/Classic/Trainer Sprites/354.png</file>
+        <file>Themes/Classic/Trainer Sprites/355.png</file>
+        <file>Themes/Classic/Trainer Sprites/356.png</file>
+        <file>Themes/Classic/Trainer Sprites/357.png</file>
+        <file>Themes/Classic/Trainer Sprites/358.png</file>
+        <file>Themes/Classic/Trainer Sprites/359.png</file>
+        <file>Themes/Classic/Trainer Sprites/36.png</file>
+        <file>Themes/Classic/Trainer Sprites/360.png</file>
+        <file>Themes/Classic/Trainer Sprites/361.png</file>
+        <file>Themes/Classic/Trainer Sprites/362.png</file>
+        <file>Themes/Classic/Trainer Sprites/363.png</file>
+        <file>Themes/Classic/Trainer Sprites/364.png</file>
+        <file>Themes/Classic/Trainer Sprites/365.png</file>
+        <file>Themes/Classic/Trainer Sprites/366.png</file>
+        <file>Themes/Classic/Trainer Sprites/367.png</file>
+        <file>Themes/Classic/Trainer Sprites/368.png</file>
+        <file>Themes/Classic/Trainer Sprites/369.png</file>
+        <file>Themes/Classic/Trainer Sprites/37.png</file>
+        <file>Themes/Classic/Trainer Sprites/370.png</file>
+        <file>Themes/Classic/Trainer Sprites/371.png</file>
+        <file>Themes/Classic/Trainer Sprites/372.png</file>
+        <file>Themes/Classic/Trainer Sprites/373.png</file>
+        <file>Themes/Classic/Trainer Sprites/374.png</file>
+        <file>Themes/Classic/Trainer Sprites/375.png</file>
+        <file>Themes/Classic/Trainer Sprites/376.png</file>
+        <file>Themes/Classic/Trainer Sprites/377.png</file>
+        <file>Themes/Classic/Trainer Sprites/378.png</file>
+        <file>Themes/Classic/Trainer Sprites/379.png</file>
+        <file>Themes/Classic/Trainer Sprites/38.png</file>
+        <file>Themes/Classic/Trainer Sprites/380.png</file>
+        <file>Themes/Classic/Trainer Sprites/381.png</file>
+        <file>Themes/Classic/Trainer Sprites/382.png</file>
+        <file>Themes/Classic/Trainer Sprites/383.png</file>
+        <file>Themes/Classic/Trainer Sprites/384.png</file>
+        <file>Themes/Classic/Trainer Sprites/385.png</file>
+        <file>Themes/Classic/Trainer Sprites/386.png</file>
+        <file>Themes/Classic/Trainer Sprites/387.png</file>
+        <file>Themes/Classic/Trainer Sprites/388.png</file>
+        <file>Themes/Classic/Trainer Sprites/389.png</file>
+        <file>Themes/Classic/Trainer Sprites/39.png</file>
+        <file>Themes/Classic/Trainer Sprites/390.png</file>
+        <file>Themes/Classic/Trainer Sprites/391.png</file>
+        <file>Themes/Classic/Trainer Sprites/392.png</file>
+        <file>Themes/Classic/Trainer Sprites/393.png</file>
+        <file>Themes/Classic/Trainer Sprites/394.png</file>
+        <file>Themes/Classic/Trainer Sprites/395.png</file>
+        <file>Themes/Classic/Trainer Sprites/396.png</file>
+        <file>Themes/Classic/Trainer Sprites/397.png</file>
+        <file>Themes/Classic/Trainer Sprites/398.png</file>
+        <file>Themes/Classic/Trainer Sprites/399.png</file>
+        <file>Themes/Classic/Trainer Sprites/4.png</file>
+        <file>Themes/Classic/Trainer Sprites/40.png</file>
+        <file>Themes/Classic/Trainer Sprites/400.png</file>
+        <file>Themes/Classic/Trainer Sprites/401.png</file>
+        <file>Themes/Classic/Trainer Sprites/402.png</file>
+        <file>Themes/Classic/Trainer Sprites/403.png</file>
+        <file>Themes/Classic/Trainer Sprites/404.png</file>
+        <file>Themes/Classic/Trainer Sprites/405.png</file>
+        <file>Themes/Classic/Trainer Sprites/406.png</file>
+        <file>Themes/Classic/Trainer Sprites/407.png</file>
+        <file>Themes/Classic/Trainer Sprites/408.png</file>
+        <file>Themes/Classic/Trainer Sprites/409.png</file>
+        <file>Themes/Classic/Trainer Sprites/41.png</file>
+        <file>Themes/Classic/Trainer Sprites/410.png</file>
+        <file>Themes/Classic/Trainer Sprites/411.png</file>
+        <file>Themes/Classic/Trainer Sprites/412.png</file>
+        <file>Themes/Classic/Trainer Sprites/413.png</file>
+        <file>Themes/Classic/Trainer Sprites/414.png</file>
+        <file>Themes/Classic/Trainer Sprites/415.png</file>
+        <file>Themes/Classic/Trainer Sprites/416.png</file>
+        <file>Themes/Classic/Trainer Sprites/417.png</file>
+        <file>Themes/Classic/Trainer Sprites/418.png</file>
+        <file>Themes/Classic/Trainer Sprites/419.png</file>
+        <file>Themes/Classic/Trainer Sprites/42.png</file>
+        <file>Themes/Classic/Trainer Sprites/420.png</file>
+        <file>Themes/Classic/Trainer Sprites/421.png</file>
+        <file>Themes/Classic/Trainer Sprites/422.png</file>
+        <file>Themes/Classic/Trainer Sprites/423.png</file>
+        <file>Themes/Classic/Trainer Sprites/424.png</file>
+        <file>Themes/Classic/Trainer Sprites/425.png</file>
+        <file>Themes/Classic/Trainer Sprites/426.png</file>
+        <file>Themes/Classic/Trainer Sprites/427.png</file>
+        <file>Themes/Classic/Trainer Sprites/428.png</file>
+        <file>Themes/Classic/Trainer Sprites/429.png</file>
+        <file>Themes/Classic/Trainer Sprites/43.png</file>
+        <file>Themes/Classic/Trainer Sprites/430.png</file>
+        <file>Themes/Classic/Trainer Sprites/431.png</file>
+        <file>Themes/Classic/Trainer Sprites/432.png</file>
+        <file>Themes/Classic/Trainer Sprites/433.png</file>
+        <file>Themes/Classic/Trainer Sprites/434.png</file>
+        <file>Themes/Classic/Trainer Sprites/435.png</file>
+        <file>Themes/Classic/Trainer Sprites/436.png</file>
+        <file>Themes/Classic/Trainer Sprites/437.png</file>
+        <file>Themes/Classic/Trainer Sprites/438.png</file>
+        <file>Themes/Classic/Trainer Sprites/439.png</file>
+        <file>Themes/Classic/Trainer Sprites/44.png</file>
+        <file>Themes/Classic/Trainer Sprites/440.png</file>
+        <file>Themes/Classic/Trainer Sprites/441.png</file>
+        <file>Themes/Classic/Trainer Sprites/442.png</file>
+        <file>Themes/Classic/Trainer Sprites/443.png</file>
+        <file>Themes/Classic/Trainer Sprites/444.png</file>
+        <file>Themes/Classic/Trainer Sprites/445.png</file>
+        <file>Themes/Classic/Trainer Sprites/446.png</file>
+        <file>Themes/Classic/Trainer Sprites/447.png</file>
+        <file>Themes/Classic/Trainer Sprites/448.png</file>
+        <file>Themes/Classic/Trainer Sprites/449.png</file>
+        <file>Themes/Classic/Trainer Sprites/45.png</file>
+        <file>Themes/Classic/Trainer Sprites/450.png</file>
+        <file>Themes/Classic/Trainer Sprites/451.png</file>
+        <file>Themes/Classic/Trainer Sprites/452.png</file>
+        <file>Themes/Classic/Trainer Sprites/453.png</file>
+        <file>Themes/Classic/Trainer Sprites/454.png</file>
+        <file>Themes/Classic/Trainer Sprites/455.png</file>
+        <file>Themes/Classic/Trainer Sprites/456.png</file>
+        <file>Themes/Classic/Trainer Sprites/457.png</file>
+        <file>Themes/Classic/Trainer Sprites/458.png</file>
+        <file>Themes/Classic/Trainer Sprites/459.png</file>
+        <file>Themes/Classic/Trainer Sprites/46.png</file>
+        <file>Themes/Classic/Trainer Sprites/460.png</file>
+        <file>Themes/Classic/Trainer Sprites/461.png</file>
+        <file>Themes/Classic/Trainer Sprites/462.png</file>
+        <file>Themes/Classic/Trainer Sprites/463.png</file>
+        <file>Themes/Classic/Trainer Sprites/464.png</file>
+        <file>Themes/Classic/Trainer Sprites/465.png</file>
+        <file>Themes/Classic/Trainer Sprites/466.png</file>
+        <file>Themes/Classic/Trainer Sprites/467.png</file>
+        <file>Themes/Classic/Trainer Sprites/468.png</file>
+        <file>Themes/Classic/Trainer Sprites/469.png</file>
+        <file>Themes/Classic/Trainer Sprites/47.png</file>
+        <file>Themes/Classic/Trainer Sprites/470.png</file>
+        <file>Themes/Classic/Trainer Sprites/471.png</file>
+        <file>Themes/Classic/Trainer Sprites/472.png</file>
+        <file>Themes/Classic/Trainer Sprites/473.png</file>
+        <file>Themes/Classic/Trainer Sprites/474.png</file>
+        <file>Themes/Classic/Trainer Sprites/475.png</file>
+        <file>Themes/Classic/Trainer Sprites/476.png</file>
+        <file>Themes/Classic/Trainer Sprites/477.png</file>
+        <file>Themes/Classic/Trainer Sprites/478.png</file>
+        <file>Themes/Classic/Trainer Sprites/479.png</file>
+        <file>Themes/Classic/Trainer Sprites/48.png</file>
+        <file>Themes/Classic/Trainer Sprites/480.png</file>
+        <file>Themes/Classic/Trainer Sprites/481.png</file>
+        <file>Themes/Classic/Trainer Sprites/482.png</file>
+        <file>Themes/Classic/Trainer Sprites/483.png</file>
+        <file>Themes/Classic/Trainer Sprites/484.png</file>
+        <file>Themes/Classic/Trainer Sprites/485.png</file>
+        <file>Themes/Classic/Trainer Sprites/486.png</file>
+        <file>Themes/Classic/Trainer Sprites/487.png</file>
+        <file>Themes/Classic/Trainer Sprites/488.png</file>
+        <file>Themes/Classic/Trainer Sprites/489.png</file>
+        <file>Themes/Classic/Trainer Sprites/49.png</file>
+        <file>Themes/Classic/Trainer Sprites/490.png</file>
+        <file>Themes/Classic/Trainer Sprites/491.png</file>
+        <file>Themes/Classic/Trainer Sprites/492.png</file>
+        <file>Themes/Classic/Trainer Sprites/493.png</file>
+        <file>Themes/Classic/Trainer Sprites/494.png</file>
+        <file>Themes/Classic/Trainer Sprites/495.png</file>
+        <file>Themes/Classic/Trainer Sprites/496.png</file>
+        <file>Themes/Classic/Trainer Sprites/497.png</file>
+        <file>Themes/Classic/Trainer Sprites/498.png</file>
+        <file>Themes/Classic/Trainer Sprites/499.png</file>
+        <file>Themes/Classic/Trainer Sprites/5.png</file>
+        <file>Themes/Classic/Trainer Sprites/50.png</file>
+        <file>Themes/Classic/Trainer Sprites/500.png</file>
+        <file>Themes/Classic/Trainer Sprites/501.png</file>
+        <file>Themes/Classic/Trainer Sprites/502.png</file>
+        <file>Themes/Classic/Trainer Sprites/503.png</file>
+        <file>Themes/Classic/Trainer Sprites/504.png</file>
+        <file>Themes/Classic/Trainer Sprites/505.png</file>
+        <file>Themes/Classic/Trainer Sprites/506.png</file>
+        <file>Themes/Classic/Trainer Sprites/507.png</file>
+        <file>Themes/Classic/Trainer Sprites/508.png</file>
+        <file>Themes/Classic/Trainer Sprites/509.png</file>
+        <file>Themes/Classic/Trainer Sprites/51.png</file>
+        <file>Themes/Classic/Trainer Sprites/510.png</file>
+        <file>Themes/Classic/Trainer Sprites/511.png</file>
+        <file>Themes/Classic/Trainer Sprites/512.png</file>
+        <file>Themes/Classic/Trainer Sprites/513.png</file>
+        <file>Themes/Classic/Trainer Sprites/514.png</file>
+        <file>Themes/Classic/Trainer Sprites/515.png</file>
+        <file>Themes/Classic/Trainer Sprites/516.png</file>
+        <file>Themes/Classic/Trainer Sprites/517.png</file>
+        <file>Themes/Classic/Trainer Sprites/518.png</file>
+        <file>Themes/Classic/Trainer Sprites/519.png</file>
+        <file>Themes/Classic/Trainer Sprites/52.png</file>
+        <file>Themes/Classic/Trainer Sprites/520.png</file>
+        <file>Themes/Classic/Trainer Sprites/521.png</file>
+        <file>Themes/Classic/Trainer Sprites/522.png</file>
+        <file>Themes/Classic/Trainer Sprites/523.png</file>
+        <file>Themes/Classic/Trainer Sprites/524.png</file>
+        <file>Themes/Classic/Trainer Sprites/525.png</file>
+        <file>Themes/Classic/Trainer Sprites/526.png</file>
+        <file>Themes/Classic/Trainer Sprites/527.png</file>
+        <file>Themes/Classic/Trainer Sprites/528.png</file>
+        <file>Themes/Classic/Trainer Sprites/529.png</file>
+        <file>Themes/Classic/Trainer Sprites/53.png</file>
+        <file>Themes/Classic/Trainer Sprites/530.png</file>
+        <file>Themes/Classic/Trainer Sprites/531.png</file>
+        <file>Themes/Classic/Trainer Sprites/532.png</file>
+        <file>Themes/Classic/Trainer Sprites/533.png</file>
+        <file>Themes/Classic/Trainer Sprites/534.png</file>
+        <file>Themes/Classic/Trainer Sprites/535.png</file>
+        <file>Themes/Classic/Trainer Sprites/536.png</file>
+        <file>Themes/Classic/Trainer Sprites/537.png</file>
+        <file>Themes/Classic/Trainer Sprites/538.png</file>
+        <file>Themes/Classic/Trainer Sprites/539.png</file>
+        <file>Themes/Classic/Trainer Sprites/54.png</file>
+        <file>Themes/Classic/Trainer Sprites/540.png</file>
+        <file>Themes/Classic/Trainer Sprites/541.png</file>
+        <file>Themes/Classic/Trainer Sprites/542.png</file>
+        <file>Themes/Classic/Trainer Sprites/543.png</file>
+        <file>Themes/Classic/Trainer Sprites/544.png</file>
+        <file>Themes/Classic/Trainer Sprites/545.png</file>
+        <file>Themes/Classic/Trainer Sprites/546.png</file>
+        <file>Themes/Classic/Trainer Sprites/547.png</file>
+        <file>Themes/Classic/Trainer Sprites/548.png</file>
+        <file>Themes/Classic/Trainer Sprites/549.png</file>
+        <file>Themes/Classic/Trainer Sprites/55.png</file>
+        <file>Themes/Classic/Trainer Sprites/550.png</file>
+        <file>Themes/Classic/Trainer Sprites/551.png</file>
+        <file>Themes/Classic/Trainer Sprites/552.png</file>
+        <file>Themes/Classic/Trainer Sprites/553.png</file>
+        <file>Themes/Classic/Trainer Sprites/554.png</file>
+        <file>Themes/Classic/Trainer Sprites/555.png</file>
+        <file>Themes/Classic/Trainer Sprites/556.png</file>
+        <file>Themes/Classic/Trainer Sprites/557.png</file>
+        <file>Themes/Classic/Trainer Sprites/558.png</file>
+        <file>Themes/Classic/Trainer Sprites/559.png</file>
+        <file>Themes/Classic/Trainer Sprites/56.png</file>
+        <file>Themes/Classic/Trainer Sprites/560.png</file>
+        <file>Themes/Classic/Trainer Sprites/561.png</file>
+        <file>Themes/Classic/Trainer Sprites/562.png</file>
+        <file>Themes/Classic/Trainer Sprites/563.png</file>
+        <file>Themes/Classic/Trainer Sprites/564.png</file>
+        <file>Themes/Classic/Trainer Sprites/565.png</file>
+        <file>Themes/Classic/Trainer Sprites/566.png</file>
+        <file>Themes/Classic/Trainer Sprites/567.png</file>
+        <file>Themes/Classic/Trainer Sprites/568.png</file>
+        <file>Themes/Classic/Trainer Sprites/569.png</file>
+        <file>Themes/Classic/Trainer Sprites/57.png</file>
+        <file>Themes/Classic/Trainer Sprites/570.png</file>
+        <file>Themes/Classic/Trainer Sprites/571.png</file>
+        <file>Themes/Classic/Trainer Sprites/572.png</file>
+        <file>Themes/Classic/Trainer Sprites/573.png</file>
+        <file>Themes/Classic/Trainer Sprites/574.png</file>
+        <file>Themes/Classic/Trainer Sprites/575.png</file>
+        <file>Themes/Classic/Trainer Sprites/576.png</file>
+        <file>Themes/Classic/Trainer Sprites/577.png</file>
+        <file>Themes/Classic/Trainer Sprites/578.png</file>
+        <file>Themes/Classic/Trainer Sprites/579.png</file>
+        <file>Themes/Classic/Trainer Sprites/58.png</file>
+        <file>Themes/Classic/Trainer Sprites/580.png</file>
+        <file>Themes/Classic/Trainer Sprites/581.png</file>
+        <file>Themes/Classic/Trainer Sprites/582.png</file>
+        <file>Themes/Classic/Trainer Sprites/583.png</file>
+        <file>Themes/Classic/Trainer Sprites/584.png</file>
+        <file>Themes/Classic/Trainer Sprites/585.png</file>
+        <file>Themes/Classic/Trainer Sprites/586.png</file>
+        <file>Themes/Classic/Trainer Sprites/587.png</file>
+        <file>Themes/Classic/Trainer Sprites/588.png</file>
+        <file>Themes/Classic/Trainer Sprites/589.png</file>
+        <file>Themes/Classic/Trainer Sprites/59.png</file>
+        <file>Themes/Classic/Trainer Sprites/590.png</file>
+        <file>Themes/Classic/Trainer Sprites/591.png</file>
+        <file>Themes/Classic/Trainer Sprites/592.png</file>
+        <file>Themes/Classic/Trainer Sprites/593.png</file>
+        <file>Themes/Classic/Trainer Sprites/594.png</file>
+        <file>Themes/Classic/Trainer Sprites/595.png</file>
+        <file>Themes/Classic/Trainer Sprites/596.png</file>
+        <file>Themes/Classic/Trainer Sprites/597.png</file>
+        <file>Themes/Classic/Trainer Sprites/598.png</file>
+        <file>Themes/Classic/Trainer Sprites/599.png</file>
+        <file>Themes/Classic/Trainer Sprites/6.png</file>
+        <file>Themes/Classic/Trainer Sprites/60.png</file>
+        <file>Themes/Classic/Trainer Sprites/600.png</file>
+        <file>Themes/Classic/Trainer Sprites/601.png</file>
+        <file>Themes/Classic/Trainer Sprites/602.png</file>
+        <file>Themes/Classic/Trainer Sprites/603.png</file>
+        <file>Themes/Classic/Trainer Sprites/604.png</file>
+        <file>Themes/Classic/Trainer Sprites/605.png</file>
+        <file>Themes/Classic/Trainer Sprites/606.png</file>
+        <file>Themes/Classic/Trainer Sprites/607.png</file>
+        <file>Themes/Classic/Trainer Sprites/608.png</file>
+        <file>Themes/Classic/Trainer Sprites/609.png</file>
+        <file>Themes/Classic/Trainer Sprites/61.png</file>
+        <file>Themes/Classic/Trainer Sprites/610.png</file>
+        <file>Themes/Classic/Trainer Sprites/611.png</file>
+        <file>Themes/Classic/Trainer Sprites/612.png</file>
+        <file>Themes/Classic/Trainer Sprites/613.png</file>
+        <file>Themes/Classic/Trainer Sprites/614.png</file>
+        <file>Themes/Classic/Trainer Sprites/615.png</file>
+        <file>Themes/Classic/Trainer Sprites/616.png</file>
+        <file>Themes/Classic/Trainer Sprites/617.png</file>
+        <file>Themes/Classic/Trainer Sprites/618.png</file>
+        <file>Themes/Classic/Trainer Sprites/619.png</file>
+        <file>Themes/Classic/Trainer Sprites/62.png</file>
+        <file>Themes/Classic/Trainer Sprites/620.png</file>
+        <file>Themes/Classic/Trainer Sprites/621.png</file>
+        <file>Themes/Classic/Trainer Sprites/622.png</file>
+        <file>Themes/Classic/Trainer Sprites/623.png</file>
+        <file>Themes/Classic/Trainer Sprites/624.png</file>
+        <file>Themes/Classic/Trainer Sprites/625.png</file>
+        <file>Themes/Classic/Trainer Sprites/626.png</file>
+        <file>Themes/Classic/Trainer Sprites/627.png</file>
+        <file>Themes/Classic/Trainer Sprites/628.png</file>
+        <file>Themes/Classic/Trainer Sprites/629.png</file>
+        <file>Themes/Classic/Trainer Sprites/63.png</file>
+        <file>Themes/Classic/Trainer Sprites/630.png</file>
+        <file>Themes/Classic/Trainer Sprites/631.png</file>
+        <file>Themes/Classic/Trainer Sprites/632.png</file>
+        <file>Themes/Classic/Trainer Sprites/633.png</file>
+        <file>Themes/Classic/Trainer Sprites/634.png</file>
+        <file>Themes/Classic/Trainer Sprites/635.png</file>
+        <file>Themes/Classic/Trainer Sprites/636.png</file>
+        <file>Themes/Classic/Trainer Sprites/637.png</file>
+        <file>Themes/Classic/Trainer Sprites/638.png</file>
+        <file>Themes/Classic/Trainer Sprites/639.png</file>
+        <file>Themes/Classic/Trainer Sprites/64.png</file>
+        <file>Themes/Classic/Trainer Sprites/640.png</file>
+        <file>Themes/Classic/Trainer Sprites/641.png</file>
+        <file>Themes/Classic/Trainer Sprites/642.png</file>
+        <file>Themes/Classic/Trainer Sprites/643.png</file>
+        <file>Themes/Classic/Trainer Sprites/644.png</file>
+        <file>Themes/Classic/Trainer Sprites/645.png</file>
+        <file>Themes/Classic/Trainer Sprites/646.png</file>
+        <file>Themes/Classic/Trainer Sprites/647.png</file>
+        <file>Themes/Classic/Trainer Sprites/648.png</file>
+        <file>Themes/Classic/Trainer Sprites/649.png</file>
+        <file>Themes/Classic/Trainer Sprites/65.png</file>
+        <file>Themes/Classic/Trainer Sprites/650.png</file>
+        <file>Themes/Classic/Trainer Sprites/651.png</file>
+        <file>Themes/Classic/Trainer Sprites/652.png</file>
+        <file>Themes/Classic/Trainer Sprites/653.png</file>
+        <file>Themes/Classic/Trainer Sprites/654.png</file>
+        <file>Themes/Classic/Trainer Sprites/655.png</file>
+        <file>Themes/Classic/Trainer Sprites/656.png</file>
+        <file>Themes/Classic/Trainer Sprites/657.png</file>
+        <file>Themes/Classic/Trainer Sprites/658.png</file>
+        <file>Themes/Classic/Trainer Sprites/659.png</file>
+        <file>Themes/Classic/Trainer Sprites/66.png</file>
+        <file>Themes/Classic/Trainer Sprites/660.png</file>
+        <file>Themes/Classic/Trainer Sprites/661.png</file>
+        <file>Themes/Classic/Trainer Sprites/662.png</file>
+        <file>Themes/Classic/Trainer Sprites/663.png</file>
+        <file>Themes/Classic/Trainer Sprites/664.png</file>
+        <file>Themes/Classic/Trainer Sprites/665.png</file>
+        <file>Themes/Classic/Trainer Sprites/666.png</file>
+        <file>Themes/Classic/Trainer Sprites/667.png</file>
+        <file>Themes/Classic/Trainer Sprites/668.png</file>
+        <file>Themes/Classic/Trainer Sprites/669.png</file>
+        <file>Themes/Classic/Trainer Sprites/67.png</file>
+        <file>Themes/Classic/Trainer Sprites/670.png</file>
+        <file>Themes/Classic/Trainer Sprites/671.png</file>
+        <file>Themes/Classic/Trainer Sprites/672.png</file>
+        <file>Themes/Classic/Trainer Sprites/673.png</file>
+        <file>Themes/Classic/Trainer Sprites/674.png</file>
+        <file>Themes/Classic/Trainer Sprites/675.png</file>
+        <file>Themes/Classic/Trainer Sprites/676.png</file>
+        <file>Themes/Classic/Trainer Sprites/677.png</file>
+        <file>Themes/Classic/Trainer Sprites/678.png</file>
+        <file>Themes/Classic/Trainer Sprites/679.png</file>
+        <file>Themes/Classic/Trainer Sprites/68.png</file>
+        <file>Themes/Classic/Trainer Sprites/680.png</file>
+        <file>Themes/Classic/Trainer Sprites/681.png</file>
+        <file>Themes/Classic/Trainer Sprites/682.png</file>
+        <file>Themes/Classic/Trainer Sprites/683.png</file>
+        <file>Themes/Classic/Trainer Sprites/684.png</file>
+        <file>Themes/Classic/Trainer Sprites/685.png</file>
+        <file>Themes/Classic/Trainer Sprites/686.png</file>
+        <file>Themes/Classic/Trainer Sprites/687.png</file>
+        <file>Themes/Classic/Trainer Sprites/688.png</file>
+        <file>Themes/Classic/Trainer Sprites/689.png</file>
+        <file>Themes/Classic/Trainer Sprites/69.png</file>
+        <file>Themes/Classic/Trainer Sprites/690.png</file>
+        <file>Themes/Classic/Trainer Sprites/691.png</file>
+        <file>Themes/Classic/Trainer Sprites/692.png</file>
+        <file>Themes/Classic/Trainer Sprites/693.png</file>
+        <file>Themes/Classic/Trainer Sprites/694.png</file>
+        <file>Themes/Classic/Trainer Sprites/695.png</file>
+        <file>Themes/Classic/Trainer Sprites/696.png</file>
+        <file>Themes/Classic/Trainer Sprites/697.png</file>
+        <file>Themes/Classic/Trainer Sprites/698.png</file>
+        <file>Themes/Classic/Trainer Sprites/699.png</file>
+        <file>Themes/Classic/Trainer Sprites/7.png</file>
+        <file>Themes/Classic/Trainer Sprites/70.png</file>
+        <file>Themes/Classic/Trainer Sprites/700.png</file>
+        <file>Themes/Classic/Trainer Sprites/701.png</file>
+        <file>Themes/Classic/Trainer Sprites/702.png</file>
+        <file>Themes/Classic/Trainer Sprites/703.png</file>
+        <file>Themes/Classic/Trainer Sprites/704.png</file>
+        <file>Themes/Classic/Trainer Sprites/705.png</file>
+        <file>Themes/Classic/Trainer Sprites/706.png</file>
+        <file>Themes/Classic/Trainer Sprites/707.png</file>
+        <file>Themes/Classic/Trainer Sprites/708.png</file>
+        <file>Themes/Classic/Trainer Sprites/709.png</file>
+        <file>Themes/Classic/Trainer Sprites/71.png</file>
+        <file>Themes/Classic/Trainer Sprites/710.png</file>
+        <file>Themes/Classic/Trainer Sprites/711.png</file>
+        <file>Themes/Classic/Trainer Sprites/712.png</file>
+        <file>Themes/Classic/Trainer Sprites/713.png</file>
+        <file>Themes/Classic/Trainer Sprites/714.png</file>
+        <file>Themes/Classic/Trainer Sprites/715.png</file>
+        <file>Themes/Classic/Trainer Sprites/716.png</file>
+        <file>Themes/Classic/Trainer Sprites/717.png</file>
+        <file>Themes/Classic/Trainer Sprites/718.png</file>
+        <file>Themes/Classic/Trainer Sprites/719.png</file>
+        <file>Themes/Classic/Trainer Sprites/72.png</file>
+        <file>Themes/Classic/Trainer Sprites/720.png</file>
+        <file>Themes/Classic/Trainer Sprites/721.png</file>
+        <file>Themes/Classic/Trainer Sprites/722.png</file>
+        <file>Themes/Classic/Trainer Sprites/723.png</file>
+        <file>Themes/Classic/Trainer Sprites/724.png</file>
+        <file>Themes/Classic/Trainer Sprites/725.png</file>
+        <file>Themes/Classic/Trainer Sprites/726.png</file>
+        <file>Themes/Classic/Trainer Sprites/727.png</file>
+        <file>Themes/Classic/Trainer Sprites/728.png</file>
+        <file>Themes/Classic/Trainer Sprites/729.png</file>
+        <file>Themes/Classic/Trainer Sprites/73.png</file>
+        <file>Themes/Classic/Trainer Sprites/74.png</file>
+        <file>Themes/Classic/Trainer Sprites/75.png</file>
+        <file>Themes/Classic/Trainer Sprites/76.png</file>
+        <file>Themes/Classic/Trainer Sprites/77.png</file>
+        <file>Themes/Classic/Trainer Sprites/78.png</file>
+        <file>Themes/Classic/Trainer Sprites/79.png</file>
+        <file>Themes/Classic/Trainer Sprites/8.png</file>
+        <file>Themes/Classic/Trainer Sprites/80.png</file>
+        <file>Themes/Classic/Trainer Sprites/81.png</file>
+        <file>Themes/Classic/Trainer Sprites/82.png</file>
+        <file>Themes/Classic/Trainer Sprites/83.png</file>
+        <file>Themes/Classic/Trainer Sprites/84.png</file>
+        <file>Themes/Classic/Trainer Sprites/85.png</file>
+        <file>Themes/Classic/Trainer Sprites/86.png</file>
+        <file>Themes/Classic/Trainer Sprites/87.png</file>
+        <file>Themes/Classic/Trainer Sprites/88.png</file>
+        <file>Themes/Classic/Trainer Sprites/89.png</file>
+        <file>Themes/Classic/Trainer Sprites/9.png</file>
+        <file>Themes/Classic/Trainer Sprites/90.png</file>
+        <file>Themes/Classic/Trainer Sprites/91.png</file>
+        <file>Themes/Classic/Trainer Sprites/92.png</file>
+        <file>Themes/Classic/Trainer Sprites/93.png</file>
+        <file>Themes/Classic/Trainer Sprites/94.png</file>
+        <file>Themes/Classic/Trainer Sprites/95.png</file>
+        <file>Themes/Classic/Trainer Sprites/96.png</file>
+        <file>Themes/Classic/Trainer Sprites/97.png</file>
+        <file>Themes/Classic/Trainer Sprites/98.png</file>
+        <file>Themes/Classic/Trainer Sprites/99.png</file>
+        <file>Themes/Classic/types/type0.png</file>
+        <file>Themes/Classic/types/type1.png</file>
+        <file>Themes/Classic/types/type10.png</file>
+        <file>Themes/Classic/types/type11.png</file>
+        <file>Themes/Classic/types/type12.png</file>
+        <file>Themes/Classic/types/type13.png</file>
+        <file>Themes/Classic/types/type14.png</file>
+        <file>Themes/Classic/types/type15.png</file>
+        <file>Themes/Classic/types/type16.png</file>
+        <file>Themes/Classic/types/type17.png</file>
+        <file>Themes/Classic/types/type18.png</file>
+        <file>Themes/Classic/types/type2.png</file>
+        <file>Themes/Classic/types/type3.png</file>
+        <file>Themes/Classic/types/type4.png</file>
+        <file>Themes/Classic/types/type5.png</file>
+        <file>Themes/Classic/types/type6.png</file>
+        <file>Themes/Classic/types/type7.png</file>
+        <file>Themes/Classic/types/type8.png</file>
+        <file>Themes/Classic/types/type9.png</file>
+        <file>Themes/Classic/types/type_colors.txt</file>
+        <file>Themes/Classic/auth_symbols.ini</file>
+        <file>Themes/Classic/colors.ini</file>
+        <file>Themes/Classic/default.css</file>
+        <file>Themes/Classic/mainchat.css</file>
+        <file>Themes/Classic/mainchat.png</file>
+        <file>Themes/Classic/pictures.ini</file>
+        <file>Themes/Dark Classic/menu/logo.png</file>
+        <file>Themes/Dark Classic/default.css</file>
+        <file>Themes/Dark Classic/pictures.ini</file>
+        <file>Themes/Shoddy/colors.ini</file>
+        <file>Themes/Shoddy/default.css</file>
+        <file>Themes/Shoddy/pictures.ini</file>
+        <file>Themes/HowToDoThemes.txt</file>
+    </qresource>
+</RCC>

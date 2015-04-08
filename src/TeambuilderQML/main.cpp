@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(dbpoke6);
     Q_INIT_RESOURCE(dbcry);
     Q_INIT_RESOURCE(defaultteam);
+    Q_INIT_RESOURCE(theme);
 
     reloadPokemonDatabase();
     Theme::init();
