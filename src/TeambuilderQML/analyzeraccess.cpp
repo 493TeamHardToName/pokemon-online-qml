@@ -105,7 +105,7 @@ void AnalyzerAccess::sendChallenge(int playerId)
 void AnalyzerAccess::setPlayerName(QString name)
 {
     qDebug() << "AnalyzerAccess::setPlayerName" << name;
-    m_team->name() = name;
+    m_team->name() = "poqmtest_" + name;
 }
 
 void AnalyzerAccess::declineChallenge()
@@ -527,6 +527,11 @@ void AnalyzerAccess::onHpChange(int spot, int newHp)
     if (m_data2->player(spot) == m_battleInfo->myself) {
         m_pokemonListModel->dataChanged(m_pokemonListModel->index(m_data2->slotNum(spot)), m_pokemonListModel->index(m_data2->slotNum(spot)));
     }
+}
+
+void AnalyzerAccess::onBattleEnd(int res, int winner)
+{
+    emit battleEnded();
 }
 
 void AnalyzerAccess::attackClicked(int i)
