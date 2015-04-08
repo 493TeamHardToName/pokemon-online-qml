@@ -9,8 +9,8 @@ ApplicationWindow {
     id: pokemonOnlineQml
     visible: true
     title: "Pokemon Online"
-    width: U.dp(8)
-    height: U.dp(6)
+    width: U.dp(5)
+    height: U.dp(7)
 
     property Action backAction
     property list<Action> actions
