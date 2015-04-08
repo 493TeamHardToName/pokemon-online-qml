@@ -218,7 +218,6 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
     m_battleInfo = new BattleInfo(team, me, opponent, conf.mode, conf.spot(me.id), conf.spot(opponent.id));
     m_battleInfo->_myteam.name = me.name;
 
-    int myId = 0;
     if (m_battleConf.ids[0] == _mid) {
         m_battleConf.receivingMode[0] = BattleConfiguration::Player;
         m_battleConf.teams[0] = &m_battleInfo->_myteam;
@@ -227,7 +226,6 @@ void AnalyzerAccess::handleBattleStarted(int battleId, Battle battle, TeamBattle
         m_battleConf.teams[1] = &m_battleInfo->_myteam;
         m_battleConf.receivingMode[1] = BattleConfiguration::Player;
         m_battleConf.receivingMode[0] = BattleConfiguration::Spectator;
-        myId = 1;
     }
     m_battleConf.avatar[m_battleInfo->myself] = me.avatar;
     m_battleConf.avatar[m_battleInfo->opponent] = opponent.avatar;
@@ -521,6 +519,13 @@ void AnalyzerAccess::onPPChange(int spot, int move, int PP)
 {
     if (m_data2->isOut(spot)) {
         m_attackListModel->dataChanged(m_attackListModel->index(move), m_attackListModel->index(move));
+    }
+}
+
+void AnalyzerAccess::onHpChange(int spot, int newHp)
+{
+    if (m_data2->player(spot) == m_battleInfo->myself) {
+        m_pokemonListModel->dataChanged(m_pokemonListModel->index(m_data2->slotNum(spot)), m_pokemonListModel->index(m_data2->slotNum(spot)));
     }
 }
 

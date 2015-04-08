@@ -89,7 +89,7 @@ Comp.Page {
             Repeater {
                 model: analyserAccess.pokemonListModel
                 delegate: Button {
-                    text: name
+                    text: name + " " + hp + "/" + hpMax
                     enabled: switchEnabled && !isKoed
                     onClicked: {
                         disable()

@@ -115,6 +115,7 @@ public slots:
     void onOfferChoice(int, const BattleChoices &c);
     void onKo(int spot);
     void onPPChange(int spot, int move, int PP);
+    void onHpChange(int spot, int newHp);
 
 private:
     Analyzer * m_analyzer;
