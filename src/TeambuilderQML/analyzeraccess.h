@@ -69,6 +69,7 @@ signals:
     void switchAllowed();
 
     void pokemonSelected();
+    void switchToPokemonTab();
 
 public slots:
 

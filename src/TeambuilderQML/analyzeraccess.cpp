@@ -294,7 +294,7 @@ void AnalyzerAccess::handleBattleStarted(int a, Battle b)
 
 void AnalyzerAccess::battleFinished(int a, int b, int c, int d)
 {
-    //qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
+    qDebug() << "TODO AnalyzerAccess::battleFinished" << a << b << c << d;
 }
 
 void AnalyzerAccess::battleCommand(int a, QByteArray ba)
@@ -513,6 +513,7 @@ void AnalyzerAccess::onKo(int spot)
 {
     if (m_data2->player(spot) == m_battleInfo->myself) {
         m_pokemonListModel->dataChanged(m_pokemonListModel->index(m_data2->slotNum(spot)), m_pokemonListModel->index(m_data2->slotNum(spot)));
+        emit switchToPokemonTab();
     }
 }
 

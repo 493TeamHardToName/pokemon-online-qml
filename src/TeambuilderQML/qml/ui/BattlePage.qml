@@ -22,8 +22,12 @@ Comp.Page {
         onTriggered: {
             onClicked: {
                 if (!battleEnded) {
+                    //TODO popup
+                    analyserAccess.forfeit();
+                } else {
                     analyserAccess.forfeit();
                 }
+
                 goBack();
             }
         }
@@ -36,6 +40,9 @@ Comp.Page {
         onSwitchAllowed: switchEnabled = true;
         onBattleEnded: {
             battleEnded = true;
+        }
+        onSwitchToPokemonTab: {
+            tabView.currentIndex = 1;
         }
     }
 
@@ -63,15 +70,35 @@ Comp.Page {
         width: parent.width
         height: U.dp(3)
         anchors.bottom: parent.bottom
-        TabView {
-            width: parent.width / 3
+        Item {
+            id: tabView
+            width: parent.width / 2
             height: parent.height
-            Tab {
+            property int currentIndex: 0
+            Row {
+                id: tabButtons
+                height: moveB.height
+                Button {
+                    id: moveB
+                    text: "Moves"
+                    onClicked: tabView.currentIndex = 0;
+                }
+                Button {
+                    text: "Pokemons"
+                    onClicked: tabView.currentIndex = 1;
+                }
+            }
+
+            Item {
                 id: attackTab
-                title: "Moves"
+                visible: tabView.currentIndex == 0
+                anchors {
+                    top: tabButtons.bottom
+                    bottom: parent.bottom
+                }
+                width: parent.width
                 ListView {
-                    width: parent.width
-                    height: parent.height
+                    anchors.fill: parent
                     model: analyserAccess.attackListModel
                     delegate: Button {
                         id: atkButton
@@ -126,8 +153,13 @@ Comp.Page {
                     }
                 }
             }
-            Tab {
-                title: "Pokemons"
+            Item {
+                visible: tabView.currentIndex == 1
+                anchors {
+                    top: tabButtons.bottom
+                    bottom: parent.bottom
+                }
+                width: parent.width
                 ListView {
                     id: pokesColumn
                     anchors {
@@ -172,6 +204,7 @@ Comp.Page {
                         }
                         enabled: switchEnabled && !isKoed && index != 0
                         onClicked: {
+                            tabView.currentIndex = 0;
                             disable()
                             switchEnabled = false
                             analyserAccess.switchClicked(index)
@@ -182,7 +215,7 @@ Comp.Page {
         }
         TextArea {
             id: logWebview
-            width: parent.width / 3 * 2
+            width: parent.width / 2
             height: parent.height
             text: logHtml
             onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
