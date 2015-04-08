@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import Qt.labs.particles 1.0
+////import Qt.labs.particles 1.0
 
 Image {
     id: main

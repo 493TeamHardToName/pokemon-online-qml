@@ -94,7 +94,7 @@ Comp.Page {
                 model: analyserAccess.pokemonListModel
                 delegate: Button {
                     text: name + " " + hp + "/" + hpMax
-                    enabled: switchEnabled && !isKoed
+                    enabled: switchEnabled && !isKoed && index != 0
                     onClicked: {
                         disable()
                         switchEnabled = false
