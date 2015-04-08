@@ -581,6 +581,11 @@ void AnalyzerAccess::logout()
     delete m_analyzer;
 }
 
+void AnalyzerAccess::forfeit()
+{
+    m_analyzer->sendBattleResult(m_battleId, Forfeit);
+}
+
 void AnalyzerAccess::sendChoice(const BattleChoice &b)
 {
     QByteArray ar;

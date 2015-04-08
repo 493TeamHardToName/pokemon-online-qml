@@ -18,6 +18,7 @@ Page {
     actions: [
         Action {
             text: "Login"
+            iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-387-log-in.png")
             onTriggered: {
                 analyserAccess.setCurrentTeam();
                 goFindGame();

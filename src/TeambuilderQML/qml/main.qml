@@ -16,29 +16,42 @@ ApplicationWindow {
     property list<Action> actions
     property string pageTitle
     toolBar: ToolBar {
+        height: U.dp(0.4)
         Row {
             height: parent.height
-
+            anchors {
+                leftMargin: U.dp(0.1)
+                left: parent.left
+            }
+            spacing: U.dp(0.1)
             ToolButton {
                 id: backToolButton
                 visible: backAction
                 text: backAction.text
                 onClicked: backAction.trigger()
+                iconSource: backAction.iconSource
                 anchors.verticalCenter: parent.verticalCenter
             }
 
             Label {
                 text: pageTitle
                 anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
             }
         }
         Row {
             height: parent.height
-            anchors.right: parent.right
+            anchors {
+                right: parent.right
+                rightMargin: U.dp(0.1)
+            }
             Repeater {
                 model: actions
                 delegate: ToolButton {
+                    height: U.dp(0.4)
+                    width: height
                     text: actions[index].text
+                    iconSource: actions[index].iconSource
                     onClicked: actions[index].trigger()
                     anchors.verticalCenter: parent.verticalCenter
                 }

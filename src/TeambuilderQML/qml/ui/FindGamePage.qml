@@ -14,6 +14,7 @@ Page {
 
     backAction: Action {
         text: "Back"
+        iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-225-chevron-left.png")
         onTriggered: {
             analyserAccess.logout();
             goBack();

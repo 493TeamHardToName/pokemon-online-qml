@@ -8,21 +8,25 @@ Comp.Page {
 
     property bool switchEnabled:  true
     property string logHtml: ""
+    property bool battleEnded: false
     signal goBack();
     signal disable();
 
     backAction: Action {
         id: end
-        text: "Forfeit"
+        text: battleEnded ? "Close" : "Forfeit"
+        iconSource: battleEnded ? Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-225-chevron-left.png")
+                                : Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-267-flag.png")
         onTriggered: {
             onClicked: {
-                //TODO forfeit
+                if (!battleEnded) {
+                    analyserAccess.forfeit();
+                }
                 goBack();
             }
         }
     }
 
-    onDisable: console.log("root disabled")
     anchors.fill: parent
 
     Connections {
@@ -38,7 +42,7 @@ Comp.Page {
         target: analyserAccess
         onSwitchAllowed: switchEnabled = true;
         onBattleEnded: {
-            end.text = "Close"
+            battleEnded = true;
         }
     }
 
