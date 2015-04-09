@@ -1,5 +1,5 @@
-<Team defaultTier="" gen="6" subgen="0" version="1">
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Pikachu" Gen="6" Gender="2" Forme="0" Ability="9" Item="0" Num="25">
+<Team defaultTier="" version="1" subgen="0" gen="6">
+    <Pokemon Lvl="100" Nickname="Pikachu" Forme="0" Happiness="0" Ability="9" Nature="0" Item="0" Shiny="0" Gen="6" Num="25" Gender="2" SubGen="0">
         <Move>213</Move>
         <Move>97</Move>
         <Move>516</Move>
@@ -17,7 +17,7 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Venonat" Gen="6" Gender="2" Forme="0" Ability="14" Item="0" Num="48">
+    <Pokemon Lvl="100" Nickname="Venonat" Forme="0" Happiness="0" Ability="14" Nature="0" Item="0" Shiny="0" Gen="6" Num="48" Gender="2" SubGen="0">
         <Move>97</Move>
         <Move>213</Move>
         <Move>226</Move>
@@ -35,7 +35,7 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Poliwhirl" Gen="6" Gender="1" Forme="0" Ability="11" Item="0" Num="61">
+    <Pokemon Lvl="100" Nickname="Poliwhirl" Forme="0" Happiness="0" Ability="11" Nature="0" Item="0" Shiny="0" Gen="6" Num="61" Gender="1" SubGen="0">
         <Move>187</Move>
         <Move>280</Move>
         <Move>523</Move>
@@ -53,11 +53,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Bellsprout" Gen="6" Gender="1" Forme="0" Ability="34" Item="0" Num="69">
-        <Move>20</Move>
-        <Move>585</Move>
-        <Move>203</Move>
-        <Move>213</Move>
+    <Pokemon Lvl="100" Nickname="Lapras" Forme="0" Happiness="0" Ability="11" Nature="0" Item="0" Shiny="0" Gen="6" Num="131" Gender="2" SubGen="0">
+        <Move>240</Move>
+        <Move>57</Move>
+        <Move>55</Move>
+        <Move>352</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -71,7 +71,7 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Slowpoke" Gen="6" Gender="2" Forme="0" Ability="12" Item="0" Num="79">
+    <Pokemon Lvl="100" Nickname="Slowpoke" Forme="0" Happiness="0" Ability="12" Nature="0" Item="0" Shiny="0" Gen="6" Num="79" Gender="2" SubGen="0">
         <Move>362</Move>
         <Move>59</Move>
         <Move>585</Move>
@@ -89,7 +89,7 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Voltorb" Gen="6" Gender="0" Forme="0" Ability="43" Item="0" Num="100">
+    <Pokemon Lvl="100" Nickname="Voltorb" Forme="0" Happiness="0" Ability="43" Nature="0" Item="0" Shiny="0" Gen="6" Num="100" Gender="0" SubGen="0">
         <Move>451</Move>
         <Move>203</Move>
         <Move>585</Move>

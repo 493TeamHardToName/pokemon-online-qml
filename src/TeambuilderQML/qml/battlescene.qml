@@ -88,14 +88,14 @@ Item {
             hoverEnabled: true
         }
 
-        Tooltip {
-            shown: mouseAreaBack.containsMouse
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            x: 2
-            width: parent.width - 4
-            text: Math.floor(battle.data.team(playerBack).time / 60) + ":" + (battle.data.team(playerBack).time % 60 < 10 ? "0" : "") + battle.data.team(playerBack).time % 60;
-        }
+//        Tooltip {
+//            shown: mouseAreaBack.containsMouse
+//            anchors.horizontalCenter: parent.horizontalCenter
+//            anchors.verticalCenter: parent.verticalCenter
+//            x: 2
+//            width: parent.width - 4
+//            text: Math.floor(battle.data.team(playerBack).time / 60) + ":" + (battle.data.team(playerBack).time % 60 < 10 ? "0" : "") + battle.data.team(playerBack).time % 60;
+//        }
     }
 
     Rectangle {
@@ -135,14 +135,14 @@ Item {
             hoverEnabled: true
         }
 
-        Tooltip {
-            shown: mouseAreaFront.containsMouse
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            x: 2
-            width: parent.width - 4
-            text: Math.floor(battle.data.team(playerFront).time / 60) + ":" + (battle.data.team(playerFront).time % 60 < 10 ? "0" : "") + battle.data.team(playerFront).time % 60;
-        }
+//        Tooltip {
+//            shown: mouseAreaFront.containsMouse
+//            anchors.horizontalCenter: parent.horizontalCenter
+//            anchors.verticalCenter: parent.verticalCenter
+//            x: 2
+//            width: parent.width - 4
+//            text: Math.floor(battle.data.team(playerFront).time / 60) + ":" + (battle.data.team(playerFront).time % 60 < 10 ? "0" : "") + battle.data.team(playerFront).time % 60;
+//        }
     }
 
     /* Doesn't look good right now, so commented out */

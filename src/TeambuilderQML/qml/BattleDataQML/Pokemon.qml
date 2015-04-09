@@ -42,10 +42,10 @@ Item {
         opacity: 1
     }
 
-    Tooltip {
-        shown: mouseArea.containsMouse
-        text: pokemon.numRef === 0 ? "" : pokemon.nick + (pokemon.nick !== pokemon.pokeName ? " (" + pokemon.pokeName + ")" : "") + " - " + pokemon.lifePercent + "%"
-    }
+//    Tooltip {
+//        shown: mouseArea.containsMouse
+//        text: pokemon.numRef === 0 ? "" : pokemon.nick + (pokemon.nick !== pokemon.pokeName ? " (" + pokemon.pokeName + ")" : "") + " - " + pokemon.lifePercent + "%"
+//    }
 
     MouseArea {
         id: mouseArea
