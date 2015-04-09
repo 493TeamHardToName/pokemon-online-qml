@@ -9,6 +9,7 @@ Page {
     signal goBack;
     signal randomGame;
     signal goFindGame;
+    property bool attempConnect : false
 
     property var fruitModel: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     property var vegetableModel: [0,0,0,0,0,0]
@@ -20,11 +21,31 @@ Page {
             text: "Login"
             iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-387-log-in.png")
             onTriggered: {
+                attempConnect = true;
                 analyserAccess.setCurrentTeam();
-                goFindGame();
+                analyserAccess.connectTo("188.165.244.152", 5080)
+                //if(analyserAccess.isConnect == true){
+                  //     goFindGame();
+                //}
+                //goFindGame();
             }
         }
     ]
+
+    Connections{
+        target: analyserAccess
+        onLoggedIn: {
+            goFindGame();
+            error_text.text = ""
+            attempConnect = false;
+        }
+        onLogInFailed: {
+            if(attempConnect){
+               error_text.text = error_msg
+                attempConnect = false;
+            }
+        }
+    }
 
     TeamHolder {
         id: teamHolder
@@ -37,6 +58,7 @@ Page {
 
     Column{
         Rectangle{
+            color: "lightBlue"
             id: setNameWindow
             width:root.width
             height: root.height/12
@@ -58,6 +80,10 @@ Page {
                             onTextChanged: analyserAccess.setPlayerName(text)
                         }
                     }
+                    Text{
+                        id : error_text
+                        color: "red"
+                    }
                 }
              }
 
@@ -75,6 +101,7 @@ Page {
             id: selectWindow
             width:root.width
             height:root.height/3
+            color : "lightblue"
             ListView{
                 model: fruitModel
                 anchors.fill: parent
@@ -113,7 +140,7 @@ Page {
             width:root.width
             height:root.height/6
             border.width: 1
-            border.color: "lightblue"
+            border.color: "blue"
 
             Column{
                 Text{
@@ -171,7 +198,8 @@ Page {
         Rectangle{
             id: teamWindow
             width:root.width
-            height: root.height/6
+            height: root.height/7
+            color: "lightblue"
             ListView{
                 model: visualModel
                 anchors.fill: parent
