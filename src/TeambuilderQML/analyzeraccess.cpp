@@ -12,7 +12,9 @@
 extern QQmlApplicationEngine *engin;
 
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
-    QObject(parent)
+    QObject(parent), m_analyzer(0), m_playerInfoListModel(0), m_team(0), currentPos(0),
+    m_battleInput(0), m_battleClientLog(0), m_battleInfo(0), m_attackListModel(0), m_data2(0),
+    m_pokemonListModel(0), m_battleSceneQtQuick(0)
 {
     //m_analyzer = new Analyzer();
 
