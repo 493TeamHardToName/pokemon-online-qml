@@ -155,11 +155,14 @@ void AnalyzerAccess::connected()
 void AnalyzerAccess::disconnected()
 {
     qDebug() << "TODO AnalyzerAccess::disconnected";
+    emit logInFailed(error_msg);
+    // prings
 }
 
 void AnalyzerAccess::printLine(QString s)
 {
     qDebug() << "TODO AnalyzerAccess::printLine" << s;
+    error_msg = s;
 }
 
 void AnalyzerAccess::printHtml(QString s) {
@@ -181,6 +184,7 @@ void AnalyzerAccess::playerLogin(PlayerInfo p, QStringList sl)
 {
     _mid = p.id;
     playerReceived(p);
+    emit loggedIn();
     qDebug() << "AnalyzerAccess::playerLogin" << p.name << sl;
 }
 

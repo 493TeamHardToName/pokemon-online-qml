@@ -21,7 +21,7 @@ Page {
         }
     }
 
-    Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
+    //Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
 
     Component {
         id: challengePopupComponent
