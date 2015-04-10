@@ -57,18 +57,23 @@ Page {
         //hold a list of all pokemons
     }
 
-    Rectangle{
-        width: root.width
-        height: root.height
     Image {
-               anchors.fill: parent
-               opacity: 0.5
-               source: Qt.resolvedUrl("../graphics/background2.jpeg")
-
-            }
-
-
+       anchors.fill: parent
+       opacity: 0.5
+       source: Qt.resolvedUrl("../graphics/background2.jpeg")
+    }
+    Flickable {
+        anchors.fill: parent
+        contentHeight: mainContentColumn.height
+        contentWidth: width
     Column{
+        id: mainContentColumn
+        anchors {
+            left: parent.left
+            right: parent.right
+            margins: U.dp(0.1)
+        }
+
         Rectangle{
             color: "transparent"
             id: setNameWindow
@@ -132,9 +137,10 @@ Page {
                         MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-                                    //pokeImage.source = "image://pokeinfo/pokemon/5"
-                                    //get move information;
-                                    analyserAccess.getMoves(index);
+<<<<<<< HEAD
+=======
+                                    pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
+>>>>>>> 7cd221b53f855b1419c396b6a1973a586b8ca341
                                 }
                         }
                     }
@@ -173,20 +179,16 @@ Page {
            }
         }
 
-
-
-        Rectangle{
+        PokemonDetails {
             id: pokeInfoWindow
-            color: "transparent"
-            width:root.width
-            height:root.height/6
-            border.width: 1
-            border.color: "blue"
-
-            Column{
-                Text{
-                    text: "Pokemon Info:"
-                }
+            width: parent.width
+            Rectangle {
+                anchors.fill: parent
+                color: "transparent"
+                width:root.width
+                height:root.height/6
+                border.width: 1
+                border.color: "blue"
             }
         }
 
@@ -223,6 +225,7 @@ Page {
                                     selectedGroup.remove(0, selectedGroup.count)
                                 item.VisualDataModel.inSelected = !item.VisualDataModel.inSelected
                                 analyserAccess.setPos(index);
+                                pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(analyserAccess.userTeamInfo(index));
                             }
                     }
                 }
@@ -239,13 +242,21 @@ Page {
         Rectangle{
             id: teamWindow
             width:root.width
-            height: root.height/7
+            height: myTeamBox.height
             color: "transparent"
-            ListView{
-                model: visualModel
-                anchors.fill: parent
-                orientation: ListView.Horizontal
-                interactive: false
+            border.color: "darkblue"
+            border.width: U.dp(0.03)
+            Column{
+                id:myTeamBox
+                width: parent.width
+                Text{font.family: "Apple Chancery"; text: "Your Team:"; font.bold: true; font.pointSize: U.dp(0.2); color: "blue" }
+                ListView{
+                        model: visualModel
+                        height: U.dp(1)
+                        width: parent.width
+                        orientation: ListView.Horizontal
+                        interactive: false
+                }
             }
         }
 
@@ -285,7 +296,6 @@ Page {
                 }
             }
         }
-
     }
     }
 }

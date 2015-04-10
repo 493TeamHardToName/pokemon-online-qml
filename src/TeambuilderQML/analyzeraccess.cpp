@@ -14,13 +14,14 @@ extern QQmlApplicationEngine *engin;
 AnalyzerAccess::AnalyzerAccess(QObject *parent) :
     QObject(parent), m_analyzer(0), m_playerInfoListModel(0), m_team(0), currentPos(0),
     m_battleInput(0), m_battleClientLog(0), m_battleInfo(0), m_attackListModel(0), m_data2(0),
-    m_pokemonListModel(0), m_battleSceneQtQuick(0)
+    m_pokemonListModel(0), m_battleSceneQtQuick(0), m_pokeTeamAccess(0)
 {
     //m_analyzer = new Analyzer();
 
     m_playerInfoListModel = new PlayerInfoListModel(this);
     m_attackListModel = new AttackListModel(this);
     m_pokemonListModel = new PokemonListModel(this);
+    m_pokeTeamAccess = new PokeTeamAccess(this);
 
     userTeam.append(0);userTeam.append(1);userTeam.append(2);userTeam.append(3);userTeam.append(4);userTeam.append(5);
     currentPos = 0;
@@ -141,6 +142,11 @@ QAbstractItemModel *AnalyzerAccess::pokemonListModel()
 QObject *AnalyzerAccess::battleClientLog()
 {
     return m_battleClientLog;
+}
+
+QObject *AnalyzerAccess::pokeTeamAccess()
+{
+    return m_pokeTeamAccess;
 }
 
 void AnalyzerAccess::errorFromNetwork(int a, QString b)
@@ -668,8 +674,12 @@ int AnalyzerAccess::userTeamInfo(int id)
     return userTeam.at(id);
 }
 
-void AnalyzerAccess::getPokeInfo(int pos)
+QObject * AnalyzerAccess::getPokeInfo(int pos)
 {
-    //m_team->team(pos/6).m_pokes[pos%6].num();
-    //m_attackListModel->setPoke(m_team->team(pos/6).m_pokes[pos%6].num());
+    if (!m_pokeTeamAccess) {
+        m_pokeTeamAccess = new PokeTeamAccess(this);
+        engin->setObjectOwnership(m_pokeTeamAccess, QQmlEngine::CppOwnership);
+    }
+    m_pokeTeamAccess->setPokeTeam(&m_team->team(pos/6 + 1).m_pokes[pos%6]);
+    return m_pokeTeamAccess;
 }
