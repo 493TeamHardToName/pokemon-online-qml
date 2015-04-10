@@ -85,3 +85,8 @@ QHash<int, QByteArray> PlayerInfoListModel::roleNames() const
     r[RoleIsBattling] = "isBattling";
     return r;
 }
+
+QString PlayerInfoListModel::findPlayerNameById(int id)
+{
+    return findPlayerById(id).name;
+}

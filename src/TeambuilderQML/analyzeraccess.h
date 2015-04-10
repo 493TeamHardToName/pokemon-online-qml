@@ -53,6 +53,7 @@ public:
     Q_INVOKABLE QQuickItem *createBattleSceneItem(QQuickItem *parent);
     Q_INVOKABLE void logout();
     Q_INVOKABLE void forfeit();
+    Q_INVOKABLE int currentPlayerId();
 
     QAbstractItemModel *playerInfoListModel();
     QAbstractItemModel *attackListModel();
