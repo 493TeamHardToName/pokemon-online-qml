@@ -14,6 +14,7 @@
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-225-chevron-left.png</file>
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-267-flag.png</file>
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-387-log-in.png</file>
+        <file>qml/graphics/background2.jpeg</file>
     </qresource>
     <qresource prefix="/battlescene">
         <file>qml/BattleDataQML/CommonEffects/StatDown.qml</file>

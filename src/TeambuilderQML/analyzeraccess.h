@@ -28,6 +28,8 @@ class AnalyzerAccess : public QObject, public BattleCommandManager<AnalyzerAcces
     Q_PROPERTY(QAbstractItemModel * pokemonListModel READ pokemonListModel)
     Q_PROPERTY(QObject * battleClientLog READ battleClientLog NOTIFY battleClientLogChanged)
 public:
+    QString error_msg;
+    bool isConnect = false;
     explicit AnalyzerAccess(QObject *parent = 0);
     Q_INVOKABLE void connectTo(QString host, int port);
     Q_INVOKABLE void sendChallenge(int playerId);
@@ -70,6 +72,9 @@ signals:
 
     void pokemonSelected();
     void switchToPokemonTab();
+
+    void loggedIn();
+    void logInFailed(QString error_msg);
 
 public slots:
 

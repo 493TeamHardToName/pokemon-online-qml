@@ -137,129 +137,129 @@ Item {
         return 1 - Math.sqrt(1-opac);
     }
 
-    Tooltip {
-        id: tooltip
-        shown: mouseArea.containsMouse
-        onShownChanged: {
-            if (shown) {
-                var s = pokemon.nick + " &nbsp; lv. " + pokemon.level;
-                if (fieldPokemon.gen() > 1) {
-                    if (pokemon.gender === 1) {
-                        s += " (M)"
-                    } else if (pokemon.gender === 2) {
-                        s += " (F)"
-                    }
-                }
+//    Tooltip {
+//        id: tooltip
+//        shown: mouseArea.containsMouse
+//        onShownChanged: {
+//            if (shown) {
+//                var s = pokemon.nick + " &nbsp; lv. " + pokemon.level;
+//                if (fieldPokemon.gen() > 1) {
+//                    if (pokemon.gender === 1) {
+//                        s += " (M)"
+//                    } else if (pokemon.gender === 2) {
+//                        s += " (F)"
+//                    }
+//                }
 
-                s += "<br/>" + Utils.typeImg(fieldPokemon.type1());
-                if (fieldPokemon.type2() !== 18) s += Utils.typeImg(fieldPokemon.type2());
-                s += "<table><tr><td><table>";
-                var stats = [qsTr("Attack"), qsTr("Defense"), qsTr("Sp. Attack"), qsTr("Sp. Defense"), qsTr("Speed"), qsTr("Accuracy"), qsTr("Evasion")];
-                var boost,stat,i;
+//                s += "<br/>" + Utils.typeImg(fieldPokemon.type1());
+//                if (fieldPokemon.type2() !== 18) s += Utils.typeImg(fieldPokemon.type2());
+//                s += "<table><tr><td><table>";
+//                var stats = [qsTr("Attack"), qsTr("Defense"), qsTr("Sp. Attack"), qsTr("Sp. Defense"), qsTr("Speed"), qsTr("Accuracy"), qsTr("Evasion")];
+//                var boost,stat,i;
 
-                s += "<tr><td>HP</td><td>&nbsp;"
+//                s += "<tr><td>HP</td><td>&nbsp;"
 
 
-                if (battle.scene.isPlayer(woof.spot)) {
-                    s += pokemon.life + "</td><td>/" + pokemon.totalLife;
-                } else {
-                    var min = fieldPokemon.minStat(0)
-                    var max = fieldPokemon.maxStat(0)
-                    s += Math.floor(min * pokemon.lifePercent/100) + "/" + min + "-</td><td>" + Math.floor(max * (pokemon.lifePercent + ((pokemon.lifePercent === 100 || pokemon.lifePercent === 0) ? 0:1))/100) + "/" + max
-                }
+//                if (battle.scene.isPlayer(woof.spot)) {
+//                    s += pokemon.life + "</td><td>/" + pokemon.totalLife;
+//                } else {
+//                    var min = fieldPokemon.minStat(0)
+//                    var max = fieldPokemon.maxStat(0)
+//                    s += Math.floor(min * pokemon.lifePercent/100) + "/" + min + "-</td><td>" + Math.floor(max * (pokemon.lifePercent + ((pokemon.lifePercent === 100 || pokemon.lifePercent === 0) ? 0:1))/100) + "/" + max
+//                }
 
-                s += "</td></tr>";
+//                s += "</td></tr>";
 
-                for (i = 0; i < 5; i++) {
-                    if(fieldPokemon.gen() === 1 && i === 3) {
-                        i++;
-                    }
-                    if(fieldPokemon.gen() === 1 && i === 2) {
-                        s += "<tr><td>Special</td><td>&nbsp;";
-                    } else {
-                        s += "<tr><td>" + stats[i] + "</td><td>&nbsp;";
-                    }
-                    stat = fieldPokemon.stat(i+1);
-                    boost = fieldPokemon.statBoost(i+1);
+//                for (i = 0; i < 5; i++) {
+//                    if(fieldPokemon.gen() === 1 && i === 3) {
+//                        i++;
+//                    }
+//                    if(fieldPokemon.gen() === 1 && i === 2) {
+//                        s += "<tr><td>Special</td><td>&nbsp;";
+//                    } else {
+//                        s += "<tr><td>" + stats[i] + "</td><td>&nbsp;";
+//                    }
+//                    stat = fieldPokemon.stat(i+1);
+//                    boost = fieldPokemon.statBoost(i+1);
 
-                    if (stat === 0) {
-                        s += fieldPokemon.minStat(i+1) + "-" + fieldPokemon.maxStat(i+1) + "</td><td>"
-                    } else {
-                        if (stat === -1) {
-                            s += "???"
-                        } else {
-                            s += stat
-                        }
-                        s += "</td><td>"
-                    }
-                    if (boost > 0) {
-                        s += "(+" + boost + ")"
-                    } else if (boost < 0) {
-                        s += "(" + boost + ")"
-                    }
-                    s += "</td></tr>"
-                }
+//                    if (stat === 0) {
+//                        s += fieldPokemon.minStat(i+1) + "-" + fieldPokemon.maxStat(i+1) + "</td><td>"
+//                    } else {
+//                        if (stat === -1) {
+//                            s += "???"
+//                        } else {
+//                            s += stat
+//                        }
+//                        s += "</td><td>"
+//                    }
+//                    if (boost > 0) {
+//                        s += "(+" + boost + ")"
+//                    } else if (boost < 0) {
+//                        s += "(" + boost + ")"
+//                    }
+//                    s += "</td></tr>"
+//                }
 
-                for (i = 5; i < 7; i++) {
-                    boost = fieldPokemon.statBoost(i+1);
-                    if (boost !==0) {
-                        s += "<tr><td colspan='2'>" + stats[i] + "</td><td>&nbsp;";
+//                for (i = 5; i < 7; i++) {
+//                    boost = fieldPokemon.statBoost(i+1);
+//                    if (boost !==0) {
+//                        s += "<tr><td colspan='2'>" + stats[i] + "</td><td>&nbsp;";
 
-                        if (boost > 0) {
-                            s += "+" + boost;
-                        } else if (boost < 0) {
-                            s += +boost;
-                        }
+//                        if (boost > 0) {
+//                            s += "+" + boost;
+//                        } else if (boost < 0) {
+//                            s += +boost;
+//                        }
 
-                        s += "</td></tr>"
-                    }
-                }
+//                        s += "</td></tr>"
+//                    }
+//                }
 
-                s += "</table></td>"
+//                s += "</table></td>"
 
-                if (!battle.scene.isPlayer(spot) && pokemon.move(0).num !== 0) {
-                    s += "<td><br/>"
-                    for (i = 0; i < 4; i++) {
-                        var move = pokemon.move(i).num;
-                        if (move !== 0) {
-                            var type = moveInfo.type(move);
-                            var bold = true || ((type === fieldPokemon.type1() || type === fieldPokemon.type2()) && moveInfo.power(move) > 0);
-                            s += (bold ? "<b>" : "") + "<span style='color: " + theme.typeColor(type) + ";'>" +
-                                    "- " + moveInfo.name(move) + " (" + pokemon.move(i).PP + "/" + pokemon.move(i).totalPP + " PPs)</span>" + (bold ? "</b>" : "") + "<br/>";
-                        }
-                    }
-                    s += "</td>"
-                }
+//                if (!battle.scene.isPlayer(spot) && pokemon.move(0).num !== 0) {
+//                    s += "<td><br/>"
+//                    for (i = 0; i < 4; i++) {
+//                        var move = pokemon.move(i).num;
+//                        if (move !== 0) {
+//                            var type = moveInfo.type(move);
+//                            var bold = true || ((type === fieldPokemon.type1() || type === fieldPokemon.type2()) && moveInfo.power(move) > 0);
+//                            s += (bold ? "<b>" : "") + "<span style='color: " + theme.typeColor(type) + ";'>" +
+//                                    "- " + moveInfo.name(move) + " (" + pokemon.move(i).PP + "/" + pokemon.move(i).totalPP + " PPs)</span>" + (bold ? "</b>" : "") + "<br/>";
+//                        }
+//                    }
+//                    s += "</td>"
+//                }
 
-                s += "</tr>"
+//                s += "</tr>"
 
-                var zone = battle.data.field.zone(spot%2);
-                var hazards = [];
-                if (zone.stealthRocks) {
-                    hazards.push("Stealth Rocks");
-                }
-                if (zone.stickyWeb) {
-                    hazards.push("Sticky Web");
-                }
-                if (zone.spikesLevel > 0) {
-                    hazards.push("Spikes level " + zone.spikesLevel);
-                }
-                if (zone.toxicSpikesLevel > 0) {
-                    hazards.push("Toxic Spikes level " + zone.toxicSpikesLevel);
-                }
+//                var zone = battle.data.field.zone(spot%2);
+//                var hazards = [];
+//                if (zone.stealthRocks) {
+//                    hazards.push("Stealth Rocks");
+//                }
+//                if (zone.stickyWeb) {
+//                    hazards.push("Sticky Web");
+//                }
+//                if (zone.spikesLevel > 0) {
+//                    hazards.push("Spikes level " + zone.spikesLevel);
+//                }
+//                if (zone.toxicSpikesLevel > 0) {
+//                    hazards.push("Toxic Spikes level " + zone.toxicSpikesLevel);
+//                }
 
-                if (hazards.length > 0) {
-                    s += "<tr><td>" + hazards.join(", ") + "</td></tr>";
-                }
+//                if (hazards.length > 0) {
+//                    s += "<tr><td>" + hazards.join(", ") + "</td></tr>";
+//                }
 
-                s += "</table>"
+//                s += "</table>"
 
-                text = s;
+//                text = s;
 
-                //resetSize();
-            }
-        }
-    }
+//                //resetSize();
+//            }
+//        }
+//    }
 
     MouseArea {
         id: mouseArea
