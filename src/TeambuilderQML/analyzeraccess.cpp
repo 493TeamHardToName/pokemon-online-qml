@@ -95,6 +95,7 @@ void AnalyzerAccess::sendChallenge(int playerId)
     cinfo.dsc = ChallengeInfo::Sent;
     cinfo.opp = playerId;
     cinfo.mode = 0;
+    cinfo.clauses |= ChallengeInfo::NoTimeOut;
     //cinfo.clauses = ChallengeInfo::ChallengeCup;
     //TODO tire can change here.
     PlayerInfo myInfo = m_playerInfoListModel->findPlayerById(_mid);
