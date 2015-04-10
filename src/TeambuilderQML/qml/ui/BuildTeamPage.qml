@@ -132,10 +132,7 @@ Page {
                         MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-<<<<<<< HEAD
-=======
                                     pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
->>>>>>> 7cd221b53f855b1419c396b6a1973a586b8ca341
                                 }
                         }
                     }
