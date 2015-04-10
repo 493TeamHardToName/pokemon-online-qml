@@ -4,6 +4,7 @@ import "../components"
 import "../js/units.js" as U
 
 import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.3
 Page {
     id: root
     signal goBack;
@@ -56,6 +57,11 @@ Page {
         //hold a list of all pokemons
     }
 
+    Image {
+       anchors.fill: parent
+       opacity: 0.5
+       source: Qt.resolvedUrl("../graphics/background2.jpeg")
+    }
     Flickable {
         anchors.fill: parent
         contentHeight: mainContentColumn.height
@@ -69,10 +75,10 @@ Page {
         }
 
         Rectangle{
-            color: "lightBlue"
+            color: "transparent"
             id: setNameWindow
             width:root.width
-            height: root.height/12
+            height: root.height/15
             Row{
                     Text{
                         text:"Team name:"
@@ -91,20 +97,23 @@ Page {
                             onTextChanged: analyserAccess.setPlayerName(text)
                         }
                     }
-                    Text{
-                        id : error_text
-                        color: "red"
-                    }
                 }
-             }
+        }
+        Text{
+            id : error_text
+            color: "red"
+        }
 
         Rectangle{
          id: titleWindow
+         color: "transparent"
          width:root.width
-         height: root.height/12
+         height: root.height/8
+
          Text{
              anchors.centerIn: parent
-             font.pointSize: 16
+             font.pointSize: 25
+             color: "darkblue"
              text:"Build your Team"
          }
         }
@@ -112,7 +121,7 @@ Page {
             id: selectWindow
             width:root.width
             height:root.height/3
-            color : "lightblue"
+            color : "transparent"
             ListView{
                 model: fruitModel
                 anchors.fill: parent
@@ -134,7 +143,32 @@ Page {
                     }
 
                     Button {
-                        text: analyserAccess.getPokeName(index);//"Pos" + (index+1)
+                        id: pokeName
+                        width:75
+                        height:root.height/16
+                        checkable: true
+                        style: ButtonStyle {
+                                background: Rectangle {
+                                    id: buttonReg
+                                    implicitWidth: pokeName.width
+                                    implicitHeight: pokeName.height
+                                    border.width: control.activeFocus ? 2 : 1
+                                    border.color: "#888"
+                                    radius: 8
+                                    gradient: Gradient {
+                                            GradientStop { position: 0.0; color:  "white" }
+                                            GradientStop { position: 1.0; color: control.pressed ? "darkred" :"darkblue" }
+                                    }
+                                    Text{
+                                        text: analyserAccess.getPokeName(index);
+                                        font.pointSize: 12
+                                        anchors.centerIn: parent
+                                        color: "white"
+                                    }
+                                }
+                            }
+
+                        //text: analyserAccess.getPokeName(index);//"Pos" + (index+1)
                         anchors.horizontalCenter: pokeImage.horizontalCenter
                         onClicked: analyserAccess.setTeam(index);
                     }
@@ -145,6 +179,14 @@ Page {
         PokemonDetails {
             id: pokeInfoWindow
             width: parent.width
+            Rectangle {
+                anchors.fill: parent
+                color: "transparent"
+                width:root.width
+                height:root.height/6
+                border.width: 1
+                border.color: "blue"
+            }
         }
 
         VisualDataModel{
@@ -198,7 +240,7 @@ Page {
             id: teamWindow
             width:root.width
             height: root.height/7
-            color: "lightblue"
+            color: "transparent"
             ListView{
                 model: visualModel
                 anchors.fill: parent
@@ -211,15 +253,33 @@ Page {
             id: bottom
             width: root.width
             height: root.height/12
+            color: "transparent"
             Button{
-                width: parent.width/4
+                width: parent.width/3
+                height:parent.height/1.5
+                style: ButtonStyle {
+                        background: Rectangle {
+                            anchors.fill: parent
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 8
+                            gradient: Gradient {
+                                    GradientStop { position: 0.0; color: "white" }
+                                    GradientStop { position: 1.0; color: control.pressed ? "darkred" :"darkblue" }
+                            }
+                            Text{
+                                text: "Random Team"
+                                font.pointSize: 12
+                                anchors.centerIn: parent
+                                color: "white"
+                            }
+                        }
+                }
                 anchors {
                     right: parent.right
                     rightMargin: U.dp(0.2)
                     verticalCenter: parent.verticalCenter
                  }
-
-                text: "Random Team"
                 onClicked: {
                     analyserAccess.generateRandomTeam();
                 }

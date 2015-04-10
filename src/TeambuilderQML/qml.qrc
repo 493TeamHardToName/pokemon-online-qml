@@ -14,9 +14,10 @@
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-225-chevron-left.png</file>
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-267-flag.png</file>
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-387-log-in.png</file>
+        <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-601-chevron-up.png</file>
+        <file>qml/graphics/background2.jpeg</file>
         <file>qml/components/TypeBox.qml</file>
         <file>qml/components/PokemonDetails.qml</file>
-        <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-601-chevron-up.png</file>
         <file>qml/components/StatBox.qml</file>
     </qresource>
     <qresource prefix="/battlescene">
