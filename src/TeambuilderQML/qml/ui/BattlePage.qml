@@ -11,6 +11,7 @@ Comp.Page {
     property bool switchEnabled:  true
     property string logHtml: ""
     property bool battleEnded: false
+    property bool mustSwitchPokemon: false
     signal goBack();
     signal disable();
 
@@ -42,7 +43,7 @@ Comp.Page {
             battleEnded = true;
         }
         onSwitchToPokemonTab: {
-            tabView.currentIndex = 1;
+            mustSwitchPokemon = true;
         }
     }
 
@@ -50,7 +51,7 @@ Comp.Page {
         target: analyserAccess.battleClientLog
         onLineToBePrinted: {
             logHtml += line.replace(/<(?:.|\n)*?>/gm, '').replace("&apos;", '\''); + "\n"
-            stuffAtBottom.currentIndex = 2;
+            tabView.currentIndex = 2;
         }
     }
 
@@ -59,52 +60,49 @@ Comp.Page {
         width: parent.width
         anchors {
             top: parent.top
-            bottom: stuffAtBottom.top
+            bottom: tabView.top
         }
 
         Component.onCompleted: analyserAccess.createBattleSceneItem(battleSceneContainer)
     }
 
-    SplitView {
-        id: stuffAtBottom
+    Item {
+        id: tabView
         width: parent.width
         height: U.dp(3)
         anchors.bottom: parent.bottom
-        Item {
-            id: tabView
-            width: parent.width / 2
-            height: parent.height
-            property int currentIndex: 0
-            Row {
-                id: tabButtons
-                height: moveB.height
-                Button {
-                    id: moveB
-                    text: "Moves"
-                    onClicked: tabView.currentIndex = 0;
-                }
-                Button {
-                    text: "Pokemons"
-                    onClicked: tabView.currentIndex = 1;
+        property int currentIndex: 0
+        Row {
+            id: tabButtons
+            width: parent.width
+            Repeater {
+                model: ["Moves", "Pokemons","Log"]
+                delegate: Button {
+                    text: modelData
+                    onClicked: tabView.currentIndex = index;
+                    Component.onCompleted: tabButtons.height = height
                 }
             }
+        }
 
-            Item {
-                id: attackTab
+        Item {
+            id: tabContent
+            width: parent.width
+            anchors {
+                top: tabButtons.bottom
+                bottom: parent.bottom
+            }
+
+            Flow {
                 visible: tabView.currentIndex == 0
-                anchors {
-                    top: tabButtons.bottom
-                    bottom: parent.bottom
-                }
-                width: parent.width
-                ListView {
-                    anchors.fill: parent
+                anchors.fill: parent
+                Repeater {
                     model: analyserAccess.attackListModel
                     delegate: Button {
                         id: atkButton
                         enabled: true
-                        width: parent.width
-                        height: attackTab.height / 4
+                        width: tabContent.width / 2
+                        height: tabContent.height / 2
 
                         style: ButtonStyle {
                             background: Item {
@@ -153,72 +151,70 @@ Comp.Page {
                     }
                 }
             }
-            Item {
+            ListView {
+                id: pokesColumn
                 visible: tabView.currentIndex == 1
                 anchors {
-                    top: tabButtons.bottom
+                    top: parent.top
                     bottom: parent.bottom
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: U.dp(0.1)
+                    rightMargin: U.dp(0.1)
                 }
-                width: parent.width
-                ListView {
-                    id: pokesColumn
-                    anchors {
-                        top: parent.top
-                        bottom: parent.bottom
-                        left: parent.left
-                        right: parent.right
-                        leftMargin: U.dp(0.1)
-                        rightMargin: U.dp(0.1)
+                spacing: U.dp(0.1)
+                model: analyserAccess.pokemonListModel
+                clip: true
+                delegate: Button {
+                    height: U.dp(0.6)
+                    width: parent.width
+                    Image {
+                        id: pokeIcon
+                        anchors {
+                            left: parent.left
+                            leftMargin: U.dp(0.1)
+                            verticalCenter: parent.verticalCenter
+                        }
+
+                        source: "image://pokeinfo/icon/" + num;
                     }
-                    spacing: U.dp(0.1)
-                    model: analyserAccess.pokemonListModel
-                    clip: true
-                    delegate: Button {
-                        height: U.dp(0.6)
-                        width: parent.width
-                        Image {
-                            id: pokeIcon
-                            anchors {
-                                left: parent.left
-                                leftMargin: U.dp(0.1)
-                                verticalCenter: parent.verticalCenter
-                            }
 
-                            source: "image://pokeinfo/icon/" + num;
+                    Column {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                            left: pokeIcon.right
+                            leftMargin: U.dp(0.1)
                         }
 
-                        Column {
-                            anchors {
-                                verticalCenter: parent.verticalCenter
-                                right: parent.right
-                                left: pokeIcon.right
-                                leftMargin: U.dp(0.1)
-                            }
-
-                            Label {
-                                text: name
-                            }
-                            Label {
-                                text: hp + "/" + hpMax
-                            }
+                        Label {
+                            text: name
                         }
-                        enabled: switchEnabled && !isKoed && index != 0
-                        onClicked: {
-                            tabView.currentIndex = 0;
-                            disable()
-                            switchEnabled = false
-                            analyserAccess.switchClicked(index)
+                        Label {
+                            text: hp + "/" + hpMax
                         }
+                    }
+                    enabled: switchEnabled && !isKoed && index != 0
+                    onClicked: {
+                        disable();
+                        switchEnabled = false;
+                        mustSwitchPokemon = false;
+                        analyserAccess.switchClicked(index)
                     }
                 }
             }
-        }
-        TextArea {
-            id: logWebview
-            width: parent.width / 2
-            height: parent.height
-            text: logHtml
-            onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
+
+            TextArea {
+                anchors.fill: parent
+                visible: tabView.currentIndex == 2
+                text: logHtml
+                onTextChanged: flickableItem.contentY = flickableItem.contentHeight - height
+                readOnly: true
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: tabView.currentIndex = (mustSwitchPokemon ? 1 : 0);
+                }
+            }
         }
     }
 }
