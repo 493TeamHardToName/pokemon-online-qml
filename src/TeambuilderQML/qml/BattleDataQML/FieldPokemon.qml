@@ -49,7 +49,7 @@ Item {
         id: hp
         parent: woof.parent
         anchors.horizontalCenter: woof.horizontalCenter
-        y: woof.y - 10 - ((calculateScale(woof.z)-1)*woof.height*0.8);
+        y: woof.y /*- 10*/ - ((calculateScale(woof.z)-1)*woof.height*0.8);
     }
 
     Text {
