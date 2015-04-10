@@ -11,6 +11,8 @@
 #include "libraries/PokemonInfo/pokemoninfo.h"
 #include "libraries/PokemonInfo/movesetchecker.h"
 #include "libraries/BattleManager/pokemoninfoaccessorqtquick.h"
+#include "libraries/BattleManager/defaulttheme.h"
+#include "pokemoninfoaccess.h"
 
 #include "analyzeraccess.h"
 
@@ -65,8 +67,10 @@ int main(int argc, char *argv[])
     qmlRegisterType<PokeTableModel>("PokemonOnlineQml", 1, 0, "PokeTableModel");
     qmlRegisterType<TeamHolder>("PokemonOnlineQml", 1, 0, "TeamHolder");
     qmlRegisterType<AnalyzerAccess>("PokemonOnlineQml", 1, 0, "AnalyzerAccess");
+    qmlRegisterSingletonType<PokemonInfoAccess>("PokemonOnlineQml", 1, 0, "PokemonInfoAccess", PokemonInfoAccess::provider);
     engin->addImageProvider("pokeinfo", new PokemonInfoAccessorQtQuick());
     engin->rootContext()->setContextProperty("screenDpi", dpi);
+    engin->rootContext()->setContextProperty("battleTheme", Theme::getBattleTheme());
 
     engin->load(QUrl("qrc:/qml/main.qml"));
     return app.exec();
