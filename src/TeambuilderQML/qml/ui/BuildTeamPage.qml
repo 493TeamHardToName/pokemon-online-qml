@@ -57,6 +57,7 @@ Page {
     }
 
     Column{
+        width: parent.width
         Rectangle{
             color: "lightBlue"
             id: setNameWindow
@@ -117,9 +118,7 @@ Page {
                         MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-                                    //pokeImage.source = "image://pokeinfo/pokemon/5"
-                                    //get move information;
-                                    analyserAccess.getMoves(index);
+                                    pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
                                 }
                         }
                     }
@@ -133,20 +132,9 @@ Page {
            }
         }
 
-
-
-        Rectangle{
+        PokemonDetails {
             id: pokeInfoWindow
-            width:root.width
-            height:root.height/6
-            border.width: 1
-            border.color: "blue"
-
-            Column{
-                Text{
-                    text: "Pokemon Info:"
-                }
-            }
+            width: parent.width
         }
 
         VisualDataModel{
@@ -182,6 +170,7 @@ Page {
                                     selectedGroup.remove(0, selectedGroup.count)
                                 item.VisualDataModel.inSelected = !item.VisualDataModel.inSelected
                                 analyserAccess.setPos(index);
+                                pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(analyserAccess.userTeamInfo(index));
                             }
                     }
                 }

@@ -19,6 +19,7 @@
 #include "pokemonlistmodel.h"
 #include <random>
 #include <algorithm>
+#include "poketeamaccess.h"
 
 class AnalyzerAccess : public QObject, public BattleCommandManager<AnalyzerAccess>
 {
@@ -44,7 +45,7 @@ public:
     Q_INVOKABLE void generateRandomTeam();
     Q_INVOKABLE void downloadTeam();
     Q_INVOKABLE int userTeamInfo(int id);
-    Q_INVOKABLE void getPokeInfo(int pos);
+    Q_INVOKABLE QObject *getPokeInfo(int pos);
     //Q_INVOKABLE QString getMoves(int pos);
 
     Q_INVOKABLE void acceptChallenge();
@@ -58,6 +59,7 @@ public:
     QAbstractItemModel *attackListModel();
     QAbstractItemModel *pokemonListModel();
     QObject *battleClientLog();
+    QObject *pokeTeamAccess();
 signals:
 
     void modelChanged();
@@ -146,6 +148,7 @@ private:
     int m_battleId;
     PokemonListModel *m_pokemonListModel;
     BattleSceneQtQuick *m_battleSceneQtQuick;
+    PokeTeamAccess *m_pokeTeamAccess;
 
     void sendChoice(const BattleChoice &b);
 };
