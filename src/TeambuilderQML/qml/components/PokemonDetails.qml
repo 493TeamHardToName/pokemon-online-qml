@@ -15,7 +15,10 @@ Item {
 
     Button {
         iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-601-chevron-up.png")
-        onClicked: infoModel = null
+        onClicked: {
+            moveDescriptionLabel.text = ""
+            infoModel = null
+        }
         height: U.dp(0.3)
         width: height
         anchors {
@@ -82,6 +85,36 @@ Item {
                         text: PokemonInfoAccess.moveName(modelData)
                         anchors.centerIn: parent
                     }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            moveDescriptionLabel.text = PokemonInfoAccess.moveDescription(modelData, infoModel.gen)
+                        }
+                    }
+                }
+            }
+        }
+        Label {
+            id: moveDescriptionLabel
+            width: parent.width
+            wrapMode: Text.WordWrap
+            clip: true
+
+            Button {
+
+                Behavior on height {
+                    NumberAnimation { duration: 400 }
+                }
+
+                iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-601-chevron-up.png")
+                onClicked: moveDescriptionLabel.text = ""
+                visible: moveDescriptionLabel.text.length > 0
+                height: U.dp(0.3)
+                width: height
+                anchors {
+                    top: parent.top
+                    right: parent.right
+                    margins: U.dp(0.1)
                 }
             }
         }

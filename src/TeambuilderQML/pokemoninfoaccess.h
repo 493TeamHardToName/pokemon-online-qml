@@ -14,6 +14,7 @@ public:
     Q_INVOKABLE QString moveName(int move);
     Q_INVOKABLE QString pokemonName(QString num);
     Q_INVOKABLE QVariantList pokemonBaseStates(QString num, QString gen);
+    Q_INVOKABLE QString moveDescription(int moveNum, QString genString);
 
     static QObject *provider(QQmlEngine *engine, QJSEngine *scriptEngine);
 signals:
