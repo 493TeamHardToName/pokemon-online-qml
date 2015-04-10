@@ -54,7 +54,7 @@ Page {
         delegate: Item {
             id: item
             height: (name.indexOf("poqmtest") === 0 && playerId !== analyserAccess.currentPlayerId()) ? 30 : 0 //name is a variable of playersInfoListModel
-            width: 150
+            width: parent.width
             clip: true
 
             Row {
