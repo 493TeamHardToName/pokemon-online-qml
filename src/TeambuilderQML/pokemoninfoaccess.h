@@ -13,6 +13,7 @@ public:
     Q_INVOKABLE QString typeName(int type);
     Q_INVOKABLE QString moveName(int move);
     Q_INVOKABLE QString pokemonName(QString num);
+    Q_INVOKABLE QVariantList pokemonBaseStates(QString num, QString gen);
 
     static QObject *provider(QQmlEngine *engine, QJSEngine *scriptEngine);
 signals:

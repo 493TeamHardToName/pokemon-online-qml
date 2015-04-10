@@ -17,6 +17,7 @@
         <file>qml/components/TypeBox.qml</file>
         <file>qml/components/PokemonDetails.qml</file>
         <file>qml/graphics/glyphicons_free/glyphicons/png/glyphicons-601-chevron-up.png</file>
+        <file>qml/components/StatBox.qml</file>
     </qresource>
     <qresource prefix="/battlescene">
         <file>qml/BattleDataQML/CommonEffects/StatDown.qml</file>

@@ -57,7 +57,12 @@ Page {
     }
 
     Column{
-        width: parent.width
+        anchors {
+            left: parent.left
+            right: parent.right
+            margins: U.dp(0.1)
+        }
+
         Rectangle{
             color: "lightBlue"
             id: setNameWindow
