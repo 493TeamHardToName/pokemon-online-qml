@@ -15,6 +15,8 @@ Comp.Page {
     signal goBack();
     signal disable();
 
+    onDisable: switchEnabled = false
+
     backAction: Action {
         id: end
         text: battleEnded ? "Close" : "Forfeit"
@@ -75,12 +77,29 @@ Comp.Page {
         Row {
             id: tabButtons
             width: parent.width
+            height: U.dp(0.4)
+
+            Item {
+                height: parent.height
+                width: U.dp(0.1)
+            }
+
             Repeater {
                 model: ["Moves", "Pokemons","Log"]
                 delegate: Button {
                     text: modelData
                     onClicked: tabView.currentIndex = index;
-                    Component.onCompleted: tabButtons.height = height
+                    height: tabButtons.height
+                    width: implicitWidth + U.dp(0.2)
+                    style: ButtonStyle {
+                        background: Rectangle {
+                            radius: U.dp(0.1)
+                            anchors {
+                                fill: parent
+                            }
+                            color: (control.pressed || (tabView.currentIndex == index)) ? "#D6D3CF" : "#E6E4E2"
+                        }
+                    }
                 }
             }
         }
@@ -91,6 +110,11 @@ Comp.Page {
             anchors {
                 top: tabButtons.bottom
                 bottom: parent.bottom
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                color: "#F6F6F5"
             }
 
             Flow {
@@ -151,55 +175,53 @@ Comp.Page {
                     }
                 }
             }
-            ListView {
-                id: pokesColumn
+            Item {
+                id: pokemonsTab
                 visible: tabView.currentIndex == 1
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: U.dp(0.1)
-                    rightMargin: U.dp(0.1)
-                }
-                spacing: U.dp(0.1)
-                model: analyserAccess.pokemonListModel
-                clip: true
-                delegate: Button {
-                    height: U.dp(0.6)
+                anchors.fill: parent
+                anchors.margins: U.dp(0.1)
+                Flow {
+                    spacing: U.dp(0.1)
                     width: parent.width
-                    Image {
-                        id: pokeIcon
-                        anchors {
-                            left: parent.left
-                            leftMargin: U.dp(0.1)
-                            verticalCenter: parent.verticalCenter
-                        }
+                    Repeater {
+                        model: analyserAccess.pokemonListModel
+                        delegate: Button {
+                            height: U.dp(0.6)
+                            width: Math.max(pokemonsTab.width / 2 - U.dp(0.1), U.dp(2))
+                            Image {
+                                id: pokeIcon
+                                anchors {
+                                    left: parent.left
+                                    leftMargin: U.dp(0.1)
+                                    verticalCenter: parent.verticalCenter
+                                }
 
-                        source: "image://pokeinfo/icon/" + num;
-                    }
+                                source: "image://pokeinfo/icon/" + num;
+                            }
 
-                    Column {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            right: parent.right
-                            left: pokeIcon.right
-                            leftMargin: U.dp(0.1)
-                        }
+                            Column {
+                                anchors {
+                                    verticalCenter: parent.verticalCenter
+                                    right: parent.right
+                                    left: pokeIcon.right
+                                    leftMargin: U.dp(0.1)
+                                }
 
-                        Label {
-                            text: name
+                                Label {
+                                    text: name
+                                }
+                                Label {
+                                    text: hp + "/" + hpMax
+                                }
+                            }
+                            enabled: switchEnabled && !isKoed && index != 0
+                            onClicked: {
+                                disable();
+                                switchEnabled = false;
+                                mustSwitchPokemon = false;
+                                analyserAccess.switchClicked(index)
+                            }
                         }
-                        Label {
-                            text: hp + "/" + hpMax
-                        }
-                    }
-                    enabled: switchEnabled && !isKoed && index != 0
-                    onClicked: {
-                        disable();
-                        switchEnabled = false;
-                        mustSwitchPokemon = false;
-                        analyserAccess.switchClicked(index)
                     }
                 }
             }
@@ -213,6 +235,9 @@ Comp.Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: tabView.currentIndex = (mustSwitchPokemon ? 1 : 0);
+                }
+                style: TextAreaStyle {
+                    backgroundColor: "#F6F6F5"
                 }
             }
         }
