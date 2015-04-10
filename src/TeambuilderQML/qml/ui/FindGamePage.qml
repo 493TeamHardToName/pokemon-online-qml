@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Dialogs 1.2
 import "../components"
 import PokemonOnlineQml 1.0
 import "../js/units.js" as U
@@ -6,6 +7,7 @@ import QtQuick.Controls 1.3
 
 Page {
     property int playerid;
+    property string adversaryName;
     signal goBack;
     signal goToBattle;
     anchors.fill: parent
@@ -23,26 +25,19 @@ Page {
 
     Component.onCompleted: analyserAccess.connectTo("188.165.244.152", 5080)
 
-    Component {
-        id: challengePopupComponent
-        ChallengeDialog {
-            onDecline: analyserAccess.declineChallenge();
-            onAccept: analyserAccess.acceptChallenge();
-        }
-    }
-
     Connections {
         target: analyserAccess
-        onChallengeRecieved: challengePopupComponent.createObject(
-                                 pokemonOnlineQml, {
-                                    playerName: playerName
-                                 });
+        onChallengeRecieved: {
+            challengeDialog.playerName = playerName;
+            challengeDialog.open();
+        }
         onBattleStarted: {
+            waitingDialog.close();
             goToBattle();
-            waitingDialog.visible = false;
         }
         onChallengeDeclined: {
-            waitingDialog.visible = false;
+            waitingDialog.text = "Player " + waitingDialog.playerName.substring(9) + " declined your challenge. ";
+            waitingDialog.standardButtons = StandardButton.Close;
         }
     }
 
@@ -57,44 +52,81 @@ Page {
         ]
         delegate: Rectangle {
             id: item
-            height: name.indexOf("poqmtest") == 0 ? 25 : 0 //name is a variable of playersInfoListModel
-            width: 250
-
+            height: name.indexOf("poqmtest") == 0 ? 30 : 0 //name is a variable of playersInfoListModel
+            width: 150
             clip: true
-            Text {
-                text: {
-                    var text = "Name: " + name.substring(9)
-                    if(isBattling)
-                        color = "grey"
-                    return text;
-                }
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if(!isBattling) {
-                        challengeMenu.popup()
-                        playerid = playerId
+
+                Row {
+                    spacing: 10
+
+                    Column {
+                        height: parent.height
+                        width: 15
+                    }
+
+                    Image {
+                        id: statusImg
+                        source: {
+                            var path = Qt.resolvedUrl("../../Themes/Classic/client/uAvailable.png")
+                            if(isBattling)
+                                path = Qt.resolvedUrl("../../Themes/Classic/client/uBattle.png")
+                            return path
+                        }
+                    }
+
+                    Text {
+                        font.pointSize: 16
+                        text: {
+                            var text = name.substring(9)
+                            if(isBattling)
+                                color = "grey"
+                            return text;
+                        }
                     }
                 }
-            }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if(!isBattling) {
+                            challengeMenu.popup();
+                            playerid = playerId;
+                            adversaryName = name;
+                            waitingDialog.playerName = name;
+                        }
+                    }
+                }
         }
     }
     Column {
         width: parent.width
-        Text {
-            text: "Online players"
+        spacing: 10
+
+        Row {
+            height: 10
+            width: 100
         }
+
         ListView {
             width: parent.width
             height: U.dp(4)
             model: visualModel
         }
+
+        Row {
+            height: 10
+            width: 100
+        }
+    }
+
+    ChallengeDialog{
+        id: challengeDialog
+        onAccept: analyserAccess.acceptChallenge();
+        onDecline: analyserAccess.declineChallenge();
     }
 
     WaitingDialog {
         id: waitingDialog
-        visible: false
     }
 
     MouseArea {
@@ -107,9 +139,9 @@ Page {
     Menu {
         id: challengeMenu
         MenuItem {
-            text: "Challenge"
+            text: "Challenge to " + adversaryName.substring(9)
             onTriggered: {
-                waitingDialog.visible = true
+                waitingDialog.open()
                 analyserAccess.sendChallenge(playerid)
                 challengeMenu.visible = false
             }
