@@ -188,6 +188,16 @@ Comp.Page {
                         delegate: Button {
                             height: U.dp(0.6)
                             width: Math.max(pokemonsTab.width / 2 - U.dp(0.1), U.dp(2))
+                            style: ButtonStyle {
+                                background: Rectangle {
+                                    radius: U.dp(0.1)
+                                    anchors {
+                                        fill: parent
+                                    }
+                                    color: (control.pressed || (tabView.currentIndex == index)) ? "#D6D3CF" : "#E6E4E2"
+                                }
+                            }
+
                             Image {
                                 id: pokeIcon
                                 anchors {

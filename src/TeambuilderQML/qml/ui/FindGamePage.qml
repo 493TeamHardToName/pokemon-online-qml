@@ -51,7 +51,7 @@ Page {
             }
         ]
 
-        delegate: Rectangle {
+        delegate: Item {
             id: item
             height: (name.indexOf("poqmtest") === 0 && playerId !== analyserAccess.currentPlayerId()) ? 30 : 0 //name is a variable of playersInfoListModel
             width: 150
@@ -73,6 +73,7 @@ Page {
                             path = Qt.resolvedUrl("../../Themes/Classic/client/uBattle.png")
                         return path
                     }
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Label {
@@ -83,6 +84,7 @@ Page {
                             color = "grey"
                         return text;
                     }
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
