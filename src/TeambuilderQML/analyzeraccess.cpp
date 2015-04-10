@@ -599,6 +599,11 @@ void AnalyzerAccess::forfeit()
     m_analyzer->sendBattleResult(m_battleId, Forfeit);
 }
 
+int AnalyzerAccess::currentPlayerId()
+{
+    return _mid;
+}
+
 void AnalyzerAccess::sendChoice(const BattleChoice &b)
 {
     QByteArray ar;

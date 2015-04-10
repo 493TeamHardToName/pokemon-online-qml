@@ -132,7 +132,10 @@ Page {
                         MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
+<<<<<<< HEAD
+=======
                                     pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
+>>>>>>> 7cd221b53f855b1419c396b6a1973a586b8ca341
                                 }
                         }
                     }
@@ -234,13 +237,21 @@ Page {
         Rectangle{
             id: teamWindow
             width:root.width
-            height: root.height/7
+            height: myTeamBox.height
             color: "transparent"
-            ListView{
-                model: visualModel
-                anchors.fill: parent
-                orientation: ListView.Horizontal
-                interactive: false
+            border.color: "darkblue"
+            border.width: U.dp(0.03)
+            Column{
+                id:myTeamBox
+                width: parent.width
+                Text{font.family: "Apple Chancery"; text: "Your Team:"; font.bold: true; font.pointSize: U.dp(0.2); color: "blue" }
+                ListView{
+                        model: visualModel
+                        height: U.dp(1)
+                        width: parent.width
+                        orientation: ListView.Horizontal
+                        interactive: false
+                }
             }
         }
 
