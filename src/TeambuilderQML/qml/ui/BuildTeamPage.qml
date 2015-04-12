@@ -56,11 +56,6 @@ Page {
         //hold a list of all pokemons
     }
 
-    Image {
-       anchors.fill: parent
-       opacity: 0.5
-       source: Qt.resolvedUrl("../graphics/background2.jpeg")
-    }
     Flickable {
         anchors.fill: parent
         contentHeight: mainContentColumn.height +U.dp(0.2)

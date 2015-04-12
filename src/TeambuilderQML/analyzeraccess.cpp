@@ -95,6 +95,7 @@ void AnalyzerAccess::sendChallenge(int playerId)
     cinfo.dsc = ChallengeInfo::Sent;
     cinfo.opp = playerId;
     cinfo.mode = 0;
+    cinfo.clauses |= ChallengeInfo::NoTimeOut;
     //cinfo.clauses = ChallengeInfo::ChallengeCup;
     //TODO tire can change here.
     PlayerInfo myInfo = m_playerInfoListModel->findPlayerById(_mid);
@@ -597,6 +598,11 @@ void AnalyzerAccess::logout()
 void AnalyzerAccess::forfeit()
 {
     m_analyzer->sendBattleResult(m_battleId, Forfeit);
+}
+
+int AnalyzerAccess::currentPlayerId()
+{
+    return _mid;
 }
 
 void AnalyzerAccess::sendChoice(const BattleChoice &b)

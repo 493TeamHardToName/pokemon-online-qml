@@ -12,7 +12,7 @@ Page {
     signal goToBattle;
     anchors.fill: parent
 
-    title: 'Online Players'
+    title: 'Game Lobby'
 
     backAction: Action {
         text: "Back"
@@ -50,54 +50,58 @@ Page {
                 name: "selected"
             }
         ]
-        delegate: Rectangle {
+
+        delegate: Item {
             id: item
-            height: name.indexOf("poqmtest") == 0 ? 30 : 0 //name is a variable of playersInfoListModel
-            width: 150
+            height: (name.indexOf("poqmtest") === 0 && playerId !== analyserAccess.currentPlayerId()) ? 30 : 0 //name is a variable of playersInfoListModel
+            width: parent.width
             clip: true
 
-                Row {
-                    spacing: 10
+            Row {
+                spacing: 10
 
-                    Column {
-                        height: parent.height
-                        width: 15
-                    }
-
-                    Image {
-                        id: statusImg
-                        source: {
-                            var path = Qt.resolvedUrl("../../Themes/Classic/client/uAvailable.png")
-                            if(isBattling)
-                                path = Qt.resolvedUrl("../../Themes/Classic/client/uBattle.png")
-                            return path
-                        }
-                    }
-
-                    Text {
-                        font.pointSize: 16
-                        text: {
-                            var text = name.substring(9)
-                            if(isBattling)
-                                color = "grey"
-                            return text;
-                        }
-                    }
+                Column {
+                    height: parent.height
+                    width: 15
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        if(!isBattling) {
-                            challengeMenu.popup();
-                            playerid = playerId;
-                            adversaryName = name;
-                            waitingDialog.playerName = name;
-                        }
+                Image {
+                    id: statusImg
+                    source: {
+                        var path = Qt.resolvedUrl("../../Themes/Classic/client/uAvailable.png")
+                        if(isBattling)
+                            path = Qt.resolvedUrl("../../Themes/Classic/client/uBattle.png")
+                        return path
+                    }
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Label {
+                    font.pointSize: 16
+                    text: {
+                        var text = name.substring(9)
+                        if(isBattling)
+                            color = "grey"
+                        return text;
+                    }
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if(!isBattling) {
+                        playerid = playerId;
+                        adversaryName = name;
+                        waitingDialog.playerName = name;
+                        challengeMenu.popup();
                     }
                 }
+            }
         }
     }
+
     Column {
         width: parent.width
         spacing: 10
@@ -105,6 +109,31 @@ Page {
         Row {
             height: 10
             width: 100
+        }
+
+        Label {
+            font.pointSize: 20
+            text: "Your ID: " + analyserAccess.playersInfoListModel.findPlayerNameById(
+                      analyserAccess.currentPlayerId()).substring(9)
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: 2
+            color: "grey"
+        }
+
+        Row {
+            spacing: 10
+            Column {
+                height: parent.height
+                width: 15
+            }
+            Label {
+                font.pointSize: 16
+                text: "Online Players"
+            }
         }
 
         ListView {
@@ -127,13 +156,6 @@ Page {
 
     WaitingDialog {
         id: waitingDialog
-    }
-
-    MouseArea {
-        id: blockArea
-        anchors.fill: parent
-        onClicked: {}
-        enabled: waitingDialog.visible
     }
 
     Menu {

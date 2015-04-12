@@ -31,6 +31,13 @@ Item {
         return closeScale + (z-closePos) / (farPos-closePos) * (farScale-closeScale);
     }
 
+    function stripPrefix(name) {
+        if (name.indexOf("poqmtest_") == 0) {
+            name = name.substring("poqmtest_".length);
+        }
+        return name;
+    }
+
     /* Rectangle used by the weather */
     Rectangle{
         id: weatherOverlay;
@@ -78,7 +85,7 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: battle.data.team(playerBack).name
+            text: stripPrefix(battle.data.team(playerBack).name)
             color: Qt.darker(parent.border.color, 3)
         }
 
@@ -125,7 +132,7 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: battle.data.team(playerFront).name
+            text: stripPrefix(battle.data.team(playerFront).name)
             color: Qt.darker(parent.border.color, 5)
         }
 
@@ -221,7 +228,8 @@ Item {
         fieldPokemon: battle.data.field.poke(playerBack)
         pokemon: team1.team.poke(0)
         anchors.left: parent.left
-        anchors.leftMargin: bg.width === 500 ? 55 : 90
+//        anchors.leftMargin: bg.width === 500 ? 55 : 90
+        anchors.leftMargin: bg.width / 10
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 55
     }
@@ -233,7 +241,8 @@ Item {
         fieldPokemon: battle.data.field.poke(playerFront)
         pokemon: team2.team.poke(0)
         anchors.right: parent.right
-        anchors.rightMargin: bg.width === 500 ? 65 : 115
+//        anchors.rightMargin: bg.width === 500 ? 65 : 115
+        anchors.rightMargin: bg.width / 10
         anchors.top: parent.top
         anchors.topMargin: 55
     }
