@@ -87,6 +87,8 @@ Item {
             anchors.centerIn: parent
             text: stripPrefix(battle.data.team(playerBack).name)
             color: Qt.darker(parent.border.color, 3)
+            width: Math.min(implicitWidth, parent.width)
+            elide: Text.ElideRight
         }
 
         MouseArea {
@@ -134,6 +136,8 @@ Item {
             anchors.centerIn: parent
             text: stripPrefix(battle.data.team(playerFront).name)
             color: Qt.darker(parent.border.color, 5)
+            width: Math.min(implicitWidth, parent.width)
+            elide: Text.ElideRight
         }
 
         MouseArea {
@@ -244,7 +248,7 @@ Item {
 //        anchors.rightMargin: bg.width === 500 ? 65 : 115
         anchors.rightMargin: bg.width / 10
         anchors.top: parent.top
-        anchors.topMargin: 55
+        anchors.topMargin: bg.height * 0.15
     }
 
     Connections {

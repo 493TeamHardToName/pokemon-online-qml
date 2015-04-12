@@ -20,7 +20,7 @@ Page {
     property int selectPokeId : -1
     anchors.fill: parent
 
-    title: "Build team"
+//    title: "Build team"
 
     backAction: Action {
         text: "Back"
@@ -67,9 +67,11 @@ Page {
     }
 
     Flickable {
+        id: contentFlick
         anchors.fill: parent
         contentHeight: mainContentColumn.height +U.dp(0.2)
         contentWidth: width
+
     Column{
         id: mainContentColumn
         anchors {
@@ -307,6 +309,14 @@ Page {
                 anchors.right: parent.right
                 anchors.left: parent.left
                 anchors.margins: U.dp(0.1)
+
+
+                property real lastHeight: 10
+                onHeightChanged: {
+                    if (height > lastHeight)
+                        contentFlick.contentY = contentFlick.contentHeight - contentFlick.height
+                    lastHeight = height
+                }
             }
         }
 

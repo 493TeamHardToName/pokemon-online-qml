@@ -9,6 +9,10 @@ Item {
     clip: true
     property var infoModel: null
 
+    onInfoModelChanged: {
+        clearMoveButton.clicked();
+    }
+
     Behavior on height {
         NumberAnimation { duration: 400 }
     }
@@ -77,7 +81,7 @@ Item {
             Repeater {
                 model: infoModel.moves
                 delegate: Rectangle {
-                    width: U.dp(1.1)
+                    width: U.dp(1.5)
                     height: U.dp(0.4)
                     radius: U.dp(0.05)
                     color: battleTheme.typeColor(infoModel.moveTypes[index]);
@@ -101,7 +105,7 @@ Item {
             clip: true
 
             Button {
-
+                id: clearMoveButton
                 Behavior on height {
                     NumberAnimation { duration: 400 }
                 }

@@ -16,7 +16,7 @@ ApplicationWindow {
     property list<Action> actions
     property string pageTitle
     toolBar: ToolBar {
-        height: U.dp(0.4)
+        height: U.dp(0.8)
         Row {
             height: parent.height
             anchors {
@@ -48,8 +48,7 @@ ApplicationWindow {
             Repeater {
                 model: actions
                 delegate: ToolButton {
-                    height: U.dp(0.4)
-                    width: height
+                    height: U.dp(0.8)
                     text: actions[index].text
                     iconSource: actions[index].iconSource
                     onClicked: actions[index].trigger()

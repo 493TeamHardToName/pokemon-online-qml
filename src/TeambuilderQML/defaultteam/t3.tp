@@ -1,5 +1,5 @@
-<Team subgen="0" gen="6" defaultTier="" version="1">
-    <Pokemon Nickname="Machop" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="66" Gen="6" SubGen="0" Happiness="0" Ability="62" Nature="0">
+<Team gen="6" subgen="0" version="1" defaultTier="">
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="62" Gender="1" Nickname="Machop" Forme="0" Nature="0" Item="0" Num="66" Lvl="100" Happiness="0">
         <Move>238</Move>
         <Move>184</Move>
         <Move>116</Move>
@@ -17,7 +17,7 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Nickname="Geodude" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="74" Gen="6" SubGen="0" Happiness="0" Ability="69" Nature="0">
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="69" Gender="2" Nickname="Geodude" Forme="0" Nature="0" Item="0" Num="74" Lvl="100" Happiness="0">
         <Move>397</Move>
         <Move>444</Move>
         <Move>89</Move>
@@ -35,11 +35,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Nickname="Poliwhirl" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="61" Gen="6" SubGen="0" Happiness="0" Ability="11" Nature="0">
-        <Move>187</Move>
-        <Move>280</Move>
-        <Move>523</Move>
-        <Move>68</Move>
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="26" Gender="2" Nickname="Gastly" Forme="0" Nature="0" Item="0" Num="92" Lvl="100" Happiness="0">
+        <Move>174</Move>
+        <Move>399</Move>
+        <Move>101</Move>
+        <Move>95</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -53,11 +53,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Nickname="Lapras" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="131" Gen="6" SubGen="0" Happiness="0" Ability="11" Nature="0">
-        <Move>240</Move>
-        <Move>57</Move>
-        <Move>55</Move>
-        <Move>352</Move>
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="69" Gender="2" Nickname="Cubone" Forme="0" Nature="0" Item="0" Num="104" Lvl="100" Happiness="0">
+        <Move>125</Move>
+        <Move>374</Move>
+        <Move>29</Move>
+        <Move>37</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -71,11 +71,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Nickname="Slowpoke" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="79" Gen="6" SubGen="0" Happiness="0" Ability="12" Nature="0">
-        <Move>362</Move>
-        <Move>59</Move>
-        <Move>585</Move>
-        <Move>213</Move>
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="42" Gender="0" Nickname="Magnemite" Forme="0" Nature="0" Item="0" Num="81" Lvl="100" Happiness="0">
+        <Move>192</Move>
+        <Move>199</Move>
+        <Move>430</Move>
+        <Move>48</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -89,11 +89,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Nickname="Voltorb" Shiny="0" Item="0" Gender="0" Lvl="100" Forme="0" Num="100" Gen="6" SubGen="0" Happiness="0" Ability="43" Nature="0">
-        <Move>451</Move>
-        <Move>203</Move>
-        <Move>585</Move>
-        <Move>153</Move>
+    <Pokemon Gen="6" Shiny="0" SubGen="0" Ability="34" Gender="1" Nickname="Exeggcute" Forme="0" Nature="0" Item="0" Num="102" Lvl="100" Happiness="0">
+        <Move>326</Move>
+        <Move>79</Move>
+        <Move>76</Move>
+        <Move>115</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>

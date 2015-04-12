@@ -15,9 +15,15 @@ Item {
             delegate:
                 Row {
                     Label {
-                        text: headers[index] + ":"
+                        text: headers[index]
                         width: U.dp(1.5)
+                        elide: Text.ElideRight
                     }
+
+                    Label {
+                        text: ":"
+                    }
+
                     ProgressBar {
                         maximumValue: 180
                         minimumValue: 0
