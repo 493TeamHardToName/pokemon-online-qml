@@ -1,63 +1,9 @@
-<Team gen="6" version="1" subgen="0" defaultTier="">
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="65" Shiny="0" Num="1" Gender="2" Happiness="0" Lvl="100" SubGen="0" Nickname="Bulbasaur">
-        <Move>34</Move>
-        <Move>20</Move>
-        <Move>213</Move>
-        <Move>174</Move>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-    </Pokemon>
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="66" Shiny="0" Num="4" Gender="1" Happiness="0" Lvl="100" SubGen="0" Nickname="Charmander">
-        <Move>307</Move>
-        <Move>213</Move>
-        <Move>332</Move>
-        <Move>512</Move>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-    </Pokemon>
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="67" Shiny="0" Num="7" Gender="1" Happiness="0" Lvl="100" SubGen="0" Nickname="Squirtle">
-        <Move>401</Move>
-        <Move>392</Move>
-        <Move>453</Move>
-        <Move>213</Move>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-    </Pokemon>
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="19" Shiny="0" Num="10" Gender="2" Happiness="0" Lvl="100" SubGen="0" Nickname="Caterpie">
-        <Move>450</Move>
-        <Move>173</Move>
+<Team subgen="0" gen="6" defaultTier="" version="1">
+    <Pokemon Nickname="Bulbasaur" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="1" Gen="6" SubGen="0" Happiness="0" Ability="65" Nature="0">
         <Move>33</Move>
-        <Move>81</Move>
+        <Move>402</Move>
+        <Move>77</Move>
+        <Move>73</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -71,11 +17,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="19" Shiny="0" Num="13" Gender="1" Happiness="0" Lvl="100" SubGen="0" Nickname="Weedle">
-        <Move>527</Move>
-        <Move>450</Move>
-        <Move>40</Move>
-        <Move>81</Move>
+    <Pokemon Nickname="Charmander" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="4" Gen="6" SubGen="0" Happiness="0" Ability="66" Nature="0">
+        <Move>517</Move>
+        <Move>163</Move>
+        <Move>108</Move>
+        <Move>82</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -89,11 +35,65 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon Forme="0" Item="0" Nature="0" Gen="6" Ability="51" Shiny="0" Num="16" Gender="1" Happiness="0" Lvl="100" SubGen="0" Nickname="Pidgey">
-        <Move>332</Move>
-        <Move>97</Move>
-        <Move>314</Move>
-        <Move>403</Move>
+    <Pokemon Nickname="Squirtle" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="7" Gen="6" SubGen="0" Happiness="0" Ability="67" Nature="0">
+        <Move>44</Move>
+        <Move>401</Move>
+        <Move>130</Move>
+        <Move>229</Move>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+    </Pokemon>
+    <Pokemon Nickname="Pidgey" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="16" Gen="6" SubGen="0" Happiness="0" Ability="51" Nature="0">
+        <Move>17</Move>
+        <Move>297</Move>
+        <Move>239</Move>
+        <Move>98</Move>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+    </Pokemon>
+    <Pokemon Nickname="Rattata" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="19" Gen="6" SubGen="0" Happiness="0" Ability="50" Nature="0">
+        <Move>242</Move>
+        <Move>98</Move>
+        <Move>116</Move>
+        <Move>283</Move>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+    </Pokemon>
+    <Pokemon Nickname="Ekans" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="23" Gen="6" SubGen="0" Happiness="0" Ability="22" Nature="0">
+        <Move>584</Move>
+        <Move>44</Move>
+        <Move>137</Move>
+        <Move>426</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>

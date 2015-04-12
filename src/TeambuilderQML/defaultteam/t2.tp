@@ -1,9 +1,9 @@
-<Team defaultTier="" gen="6" subgen="0" version="1">
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Rattata" Gen="6" Gender="2" Forme="0" Ability="50" Item="0" Num="19">
-        <Move>372</Move>
-        <Move>213</Move>
-        <Move>44</Move>
-        <Move>59</Move>
+<Team subgen="0" gen="6" defaultTier="" version="1">
+    <Pokemon Nickname="Pikachu" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="25" Gen="6" SubGen="0" Happiness="0" Ability="9" Nature="0">
+        <Move>435</Move>
+        <Move>104</Move>
+        <Move>21</Move>
+        <Move>86</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -17,11 +17,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Ekans" Gen="6" Gender="2" Forme="0" Ability="22" Item="0" Num="23">
-        <Move>51</Move>
-        <Move>491</Move>
-        <Move>401</Move>
-        <Move>213</Move>
+    <Pokemon Nickname="Sandshrew" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="27" Gen="6" SubGen="0" Happiness="0" Ability="8" Nature="0">
+        <Move>89</Move>
+        <Move>210</Move>
+        <Move>201</Move>
+        <Move>14</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -35,29 +35,11 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Sandshrew" Gen="6" Gender="1" Forme="0" Ability="8" Item="0" Num="27">
-        <Move>213</Move>
-        <Move>332</Move>
-        <Move>280</Move>
-        <Move>498</Move>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-    </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Nidoran-F" Gen="6" Gender="2" Forme="0" Ability="38" Item="0" Num="29">
-        <Move>59</Move>
-        <Move>498</Move>
-        <Move>213</Move>
+    <Pokemon Nickname="Nidoran-F" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="29" Gen="6" SubGen="0" Happiness="0" Ability="38" Nature="0">
         <Move>242</Move>
+        <Move>305</Move>
+        <Move>390</Move>
+        <Move>24</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
@@ -71,29 +53,47 @@
         <EV>0</EV>
         <EV>0</EV>
     </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Clefairy" Gen="6" Gender="2" Forme="0" Ability="56" Item="0" Num="35">
-        <Move>340</Move>
-        <Move>312</Move>
-        <Move>213</Move>
-        <Move>495</Move>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <DV>31</DV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-        <EV>0</EV>
-    </Pokemon>
-    <Pokemon SubGen="0" Nature="0" Happiness="0" Lvl="100" Shiny="0" Nickname="Vulpix" Gen="6" Gender="2" Forme="0" Ability="18" Item="0" Num="37">
+    <Pokemon Nickname="Clefairy" Shiny="0" Item="0" Gender="1" Lvl="100" Forme="0" Num="35" Gen="6" SubGen="0" Happiness="0" Ability="56" Nature="0">
+        <Move>572</Move>
+        <Move>227</Move>
         <Move>34</Move>
-        <Move>585</Move>
-        <Move>50</Move>
-        <Move>445</Move>
+        <Move>236</Move>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+    </Pokemon>
+    <Pokemon Nickname="Vulpix" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="37" Gen="6" SubGen="0" Happiness="0" Ability="18" Nature="0">
+        <Move>126</Move>
+        <Move>286</Move>
+        <Move>109</Move>
+        <Move>371</Move>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <DV>31</DV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+        <EV>0</EV>
+    </Pokemon>
+    <Pokemon Nickname="Meowth" Shiny="0" Item="0" Gender="2" Lvl="100" Forme="0" Num="52" Gen="6" SubGen="0" Happiness="0" Ability="53" Nature="0">
+        <Move>269</Move>
+        <Move>185</Move>
+        <Move>103</Move>
+        <Move>400</Move>
         <DV>31</DV>
         <DV>31</DV>
         <DV>31</DV>
