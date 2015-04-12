@@ -21,6 +21,15 @@ Page {
     anchors.fill: parent
 
     title: "Build team"
+
+    backAction: Action {
+        text: "Back"
+        iconSource: Qt.resolvedUrl("../graphics/glyphicons_free/glyphicons/png/glyphicons-225-chevron-left.png")
+        onTriggered: {
+            goBack();
+        }
+    }
+
     actions: [
         Action {
             text: "Login"
@@ -139,12 +148,12 @@ Page {
             }
         }
 
-        Rectangle{
+        Rectangle {
             id: bottom
             width: root.width
             height: root.height/12
             color: "transparent"
-            Button{
+            Button {
                 width: parent.width/3
                 height:parent.height/1.5
                 style: ButtonStyle {
@@ -159,7 +168,7 @@ Page {
                             }
                         }
                 }
-                Text{
+                Text {
                     text: "Random Team"
                     font.pointSize: 12
                     anchors.centerIn: parent
@@ -175,7 +184,7 @@ Page {
                 }
             }
 
-            Button{
+            Button {
                 id : chooseButton
                 enabled: buttonEn ? true : false
                 width: parent.width/3
@@ -192,17 +201,20 @@ Page {
                             }
                         }
                 }
-                Text{
+
+                Text {
                     text: buttonCancel ? "Cancel" :  "Choose Pokemon"
                     font.pointSize: 12
                     anchors.centerIn: parent
                     color: "white"
                 }
+
                 anchors {
                     left: parent.left
                     leftMargin: U.dp(0.2)
                     verticalCenter: parent.verticalCenter
                  }
+
                 onClicked: {
                     if(!buttonCancel)
                         pokeVis = true;

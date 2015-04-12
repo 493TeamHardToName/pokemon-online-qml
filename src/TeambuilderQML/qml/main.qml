@@ -80,18 +80,25 @@ ApplicationWindow {
             var item = stackView.pop();
             updateToolbar();
         }
-        Component.onCompleted: pageStack.push(buildTeamPageComponent)   // add on, this is slot
+        Component.onCompleted: pageStack.push(coverPageComponemt)   // add on, this is slot
     }
     AnalyzerAccess {
         id: analyserAccess
     }
 
     Component {
-        id: mainMenuPageComponent
-        MainMenuPage {
-            onBuildTeamClicked: pageStack.push(buildTeamPageComponent);
+        id:coverPageComponemt
+        CoverPage {
+            onStartGame: pageStack.push(buildTeamPageComponent);
         }
     }
+
+//    Component {
+//        id: mainMenuPageComponent
+//        MainMenuPage {
+//            onBuildTeamClicked: pageStack.push(buildTeamPageComponent);
+//        }
+//    }
 
 //    Component {
 //        id: serverListPageComponent
@@ -103,6 +110,7 @@ ApplicationWindow {
     Component {
         id: buildTeamPageComponent
         BuildTeamPage {
+            onGoBack: pageStack.pop()
             onRandomGame: pageStack.push(findGamePageComponent)
             onGoFindGame: {
                 console.log("Go Find Game")
