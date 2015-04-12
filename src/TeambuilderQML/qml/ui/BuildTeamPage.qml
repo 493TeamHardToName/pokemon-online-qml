@@ -17,6 +17,7 @@ Page {
 
     property var fruitModel: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     property var vegetableModel: [0,0,0,0,0,0]
+    property int selectPokeId : -1
     anchors.fill: parent
 
     title: "Build team"
@@ -205,8 +206,10 @@ Page {
                 onClicked: {
                     if(!buttonCancel)
                         pokeVis = true;
-                    else
+                    else{
                         pokeVis = false;
+                        selectPokeId = -1;
+                    }
                     buttonCancel = !buttonCancel;
                 }
             }
@@ -216,72 +219,69 @@ Page {
         Rectangle{
             id: selectWindow
             width:root.width
-            height:pokeVis ? root.height/3 : 0
+            height:pokeVis ? root.height/4 : 0
             clip: true
             Behavior on height {
                 NumberAnimation { duration: 400 }
             }
             color : "transparent"
             ListView{
-                model: fruitModel
+                model: fruitVisualModel
                 width: selectWindow.width
                 height: selectWindow.height
                 orientation: ListView.Horizontal
                 interactive: true
-                delegate:
-                Column {
-                    id : pokeCard
-                    width: fruitModel.width
-//                    height: fruitModel.height
-                    Image {
-                        id: pokeImage
-                        width: U.dp(1.25)
-                        height: width
-                        source: "image://pokeinfo/pokemon/" + analyserAccess.getPokeId(index);
-                        MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
-                                }
-                        }
-                    }
-
-                    Button {
-                        id: pokeName
-                        width:U.dp(1.1)
-                        height:pokeCard.height/5
-                        checkable: true
-                        style: ButtonStyle {
-                                background: Rectangle {
-                                    id: buttonReg
-                                    anchors.fill: parent
-                                    border.width: control.activeFocus ? 2 : 1
-                                    border.color: "#888"
-                                    radius: 8
-                                    gradient: Gradient {
-                                            GradientStop { position: 0.0; color:  "white" }
-                                            GradientStop { position: 1.0; color: control.pressed ? "darkred" :"darkblue" }
-                                    }
-                                }
-                            }
-                        Text{
-                            text: analyserAccess.getPokeName(index);
-                            font.pointSize: 12
-                            anchors.centerIn: pokeName
-                            color: "white"
-                        }
-                        anchors.horizontalCenter: pokeImage.horizontalCenter
-                        onClicked: {
-                            pokeVis = false;
-                            buttonCancel = false;
-                            analyserAccess.setTeam(index);
-                        }
-                    }
-                }
            }
         }
 
+
+        Rectangle{
+            color: "transparent"
+            width:parent.width
+            height: (pokeVis) ? U.dp(0.4) : 0
+            anchors.bottomMargin: U.dp(0.4)
+            Button {
+                id: selectButton
+                enabled: (selectPokeId == -1) ? false : true
+                width:U.dp(2.4)
+                height:parent.height
+                anchors.centerIn: parent
+                checkable: true
+                style: ButtonStyle {
+                        background: Rectangle {
+                            id: buttonReg
+                            anchors.fill: parent
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 8
+                            gradient: Gradient {
+                                    GradientStop { position: 0.0; color:  "white" }
+                                    GradientStop { position: 1.0; color: (selectPokeId != -1) ? (control.pressed ? "darkred" :"darkblue") : "darkgrey" }
+                            }
+                        }
+                    }
+                Text{
+                    visible: pokeVis ? true : false
+                    text: (selectPokeId == -1) ? "Pick ?" : ("Pick " + analyserAccess.getPokeName(selectPokeId));
+                    anchors.centerIn: parent
+                    color: "white"
+                }
+                onClicked: {
+                    pokeVis = false;
+                    buttonCancel = false;
+                    analyserAccess.setTeam(selectPokeId);
+                    selectPokeId = -1;
+                }
+            }
+        }
+
+        Item{
+            width: root.width
+            height: U.dp(0.4)
+        }
+
         Rectangle {
+            id: pokeInfo
             color: "transparent"
             width:parent.width
             height:pokeInfoWindow.height + U.dp(0.2)
@@ -295,6 +295,67 @@ Page {
                 anchors.right: parent.right
                 anchors.left: parent.left
                 anchors.margins: U.dp(0.1)
+            }
+        }
+
+        VisualDataModel{
+            id: fruitVisualModel
+            model: fruitModel
+            groups: [
+                VisualDataGroup{
+                    id: fruitSelectedGroup
+                    name: "fruitselected"
+                }
+            ]
+            delegate:
+            Column {
+                id : pokeCard
+                width: fruitModel.width
+                Item{
+                    id: fruitItem
+                    width: U.dp(1.27)
+                    height: U.dp(1.27) + pokeCard.height/7
+                    Rectangle{
+                        border.color: (pokeCard.VisualDataModel.inFruitselected && selectPokeId != -1) ? "darkblue" : "transparent"
+                        border.width: U.dp(0.03)
+                        width: parent.width
+                        height: parent.height
+                        color: "transparent"
+                       Column{
+                        Image {
+                            id: pokeImage
+                            width: U.dp(1.25)
+                            height: width
+                            source: "image://pokeinfo/pokemon/" + analyserAccess.getPokeId(index);
+                        }
+                        Rectangle{
+                            width: pokeImage.width
+                            height: pokeCard.height/7
+                            color: "transparent"
+                            Text{
+                                text: analyserAccess.getPokeName(index);
+                                font.pointSize: 12
+                                anchors.centerIn: parent
+                                color: "darkblue"
+                            }
+                        }
+                       }
+                       MouseArea {
+                               anchors.fill: parent
+                               onClicked: {
+                                   pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(index);
+                                   selectPokeId = index;
+                                   if (!pokeCard.VisualDataModel.inFruitselected)
+                                      fruitSelectedGroup.remove(0, fruitSelectedGroup.count)
+                                   pokeCard.VisualDataModel.inFruitselected = !pokeCard.VisualDataModel.inFruitselected
+                                   if(pokeCard.VisualDataModel.inFruitselected)
+                                       selectPokeId = index;
+                                   else
+                                       selectPokeId = -1;
+                               }
+                       }
+                     }
+                 }
             }
         }
 
@@ -327,9 +388,6 @@ Page {
                             Rectangle {
                                        id: backGround
                                        anchors.fill: parent
-                                       //border.width: 2
-                                       //color: item.VisualDataModel.inSelected ? "grey" : "transparent"
-                                       //border.color: item.VisualDataModel.inSelected ? "lightblue " : "transparent"
                                        color: "transparent"
                                    }
                             onClicked: {
@@ -341,6 +399,7 @@ Page {
                                     pokeVis = false;
                                     buttonCancel = false;
                                 }
+                                selectPokeId = -1;
                                 analyserAccess.setPos(index);
                                 pokeInfoWindow.infoModel = analyserAccess.getPokeInfo(analyserAccess.userTeamInfo(index));
                             }
