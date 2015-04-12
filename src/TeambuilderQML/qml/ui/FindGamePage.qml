@@ -79,6 +79,7 @@ Page {
                 Label {
                     font.pointSize: 16
                     text: {
+                        color = "darkblue"
                         var text = name.substring(9)
                         if(isBattling)
                             color = "grey"
@@ -115,13 +116,14 @@ Page {
             font.pointSize: 20
             text: "Your ID: " + analyserAccess.playersInfoListModel.findPlayerNameById(
                       analyserAccess.currentPlayerId()).substring(9)
+            color: "darkblue"
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Rectangle {
             width: parent.width
             height: 2
-            color: "grey"
+            color: "darkblue"
         }
 
         Row {
@@ -133,6 +135,7 @@ Page {
             Label {
                 font.pointSize: 16
                 text: "Online Players"
+                color: "darkblue"
             }
         }
 
