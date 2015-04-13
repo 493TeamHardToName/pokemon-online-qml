@@ -53,16 +53,16 @@ Page {
 
         delegate: Item {
             id: item
-            height: (name.indexOf("poqmtest") === 0 && playerId !== analyserAccess.currentPlayerId()) ? 30 : 0 //name is a variable of playersInfoListModel
+            height: (name.indexOf("poqmtest") === 0 && playerId !== analyserAccess.currentPlayerId()) ? U.dp(0.5) : 0 //name is a variable of playersInfoListModel
             width: parent.width
             clip: true
 
             Row {
-                spacing: 10
+                spacing: U.dp(0.15)
 
                 Column {
+                    width: U.dp(0.2)
                     height: parent.height
-                    width: 15
                 }
 
                 Image {
@@ -73,11 +73,12 @@ Page {
                             path = Qt.resolvedUrl("../../Themes/Classic/client/uBattle.png")
                         return path
                     }
-                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.verticalCenter: labelText.verticalCenter
                 }
 
                 Label {
-                    font.pointSize: 16
+                    id: labelText
+                    font.pointSize: 18
                     text: {
                         color = "darkblue"
                         var text = name.substring(9)
@@ -105,11 +106,11 @@ Page {
 
     Column {
         width: parent.width
-        spacing: 10
+        spacing: U.dp(0.15)
 
         Row {
-            height: 10
-            width: 100
+            height: U.dp(0.15)
+            width: parent.width
         }
 
         Label {
@@ -122,15 +123,15 @@ Page {
 
         Rectangle {
             width: parent.width
-            height: 2
+            height: U.dp(0.03)
             color: "darkblue"
         }
 
         Row {
-            spacing: 10
+            spacing: U.dp(0.15)
             Column {
                 height: parent.height
-                width: 15
+                width: U.dp(0.2)
             }
             Label {
                 font.pointSize: 16
@@ -146,8 +147,8 @@ Page {
         }
 
         Row {
-            height: 10
-            width: 100
+            height: U.dp(0.15)
+            width: parent.width
         }
     }
 
