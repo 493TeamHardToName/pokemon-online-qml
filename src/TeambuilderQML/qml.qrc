@@ -22,6 +22,7 @@
         <file>qml/components/CoverPage.qml</file>
         <file>qml/graphics/pikachu.png</file>
         <file>qml/graphics/pokemonLogo.png</file>
+        <file>qml/components/InfoDialog.qml</file>
     </qresource>
     <qresource prefix="/battlescene">
         <file>qml/BattleDataQML/CommonEffects/StatDown.qml</file>

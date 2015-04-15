@@ -90,11 +90,14 @@ Page {
                             }
 
                             onClicked: {
-
+                                infoDialog.open();
                             }
                         }
                     }
                 }
+            }
+            InfoDialog {
+                id:infoDialog
             }
         }
     }
